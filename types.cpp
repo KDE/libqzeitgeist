@@ -63,6 +63,25 @@ Event::~Event()
     delete d;
 }
 
+Event & Event::operator = (const Event & source)
+{
+    if (this != &source) {
+        d->arg1 = source.d->arg1;
+        d->arg2 = source.d->arg2;
+        d->arg3 = source.d->arg3;
+    }
+
+    return *this;
+}
+
+Event::Event(const Event & source)
+    : d(new EventPrivate())
+{
+    d->arg1 = source.d->arg1;
+    d->arg2 = source.d->arg2;
+    d->arg3 = source.d->arg3;
+}
+
 
 QDBusArgument & operator << (QDBusArgument & argument, const Event & event)
 {
@@ -87,39 +106,5 @@ const QDBusArgument & operator >> (const QDBusArgument & argument, Event & event
     argument.endStructure();
 
     return argument;
-}
-
-// EventList
-
-class EventListPrivate {
-public:
-};
-
-EventList::EventList()
-    : d(new EventListPrivate())
-{
-}
-
-EventList::~EventList()
-{
-    delete d;
-}
-
-
-
-// EventIdList
-
-class EventIdListPrivate {
-public:
-};
-
-EventIdList::EventIdList()
-    : d(new EventIdListPrivate())
-{
-}
-
-EventIdList::~EventIdList()
-{
-    delete d;
 }
 

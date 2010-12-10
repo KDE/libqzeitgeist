@@ -25,15 +25,17 @@
 #include <QDBusArgument>
 
 class EventPrivate;
-class EventListPrivate;
-class EventIdListPrivate;
 
 class Event {
 public:
     Event();
     virtual ~Event();
 
+    Event & operator = (const Event & source);
+    Event(const Event & source);
+
 private:
+
     class EventPrivate * const d;
 
     friend QDBusArgument & operator << (QDBusArgument & argument, const Event & event);
@@ -42,25 +44,11 @@ private:
 
 Q_DECLARE_METATYPE(Event)
 
-class EventList: public QList < Event > {
-public:
-    EventList();
-    virtual ~EventList();
-
-private:
-    class EventListPrivate * const d;
-};
+typedef QList<Event> EventList;
 
 Q_DECLARE_METATYPE(EventList)
 
-class EventIdList: public QList < quint32 > {
-public:
-    EventIdList();
-    virtual ~EventIdList();
-
-private:
-    class EventIdListPrivate * const d;
-};
+typedef QList<quint32> EventIdList;
 
 Q_DECLARE_METATYPE(EventIdList)
 

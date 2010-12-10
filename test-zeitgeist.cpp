@@ -18,6 +18,7 @@
 
 #include "test-zeitgeist.h"
 #include "zeitgeist_interface.h"
+#include "types.h"
 
 TestZeitgeist::TestZeitgeist(int argc, char ** argv)
     : QCoreApplication(argc, argv),
@@ -44,6 +45,19 @@ void TestZeitgeist::Quit()
 
 void TestZeitgeist::InsertEvents()
 {
+    EventList events;
+    Event event;
+
+    events << event;
+
+    QDBusReply < EventIdList > reply = zeitgeist.InsertEvents(events);
+
+    if (reply.isValid()) {
+        qDebug() << reply.value();
+    } else {
+        qDebug() << "not valid reply" << reply.error();
+    }
+    qDebug() << "exit";
 }
 
 TestZeitgeist::~TestZeitgeist()
