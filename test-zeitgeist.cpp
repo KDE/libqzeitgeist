@@ -17,127 +17,33 @@
  */
 
 #include "test-zeitgeist.h"
-
-#include <QDBusConnection>
-#include <QDBusMessage>
-#include <QDBusArgument>
-#include <QDBusPendingCall>
-#include <QDBusMetaType>
-#include <QDBusAbstractInterface>
-
-#include <QDebug>
-
-struct SomeStrangeStructure
-{
-    QStringList list;
-    QList < QStringList > lists;
-    QByteArray bytes;
-};
-Q_DECLARE_METATYPE(SomeStrangeStructure)
-
-/**
- *
- */
-class ZeitgeistDBusInterface: public QDBusAbstractInterface {
-public:
-    ZeitgeistDBusInterface(QObject * parent = NULL)
-        : QDBusAbstractInterface(
-            "org.gnome.zeitgeist.Engine",
-            "/org/gnome/zeitgeist/log/activity",
-            "org.gnome.zeitgeist.Log",
-            QDBusConnection::sessionBus(),
-            parent
-        )
-    {
-    }
-
-    virtual ~ZeitgeistDBusInterface()
-    {
-    }
-
-private:
-    /* data */
-};
-
-QDBusArgument & operator << (QDBusArgument & argument, const SomeStrangeStructure & event)
-{
-    argument.beginStructure();
-    argument
-        << event.list
-        << event.lists
-        << event.bytes
-        ;
-    argument.endStructure();
-
-    return argument;
-}
-
-const QDBusArgument & operator >> (const QDBusArgument & argument, SomeStrangeStructure & event)
-{
-    argument.beginStructure();
-    argument
-        >> event.list
-        >> event.lists
-        >> event.bytes
-        ;
-    argument.endStructure();
-    return argument;
-}
-
-
+#include "zeitgeist_interface.h"
 
 TestZeitgeist::TestZeitgeist(int argc, char ** argv)
-    : QCoreApplication(argc, argv)
+    : QCoreApplication(argc, argv),
+      zeitgeist(
+              "org.gnome.zeitgeist.Engine",
+              "/org/gnome/zeitgeist/log/activity",
+              QDBusConnection::sessionBus()
+              )
 {
-    qDBusRegisterMetaType < SomeStrangeStructure > ();
-
     if (arguments().contains("Quit")) {
         Quit();
     } else if (arguments().contains("InsertEvents")) {
         InsertEvents();
+    } else {
+        qDebug() << "Arguments not valid";
     }
 }
 
-void TestZeitgeist::Quit() const
+void TestZeitgeist::Quit()
 {
     qDebug() << "Trying to invoke a method";
-    QDBusMessage call = QDBusMessage::createMethodCall(
-            "org.gnome.zeitgeist.Engine",
-            "/org/gnome/zeitgeist/log/activity",
-            "org.gnome.zeitgeist.Log",
-            "Quit");
-    qDebug() << "err" << call.errorMessage();
-    qDebug() << QDBusConnection::sessionBus().call(call);
-    qDebug() << "err" << call.errorMessage();
-
+    zeitgeist.Quit();
 }
 
-void TestZeitgeist::InsertEvents() const
+void TestZeitgeist::InsertEvents()
 {
-    ZeitgeistDBusInterface z;
-
-    QDBusArgument argument;
-    argument.beginArray();
-
-    for (int i = 0; i < 10; i++) {
-        SomeStrangeStructure event;
-
-        event.list << "asd" << "ASD";
-        event.lists << (QStringList() << "asdfgh" << "QWEASD");
-        event.bytes = QString("ASDASDASD").toAscii();
-    }
-
-    argument.endArray();
-
-    // qDebug() << "Trying to invoke a method";
-
-    // QList < QVariant > list;
-    // list << QVariant(argument);
-
-    // qDebug() <<
-    // z.callWithArgumentList(QDBus::Block, "InsertEvents", list);
-
-
 }
 
 TestZeitgeist::~TestZeitgeist()

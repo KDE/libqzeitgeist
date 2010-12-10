@@ -21,6 +21,7 @@
 
 #include <QObject>
 #include <QCoreApplication>
+#include "zeitgeist_interface.h"
 
 class TestZeitgeist: public QCoreApplication
 {
@@ -30,10 +31,11 @@ public:
     TestZeitgeist(int argc, char ** argv);
     ~TestZeitgeist();
 
-    void Quit() const;
+    void Quit();
 
-    void InsertEvents() const;
+    void InsertEvents();
 
+    org::gnome::zeitgeist::Log zeitgeist;
 };
 
 #endif
