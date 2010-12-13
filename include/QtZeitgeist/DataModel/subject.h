@@ -1,7 +1,7 @@
 /*
  * This file is part of QtZeitgeist.
  *
- * Copyright (C) 2009 Collabora Ltd. <http://www.collabora.co.uk/>
+ * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -49,12 +49,12 @@ class Q_DECL_EXPORT Subject : public QObject
 {
 Q_OBJECT
     Q_PROPERTY(QString uri READ uri WRITE setUri)
+    Q_PROPERTY(QString interpretation READ interpretation WRITE setInterpretation)
+    Q_PROPERTY(QString manifestation READ manifestation WRITE setManifestation)
     Q_PROPERTY(QString origin READ origin WRITE setOrigin)
     Q_PROPERTY(QString mimeType READ mimeType WRITE setMimeType)
     Q_PROPERTY(QString text READ text WRITE setText)
     Q_PROPERTY(QString storage READ storage WRITE setStorage)
-    Q_PROPERTY(QString interpretation READ interpretation WRITE setInterpretation)
-    Q_PROPERTY(QString manifestation READ manifestation WRITE setManifestation)
 
 public:
 
@@ -86,6 +86,36 @@ public:
      * @param uri the new URI of the subject.
      */
     void setUri(const QString &uri);
+
+    /**
+     * The subject interpretation represents what type of subject it is.
+     *
+     * @return the subject interpretation as a URI or empty if unset.
+     */
+    QString interpretation() const;
+
+    /**
+     * Set the subject interpretation.
+     *
+     * @param interpretation the URI designating the interpretation type of
+     * the subject.
+     */
+    void setInterpretation(const QString &interpretation);
+
+    /**
+     * The subject manifestation represents how did it happen.
+     *
+     * @return the subject interpretation as a URI or empty if unset.
+     */
+    QString manifestation() const;
+
+    /**
+     * Set the subject manifestation.
+     *
+     * @param manifestation the URI designating the manifestation type of
+     * the subject.
+     */
+    void setManifestation(const QString &manifestation);
 
     /**
      * The origin of the subject.
@@ -142,36 +172,6 @@ public:
      * @param storage the new storage of the subject.
      */
     void setStorage(const QString &storage);
-
-    /**
-     * The subject interpretation represents what type of subject it is.
-     *
-     * @return the subject interpretation as a URI or empty if unset.
-     */
-    QString interpretation() const;
-
-    /**
-     * Set the subject interpretation.
-     *
-     * @param interpretation the URI designating the interpretation type of
-     * the subject.
-     */
-    void setInterpretation(const QString &interpretation);
-
-    /**
-     * The subject manifestation represents how did it happen.
-     *
-     * @return the subject interpretation as a URI or empty if unset.
-     */
-    QString manifestation() const;
-
-    /**
-     * Set the subject manifestation.
-     *
-     * @param manifestation the URI designating the manifestation type of
-     * the subject.
-     */
-    void setManifestation(const QString &manifestation);
 
     Subject & operator = (const Subject &source);
 

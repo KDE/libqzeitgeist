@@ -34,10 +34,6 @@ namespace DataModel
 class SubjectPrivate
 {
 public :
-    SubjectPrivate()
-    {
-    }
-
     QString uri;
     QString origin;
     QString mimeType;
@@ -83,6 +79,26 @@ void Subject::setUri(const QString &uri)
     d->uri = uri;
 }
 
+QString Subject::interpretation() const
+{
+    return d->interpretation;
+}
+
+void Subject::setInterpretation(const QString &interpretation)
+{
+    d->interpretation = interpretation;
+}
+
+QString Subject::manifestation() const
+{
+    return d->manifestation;
+}
+
+void Subject::setManifestation(const QString &manifestation)
+{
+    d->manifestation = manifestation;
+}
+
 QString Subject::origin() const
 {
     return d->origin;
@@ -123,37 +139,17 @@ void Subject::setStorage(const QString &storage)
     d->storage = storage;
 }
 
-QString Subject::interpretation() const
-{
-    return d->interpretation;
-}
-
-void Subject::setInterpretation(const QString &interpretation)
-{
-    d->interpretation = interpretation;
-}
-
-QString Subject::manifestation() const
-{
-    return d->manifestation;
-}
-
-void Subject::setManifestation(const QString &manifestation)
-{
-    d->manifestation = manifestation;
-}
-
 Subject &Subject::operator = (const Subject & source)
 {
     // Copy the source attribute's value.
     if (this != &source) {
         d->uri = source.d->uri;
+        d->interpretation = source.d->interpretation;
+        d->manifestation = source.d->manifestation;
         d->origin = source.d->origin;
         d->mimeType = source.d->mimeType;
         d->text = source.d->text;
         d->storage = source.d->storage;
-        d->interpretation = source.d->interpretation;
-        d->manifestation = source.d->manifestation;
     }
 
     return *this;
@@ -165,12 +161,14 @@ QDBusArgument & operator << (QDBusArgument &argument, const Subject &subject)
 
     argument
         << subject.d->uri
+        << subject.d->interpretation
+        << subject.d->manifestation
         << subject.d->origin
         << subject.d->mimeType
         << subject.d->text
-        << subject.d->storage
-        << subject.d->interpretation
-        << subject.d->manifestation;
+        << subject.d->storage;
+
+    argument.endStructure();
 
     return argument;
 }
@@ -181,12 +179,12 @@ const QDBusArgument & operator >> (const QDBusArgument &argument, Subject &subje
 
     argument
         >> subject.d->uri
+        >> subject.d->interpretation
+        >> subject.d->manifestation
         >> subject.d->origin
         >> subject.d->mimeType
         >> subject.d->text
-        >> subject.d->storage
-        >> subject.d->interpretation
-        >> subject.d->manifestation;
+        >> subject.d->storage;
 
     argument.endStructure();
 
