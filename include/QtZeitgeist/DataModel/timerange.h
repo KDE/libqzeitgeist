@@ -35,7 +35,7 @@ namespace DataModel
 class TimeRangePrivate;
 
 /**
- * @class TimeRange event.h event.h
+ * @class TimeRange timerange.h timerange.h
  * @brief The representation of an interval in time, marked by a
  * beginning and an end.
  *
