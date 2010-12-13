@@ -37,7 +37,14 @@ class EventPrivate;
 
 class Q_DECL_EXPORT Event : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
+    Q_PROPERTY(quint32 id READ id WRITE setId)
+    Q_PROPERTY(QDateTime timestamp READ timestamp WRITE setTimestamp)
+    Q_PROPERTY(QString interpretation READ interpretation WRITE setInterpretation)
+    Q_PROPERTY(QString manifestation READ manifestation WRITE setManifestation)
+    Q_PROPERTY(QString actor READ actor WRITE setActor)
+    Q_PROPERTY(QList<QStringList> subjects READ subjects WRITE setSubjects)
+    Q_PROPERTY(QByteArray payload READ payload WRITE setPayload)
 
 public:
 
