@@ -53,8 +53,6 @@ Event::Event(QObject *parent)
     : d(new EventPrivate())
 {
     Q_ASSERT(d);
-
-    d->id = 0;
 }
 
 Event::Event(const Event & source, QObject *parent)
