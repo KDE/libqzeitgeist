@@ -23,7 +23,6 @@
 
 #include <QMetaType>
 #include <QDBusMetaType>
-#include <QDateTime>
 
 
 namespace QtZeitgeist
@@ -36,7 +35,7 @@ class EventPrivate
 {
 public :
 
-    quint64 id;
+    quint32 id;
     QDateTime timestamp;
     QString interpretation;
     QString manifestation;
@@ -85,6 +84,75 @@ Event &Event::operator = (const Event & source)
     return *this;
 }
 
+quint32 Event::id() const
+{
+    return d->id;
+}
+
+void Event::setId(quint32 id)
+{
+    d->id = id;
+}
+
+QDateTime Event::timestamp() const
+{
+    return d->timestamp;
+}
+
+void Event::setTimestamp(const QDateTime &timestamp)
+{
+    d->timestamp = timestamp;
+}
+
+QString Event::interpretation() const
+{
+    return d->interpretation;
+}
+
+void Event::setInterpretation(const QString &interpretation)
+{
+    d->interpretation = interpretation;
+}
+
+QString Event::manifestation() const
+{
+    return d->manifestation;
+}
+
+void Event::setManifestation(const QString &manifestation)
+{
+    d->manifestation = manifestation;
+}
+
+QString Event::actor() const
+{
+    return d->actor;
+}
+
+void Event::setActor(const QString &actor)
+{
+    d->actor = actor;
+}
+
+QList<QStringList> Event::subjects() const
+{
+    return d->subjects;
+}
+
+void Event::setSubjects(const QList<QStringList> &subjects)
+{
+    d->subjects = subjects;
+}
+
+QByteArray Event::payload() const
+{
+    return d->payload;
+}
+
+void Event::setPayload(const QByteArray &payload)
+{
+    d->payload = payload;
+}
 
 QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
 {

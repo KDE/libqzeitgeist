@@ -23,6 +23,7 @@
 #define QTZEITGEIST_EVENT_H_
 
 #include <QList>
+#include <QDateTime>
 #include <QMetaType>
 #include <QDBusArgument>
 
@@ -43,6 +44,27 @@ public:
     explicit Event(QObject *parent = 0);
     Event(const Event &source, QObject *parent = 0);
     virtual ~Event();
+
+    quint32 id() const;
+    void setId(quint32 id);
+
+    QDateTime timestamp() const;
+    void setTimestamp(const QDateTime &timestamp);
+
+    QString interpretation() const;
+    void setInterpretation(const QString &interpretation);
+
+    QString manifestation() const;
+    void setManifestation(const QString &manifestation);
+
+    QString actor() const;
+    void setActor(const QString &actor);
+
+    QList<QStringList> subjects() const;
+    void setSubjects(const QList<QStringList> &subjects);
+
+    QByteArray payload() const;
+    void setPayload(const QByteArray &payload);
 
     Event & operator = (const Event &source);
 
