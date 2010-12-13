@@ -1,7 +1,7 @@
 /*
  * This file is part of QtZeitgeist.
  *
- * Copyright (C) 2009 Collabora Ltd. <http://www.collabora.co.uk/>
+ * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
