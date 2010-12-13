@@ -1,36 +1,39 @@
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
-include(MacroLibrary)
+project(QtZeitgeist)
 
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+# Minimal CMAKE version
+cmake_minimum_required(VERSION 2.6)
 
-include_directories(
-   ${QT_INCLUDES}
-   ${KDE4_INCLUDES}
-   ${CMAKE_SOURCE_DIR}
-)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 
-set(
-   test-zeitgeist_SRCS
-   test-zeitgeist.cpp
-   types.cpp
-   main.cpp
-)
+find_package(Qt4 4.7.0 COMPONENTS QtCore QtDBus REQUIRED)
 
-set(zeitgeist_xml org.gnome.zeitgeist.xml)
-set_source_files_properties(
-   ${zeitgeist_xml}
-   PROPERTIES INCLUDE "types.h"
-)
+#use CPack for packaging code up
+include(CPack)
 
-qt4_add_dbus_interface(test-zeitgeist_SRCS ${zeitgeist_xml} zeitgeist_interface)
-
-kde4_add_executable(test-zeitgeist ${test-zeitgeist_SRCS})
-
-target_link_libraries(
-   test-zeitgeist
-   ${QT_QTCORE_LIBRARIES}
-   ${QT_QTDBUS_LIBRARIES}
-)
+set(CPACK_PACKAGE_VERSION_MAJOR "0")
+set(CPACK_PACKAGE_VERSION_MINOR "1")
 
 
+if(QT4_FOUND)
+	include_directories(${QT_INCLUDE_DIR})
+	include_directories(${QT_QT_INCLUDE_DIR})
+	include_directories(${QT_QTCORE_INCLUDE_DIR})
+	include_directories(${QT_QTDBUS_INCLUDE_DIR})
+endif(QT4_FOUND)
+
+set(CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE ON)
+
+configure_file(
+    "${CMAKE_SOURCE_DIR}/cmake/modules/cmake_uninstall.cmake.in"
+    "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake"
+    IMMEDIATE @ONLY)
+
+add_custom_target(uninstall
+    "${CMAKE_COMMAND}" -P "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake")
+
+# Generate pkg-config file
+configure_file(${CMAKE_SOURCE_DIR}/QtZeitgeist.pc.in ${CMAKE_BINARY_DIR}/QtZeitgeist.pc)
+install(FILES ${CMAKE_BINARY_DIR}/QtZeitgeist.pc DESTINATION lib/pkgconfig)
+
+add_subdirectory(include)
+add_subdirectory(src)
