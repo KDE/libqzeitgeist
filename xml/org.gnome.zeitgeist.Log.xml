@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<node>
+  
+  <interface name="org.gnome.zeitgeist.Log">
+    
+    <!-- Primary DBus interface for querying and updating
+         the Zeitgeist activity log-->
+    
+    <method name="InsertEvents">
+      <arg direction="in"  type="a(asaasay)" name="events" />
+      <arg direction="out" type="au" name="event_ids"/>
+    </method>
+  
+    <method name="DeleteLog">
+    </method>
+  
+    <method name="FindRelatedUris">
+      <arg direction="in"  type="(xx)" name="time_range" />
+      <arg direction="in"  type="a(asaasay)" name="event_templates" />
+      <arg direction="in"  type="a(asaasay)" name="result_event_templates" />
+      <arg direction="in"  type="u" name="storage_state" />
+      <arg direction="in"  type="u" name="num_events" />
+      <arg direction="in"  type="u" name="result_type" />
+      <arg direction="out" type="as" name="subject_uris" />
+    </method>
+  
+    <method name="FindEvents">
+      <arg direction="in"  type="(xx)" name="time_range" />
+      <arg direction="in"  type="a(asaasay)" name="event_templates" />
+      <arg direction="in"  type="u" name="storage_state" />
+      <arg direction="in"  type="u" name="num_events" />
+      <arg direction="in"  type="u" name="result_type"/>
+      <arg direction="out" type="a(asaasay)" name="events" />
+    </method>
+  
+    <method name="FindEventIds">
+      <arg direction="in"  type="(xx)" name="time_range" />
+      <arg direction="in"  type="a(asaasay)" name="event_templates" />
+      <arg direction="in"  type="u" name="storage_state" />
+      <arg direction="in"  type="u" name="num_events" />
+      <arg direction="in"  type="u" name="result_type" />
+      <arg direction="out" type="au" name="event_ids" />
+    </method>
+  
+    <method name="DeleteEvents">
+      <arg direction="in"  type="au" name="event_ids" />
+    </method>
+  
+    <method name="Quit">
+    </method>
+  
+    <method name="GetEvents">
+      <!-- Get a set of events given their event ids -->
+      <arg direction="in"  type="au" name="event_ids" />
+      <arg direction="out" type="a(asaasay)" name="events" />
+    </method>
+  
+    <method name="InstallMonitor">
+      <arg direction="in"  type="o" name="monitor_path" />
+      <arg direction="in"  type="(xx)" name="time_range" />
+      <arg direction="in"  type="a(asaasay)" name="event_templates" />
+    </method>
+  
+    <method name="RemoveMonitor">
+      <arg direction="in"  type="o" name="monitor_path" />
+    </method>
+  
+  </interface>
+
+</node>

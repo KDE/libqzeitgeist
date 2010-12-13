@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<node>
+  <interface name="org.gnome.zeitgeist.Blacklist">
+    <!-- Events matching the blacklisted templates will not be inserted into the log -->
+    <method name="SetBlacklist">
+      <!-- List of event templates to blacklist -->
+      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+        value="QtZeitgeist::DataModel::EventList"/>
+      <arg direction="in"  type="a(asaasay)" name="events" />
+    </method>
+
+    <method name="GetBlacklist">
+      <!-- List of event templates to blacklist -->
+      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
+        value="QtZeitgeist::DataModel::EventList"/>
+      <arg direction="out"  type="a(asaasay)" name="events" />
+    </method>
+  </interface>
+</node>

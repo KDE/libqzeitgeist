@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<node>
+  
+  <interface name="org.gnome.zeitgeist.Index">    
+    
+    <method name="Search">
+      <!-- Do a full text search against the Zeitgeist FTS Extension.
+           The time range and event templates are only used to filter
+           the results and will not affect the relevancy ranking -->
+      <arg direction="in"  type="s" name="query"/>
+      <arg direction="in"  type="(xx)" name="time_range" />
+      <arg direction="in"  type="a(asaasay)" name="event_templates" />
+      <arg direction="in"  type="u" name="offset"/>
+      <arg direction="in"  type="u" name="num_events" />
+      <arg direction="in"  type="u" name="result_type" />
+      <arg direction="out" type="a(asaasay)" name="events" />
+      <arg direction="out" type="u" name="hit_count"/>
+    </method> 
+    
+  </interface>
+
+
+</node>
