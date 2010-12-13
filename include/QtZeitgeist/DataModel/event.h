@@ -206,6 +206,13 @@ public:
      */
     void setPayload(const QByteArray &payload);
 
+    /**
+     * Append a @Subject to the list of subjects for @Event.
+     *
+     * @param subject the subject to be added to the event.
+     */
+    void addSubject(const QStringList &subject);
+
     Event & operator = (const Event &source);
 
 private:

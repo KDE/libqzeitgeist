@@ -1,7 +1,7 @@
 /*
  * This file is part of QtZeitgeist.
  *
- * Copyright (C) 2009 Collabora Ltd. <http://www.collabora.co.uk/>
+ * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -68,22 +68,6 @@ Event::Event(const Event & source, QObject *parent)
 Event::~Event()
 {
     delete d;
-}
-
-Event &Event::operator = (const Event & source)
-{
-    // Copy the source attribute's value.
-    if (this != &source) {
-        d->id = source.d->id;
-        d->timestamp = source.d->timestamp;
-        d->interpretation = source.d->interpretation;
-        d->manifestation = source.d->manifestation;
-        d->actor = source.d->actor;
-        d->subjects = source.d->subjects;
-        d->payload = source.d->payload;
-    }
-
-    return *this;
 }
 
 quint32 Event::id() const
@@ -154,6 +138,27 @@ QByteArray Event::payload() const
 void Event::setPayload(const QByteArray &payload)
 {
     d->payload = payload;
+}
+
+void Event::addSubject(const QStringList &subject)
+{
+    d->subjects.append(subject);
+}
+
+Event &Event::operator = (const Event & source)
+{
+    // Copy the source attribute's value.
+    if (this != &source) {
+        d->id = source.d->id;
+        d->timestamp = source.d->timestamp;
+        d->interpretation = source.d->interpretation;
+        d->manifestation = source.d->manifestation;
+        d->actor = source.d->actor;
+        d->subjects = source.d->subjects;
+        d->payload = source.d->payload;
+    }
+
+    return *this;
 }
 
 QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
