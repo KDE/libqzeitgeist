@@ -55,6 +55,7 @@ Event::Event(const Event & source, QObject *parent)
 {
     Q_ASSERT(d);
 
+    // Copy the source attribute's value.
     d->id = source.d->id;
     d->timestamp = source.d->timestamp;
     d->interpretation = source.d->interpretation;
@@ -71,6 +72,7 @@ Event::~Event()
 
 Event &Event::operator = (const Event & source)
 {
+    // Copy the source attribute's value.
     if (this != &source) {
         d->id = source.d->id;
         d->timestamp = source.d->timestamp;
