@@ -34,6 +34,11 @@ namespace DataModel
 class EventPrivate
 {
 public :
+    EventPrivate()
+    {
+        id = 0;
+        timestamp = QDateTime::currentDateTime();
+    }
 
     quint32 id;
     QDateTime timestamp;
@@ -48,6 +53,8 @@ Event::Event(QObject *parent)
     : d(new EventPrivate())
 {
     Q_ASSERT(d);
+
+    d->id = 0;
 }
 
 Event::Event(const Event & source, QObject *parent)
@@ -73,11 +80,6 @@ Event::~Event()
 quint32 Event::id() const
 {
     return d->id;
-}
-
-void Event::setId(quint32 id)
-{
-    d->id = id;
 }
 
 QDateTime Event::timestamp() const

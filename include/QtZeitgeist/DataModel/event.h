@@ -51,7 +51,7 @@ class EventPrivate;
 class Q_DECL_EXPORT Event : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(quint32 id READ id WRITE setId)
+    Q_PROPERTY(quint32 id READ id)
     Q_PROPERTY(QDateTime timestamp READ timestamp WRITE setTimestamp)
     Q_PROPERTY(QString interpretation READ interpretation WRITE setInterpretation)
     Q_PROPERTY(QString manifestation READ manifestation WRITE setManifestation)
@@ -83,16 +83,6 @@ public:
      * Zeitgeist engine will always have an event id.
      */
     quint32 id() const;
-
-    /**
-     * Set the event id of an event.
-     *
-     * @param id the event id to assign.
-     *
-     * Note that it is an error to send an event  with a pre set event id to
-     * the Zeitgeist deamon.
-     */
-    void setId(quint32 id);
 
     /**
      * Get the event timestamp.
