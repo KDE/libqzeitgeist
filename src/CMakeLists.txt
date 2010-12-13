@@ -15,11 +15,13 @@ set(generated_HDRS
 set(library_SRCS
     ${generated_SRCS}
     datamodel/event.cpp
+    datamodel/timerange.cpp
 )
 
 set(library_MOC_HDRS
     ${generated_HDRS}
     ${INC_DIR}/QtZeitgeist/DataModel/event.h
+    ${INC_DIR}/QtZeitgeist/DataModel/timerange.h
 )
 
 qt4_wrap_cpp(library_MOC_SRCS ${library_MOC_HDRS})
