@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<node>
+
+  <interface name="org.gnome.zeitgeist.DataSourceRegistry">
+    <!-- An extension which allows you to registers data sources in a central repository.
+         This allows for example to disable some data sources -->
+
+    <method name="RegisterDataSource">
+      <arg direction="in"  type="s" name="unique_id"/>
+      <arg direction="in"  type="s" name="name"/>
+      <arg direction="in"  type="s" name="description"/>
+      <arg direction="in"  type="a(asaasay)" name="event_templates" />
+      <arg direction="out" type="b" name="result"/>
+    </method>
+
+    <method name="SetDataSourceEnabled">
+      <arg direction="in"  type="s" name="unique_id"/>
+      <arg direction="in"  type="b" name="enabled"/>
+    </method>
+
+    <method name="GetDataSources">
+      <arg direction="out" type="a(sssa(asaasay)bxb)" />
+    </method>
+
+    <signal name="DataSourceRegistered">
+      <arg type="(sssa(asaasay)bxb)" />
+    </signal>
+
+    <signal name="DataSourceDisconnected">
+      <arg type="(sssa(asaasay)bxb)" />
+    </signal>
+
+    <signal name="DataSourceEnabled">
+      <arg type="s" name="unique_id"/>
+      <arg type="b" name="enabled"/>
+    </signal>
+
+  </interface>
+
+</node>
