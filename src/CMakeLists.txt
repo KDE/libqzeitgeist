@@ -6,10 +6,12 @@ include_directories(${INC_DIR})
 
 set(generated_SRCS
     _gen/blacklistinterface.cpp
+    _gen/loginterface.cpp
 )
 
 set(generated_HDRS
     _gen/blacklistinterface.h
+    _gen/loginterface.h
 )
 
 set(library_SRCS
