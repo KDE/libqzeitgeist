@@ -24,7 +24,6 @@
 #include <QMetaType>
 #include <QDBusMetaType>
 
-
 namespace QtZeitgeist
 {
 
@@ -37,6 +36,7 @@ public :
     EventPrivate()
     {
         id = 0;
+        timestamp.setTimeSpec(Qt::UTC);
         timestamp = QDateTime::currentDateTime();
     }
 
@@ -163,34 +163,49 @@ Event &Event::operator = (const Event & source)
 
 QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
 {
+    QStringList eventData;
+    event.d->timestamp = QDateTime::currentDateTime();
+
+    eventData
+        << QString(event.d->id)
+        << QString::number(event.d->timestamp.toTime_t() * 1000)
+        << event.d->interpretation
+        << event.d->manifestation
+        << event.d->actor;
+
     argument.beginStructure();
 
     argument
-        << event.d->id
-        << event.d->timestamp
-        << event.d->interpretation
-        << event.d->manifestation
-        << event.d->actor
+        << eventData
         << event.d->subjects
         << event.d->payload;
+
+    argument.endStructure();
 
     return argument;
 }
 
 const QDBusArgument & operator >> (const QDBusArgument &argument, Event &event)
 {
+    QStringList eventData;
+
     argument.beginStructure();
 
     argument
-        >> event.d->id
-        >> event.d->timestamp
-        >> event.d->interpretation
-        >> event.d->manifestation
-        >> event.d->actor
+        >> eventData
         >> event.d->subjects
         >> event.d->payload;
 
     argument.endStructure();
+
+    event.d->id = eventData[0].toUInt();
+
+    event.d->timestamp.setTime_t(0);
+    event.d->timestamp.addMSecs(eventData[1].toLongLong());
+
+    event.d->interpretation = eventData[2];
+    event.d->manifestation = eventData[3];
+    event.d->actor = eventData[4];
 
     return argument;
 }
