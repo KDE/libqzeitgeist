@@ -23,8 +23,6 @@
 
 #include "_gen/LogInterface"
 
-#include <QDebug>
-
 namespace QtZeitgeist
 {
 
@@ -121,6 +119,14 @@ void Log::deleteEvents(QtZeitgeist::DataModel::EventIdList ids)
     Q_ASSERT(ids.size() > 0);
 
     d->logInterface->DeleteEvents(ids);
+}
+
+QDBusPendingReply<QtZeitgeist::DataModel::EventList> Log::getEvents(
+        QtZeitgeist::DataModel::EventIdList ids)
+{
+    Q_ASSERT(ids.size() > 0);
+
+    return d->logInterface->GetEvents(ids);
 }
 
 };

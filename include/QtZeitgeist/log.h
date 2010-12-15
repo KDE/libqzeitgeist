@@ -199,6 +199,16 @@ public:
      * @param ids list of event IDs.
      */
     void deleteEvents(QtZeitgeist::DataModel::EventIdList ids);
+
+    /**
+     * Get full event data for a set of event IDs.
+     *
+     * @param ids a list of event IDs.
+     *
+     * @returns A list of Events.
+     */
+    QDBusPendingReply<QtZeitgeist::DataModel::EventList> getEvents(
+            QtZeitgeist::DataModel::EventIdList ids);
 private:
 
     // D Pointer.
