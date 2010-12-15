@@ -103,6 +103,23 @@ public:
      */
     void setEnd(qint64 end);
 
+    /**
+     * Returns a new time range starting from the beginning of the Unix Epoch
+     * and ending at the moment of the invocation.
+     *
+     * @returns a TimeRange starting from Epoch to the current time.
+     */
+    static TimeRange timeRangeToNow();
+
+    /**
+     * Returns a new time range starting from the moment of invocation to the
+     * end of time.
+     *
+     * @returns a TimeRange starting from now to the end of time.
+     */
+
+    static TimeRange timeRangeFromNow();
+
     TimeRange & operator = (const TimeRange &source);
 
 private:

@@ -21,6 +21,8 @@
 
 #include "QtZeitgeist/DataModel/TimeRange"
 
+#include <limits>
+
 namespace QtZeitgeist
 {
 
@@ -85,6 +87,17 @@ qint64 TimeRange::end() const
 void TimeRange::setEnd(qint64 end)
 {
     d->end = end;
+}
+
+TimeRange TimeRange::timeRangeToNow()
+{
+    return TimeRange(0, QDateTime::currentDateTime().toTime_t() * 1000);
+}
+
+TimeRange TimeRange::timeRangeFromNow()
+{
+    return TimeRange(QDateTime::currentDateTime().toTime_t() * 1000,
+            std::numeric_limits<quint64>::max());
 }
 
 TimeRange &TimeRange::operator = (const TimeRange &source)
