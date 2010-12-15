@@ -92,4 +92,35 @@ QDBusPendingReply<QStringList> Log::findRelatedUris(
             resultEventTemplateList, state, maxEvents, type);
 }
 
+QDBusPendingReply<QtZeitgeist::DataModel::EventList> Log::findEvents(
+        QtZeitgeist::DataModel::TimeRange timeRange,
+        QtZeitgeist::DataModel::EventList eventTemplateList,
+        StorageState state, uint maxEvents, ResultType type)
+
+{
+    Q_ASSERT(eventTemplateList.size() > 0);
+
+    return d->logInterface->FindEvents(timeRange, eventTemplateList, state,
+            maxEvents, type);
+}
+
+QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> Log::findEventIds(
+        QtZeitgeist::DataModel::TimeRange timeRange,
+        QtZeitgeist::DataModel::EventList eventTemplateList,
+        StorageState state, uint maxEvents, ResultType type)
+
+{
+    Q_ASSERT(eventTemplateList.size() > 0);
+
+    return d->logInterface->FindEventIds(timeRange, eventTemplateList, state,
+            maxEvents, type);
+}
+
+void Log::deleteEvents(QtZeitgeist::DataModel::EventIdList ids)
+{
+    Q_ASSERT(ids.size() > 0);
+
+    d->logInterface->DeleteEvents(ids);
+}
+
 };

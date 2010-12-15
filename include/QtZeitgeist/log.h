@@ -148,6 +148,57 @@ public:
             QtZeitgeist::DataModel::EventList resultEventTemplateList,
             StorageState state, uint maxEvents, ResultType type);
 
+    /**
+     * Get events matching a given set of templates.
+     *
+     * The matching is done where unset fields in the templates are treated as
+     * wildcards. If a template has more than one subject then events will
+     * match the template if any one of their subjects match any one of the
+     * subject templates.
+     *
+     * @param timeRange two timestamps defining the timerange for the query.
+     * @param eventTemplateList a list of event templates which you want URIs
+     * that relate to.
+     * @param state whether the item is currently known to be available.
+     * @param maxEvents maximal amount of returned events.
+     * @param type the Order in which the result should be made available.
+     *
+     * @returns A list of Events.
+     */
+    QDBusPendingReply<QtZeitgeist::DataModel::EventList> findEvents(
+            QtZeitgeist::DataModel::TimeRange timeRange,
+            QtZeitgeist::DataModel::EventList eventTemplateList,
+            StorageState state, uint maxEvents, ResultType type);
+
+    /**
+     * Search for events matching a given set of templates and return the IDs
+     * of matching events.
+     *
+     * The matching is done where unset fields in the templates are treated as
+     * wildcards. If a template has more than one subject then events will
+     * match the template if any one of their subjects match any one of the
+     * subject templates.
+     *
+     * @param timeRange two timestamps defining the timerange for the query.
+     * @param eventTemplateList a list of event templates which you want URIs
+     * that relate to.
+     * @param state whether the item is currently known to be available.
+     * @param maxEvents maximal amount of returned events.
+     * @param type the Order in which the result should be made available.
+     *
+     * @returns A list of Event Ids.
+     */
+    QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> findEventIds(
+            QtZeitgeist::DataModel::TimeRange timeRange,
+            QtZeitgeist::DataModel::EventList eventTemplateList,
+            StorageState state, uint maxEvents, ResultType type);
+
+    /**
+     * Delete a set of events from the log given their IDs.
+     *
+     * @param ids list of event IDs.
+     */
+    void deleteEvents(QtZeitgeist::DataModel::EventIdList ids);
 private:
 
     // D Pointer.
