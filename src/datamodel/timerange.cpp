@@ -107,6 +107,8 @@ QDBusArgument & operator << (QDBusArgument &argument,
         << timeRange.d->begin
         << timeRange.d->end;
 
+    argument.endStructure();
+
     return argument;
 }
 
