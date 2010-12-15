@@ -198,14 +198,16 @@ const QDBusArgument & operator >> (const QDBusArgument &argument, Event &event)
 
     argument.endStructure();
 
-    event.d->id = eventData[0].toUInt();
+    if (!eventData.isEmpty()) {
+        event.d->id = eventData[0].toUInt();
 
-    event.d->timestamp.setTime_t(0);
-    event.d->timestamp.addMSecs(eventData[1].toLongLong());
+        event.d->timestamp.setTime_t(0);
+        event.d->timestamp.addMSecs(eventData[1].toLongLong());
 
-    event.d->interpretation = eventData[2];
-    event.d->manifestation = eventData[3];
-    event.d->actor = eventData[4];
+        event.d->interpretation = eventData[2];
+        event.d->manifestation = eventData[3];
+        event.d->actor = eventData[4];
+    }
 
     return argument;
 }
