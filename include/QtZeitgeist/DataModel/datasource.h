@@ -48,7 +48,7 @@ class DataSourcePrivate;
 class Q_DECL_EXPORT DataSource : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(quint32 uniqueId READ uniqueId)
+    Q_PROPERTY(QString uniqueId READ uniqueId)
     Q_PROPERTY(QString name READ name)
     Q_PROPERTY(QString description READ description)
     Q_PROPERTY(QList<Event> eventTemplates READ eventTemplates)
@@ -79,7 +79,7 @@ public:
      * @return the datasource id or 0 if it's unset. An datasource retrieved from the
      * Zeitgeist engine will always have a datasource id.
      */
-    quint64 uniqueId() const;
+    QString uniqueId() const;
 
     /**
      * The datasource's name is the name of the datasource.

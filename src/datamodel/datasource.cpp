@@ -34,7 +34,7 @@ namespace DataModel
 class DataSourcePrivate
 {
 public :
-    quint64 uniqueId;
+    QString uniqueId;
     QString name;
     QString description;
     QList<Event> eventTemplates;
@@ -69,7 +69,7 @@ DataSource::~DataSource()
     delete d;
 }
 
-quint64 DataSource::uniqueId() const
+QString DataSource::uniqueId() const
 {
     return d->uniqueId;
 }
