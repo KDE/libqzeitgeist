@@ -28,13 +28,13 @@
 
     <signal name="DataSourceRegistered">
       <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
-        value="QtZeitgeist::DataModel::DataSourceList"/>
+        value="QtZeitgeist::DataModel::DataSource"/>
       <arg type="(sssa(asaasay)bxb)" />
     </signal>
 
     <signal name="DataSourceDisconnected">
       <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
-        value="QtZeitgeist::DataModel::DataSourceList"/>
+        value="QtZeitgeist::DataModel::DataSource"/>
       <arg type="(sssa(asaasay)bxb)" />
     </signal>
 

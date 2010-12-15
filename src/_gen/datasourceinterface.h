@@ -8,8 +8,8 @@
  * Do not edit! All changes made to it will be lost.
  */
 
-#ifndef DATASOURCEINTERFACE_H_1292432218
-#define DATASOURCEINTERFACE_H_1292432218
+#ifndef DATASOURCEINTERFACE_H_1292453039
+#define DATASOURCEINTERFACE_H_1292453039
 
 #include <QtCore/QObject>
 #include <QtCore/QByteArray>
@@ -59,9 +59,9 @@ public Q_SLOTS: // METHODS
     }
 
 Q_SIGNALS: // SIGNALS
-    void DataSourceDisconnected(const QtZeitgeist::DataModel::DataSourceList &in0);
+    void DataSourceDisconnected(const QtZeitgeist::DataModel::DataSource &in0);
     void DataSourceEnabled(const QString &unique_id, bool enabled);
-    void DataSourceRegistered(const QtZeitgeist::DataModel::DataSourceList &in0);
+    void DataSourceRegistered(const QtZeitgeist::DataModel::DataSource &in0);
 };
 
 namespace org {
