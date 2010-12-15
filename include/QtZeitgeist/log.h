@@ -26,6 +26,7 @@
 #include <QDBusPendingReply>
 
 #include "QtZeitgeist/DataModel/Event"
+#include "QtZeitgeist/DataModel/TimeRange"
 
 namespace QtZeitgeist
 {
@@ -63,8 +64,31 @@ class Q_DECL_EXPORT Log : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Log)
+    Q_ENUMS(StorageState)
+    Q_ENUMS(ResultType)
 
 public:
+
+    enum StorageState
+    {
+        NotAvailable = 0,
+        Available,
+        Any
+    };
+
+    enum ResultType
+    {
+		MostRecentEvents = 0,
+		LeastRecentEvents,
+		MostRecentSubjects,
+		LeastRecentSubjects,
+		MostPopularSubjects,
+		LeastPopularSubjects,
+		MostPopularActor,
+		LeastPopularActor,
+		MostRecentActor,
+		LeastRecentActor
+    };
 
     /**
      * Default constructor.
@@ -86,6 +110,44 @@ public:
      */
     QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> insertEvents(
             const QtZeitgeist::DataModel::EventList events);
+
+    /**
+     * Delete the log file and all its content.
+     *
+     * Note: This is a dangerous method. Once it's called it will request
+     * Zeitgeist to delete the entire log file and all its content in one go.
+     * To delete specific subsets use @findEventIds combined with
+     * @deleteEvents().
+     *
+     * @see findEventIds
+     * @see deleteEvents
+     */
+    void deleteLog();
+
+    /**
+     * Get a list of URIs of subjects which frequently occur together with
+     * events matching the event templates within time range.
+     *
+     * The resulting URIs must occur as subjects of events matching given
+     * result event templates and have the given storage state.
+     *
+     * @param timeRange two timestamps defining the timerange for the query.
+     * @param eventTemplateList a list of event templates which you want URIs
+     * that relate to.
+     * @param resultEventTemplateList a list of event templates which the
+     * returned URIs must occur as subjects of.
+     * @param state whether the item is currently known to be available.
+     * @param maxEvents maximal amount of returned events.
+     * @param type the Order in which the result should be made available.
+     *
+     * @returns A list of URI strings.
+     */
+    QDBusPendingReply<QStringList> findRelatedUris(
+            QtZeitgeist::DataModel::TimeRange timeRange,
+            QtZeitgeist::DataModel::EventList eventTemplateList,
+            QtZeitgeist::DataModel::EventList resultEventTemplateList,
+            StorageState state, uint maxEvents, ResultType type);
+
 private:
 
     // D Pointer.
