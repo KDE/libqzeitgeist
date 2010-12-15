@@ -37,3 +37,4 @@ install(FILES ${CMAKE_BINARY_DIR}/QtZeitgeist.pc DESTINATION lib/pkgconfig)
 
 add_subdirectory(include)
 add_subdirectory(src)
+add_subdirectory(tests)
