@@ -20,6 +20,7 @@
 
 #include "QtZeitgeist/QtZeitgeist"
 
+#include "QtZeitgeist/DataModel/DataSource"
 #include "QtZeitgeist/DataModel/Event"
 #include "QtZeitgeist/DataModel/TimeRange"
 
@@ -33,6 +34,8 @@ void init()
     static bool registered = false;
 
     if (!registered) {
+        qDBusRegisterMetaType<QtZeitgeist::DataModel::DataSource>();
+        qDBusRegisterMetaType<QtZeitgeist::DataModel::DataSourceList>();
         qDBusRegisterMetaType<QtZeitgeist::DataModel::Event>();
         qDBusRegisterMetaType<QtZeitgeist::DataModel::EventList>();
         qDBusRegisterMetaType<QtZeitgeist::DataModel::EventIdList>();
