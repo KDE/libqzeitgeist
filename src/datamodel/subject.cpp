@@ -21,9 +21,6 @@
 
 #include "QtZeitgeist/DataModel/Subject"
 
-#include <QMetaType>
-#include <QDBusMetaType>
-
 
 namespace QtZeitgeist
 {
@@ -153,42 +150,6 @@ Subject &Subject::operator = (const Subject & source)
     }
 
     return *this;
-}
-
-QDBusArgument & operator << (QDBusArgument &argument, const Subject &subject)
-{
-    argument.beginStructure();
-
-    argument
-        << subject.d->uri
-        << subject.d->interpretation
-        << subject.d->manifestation
-        << subject.d->origin
-        << subject.d->mimeType
-        << subject.d->text
-        << subject.d->storage;
-
-    argument.endStructure();
-
-    return argument;
-}
-
-const QDBusArgument & operator >> (const QDBusArgument &argument, Subject &subject)
-{
-    argument.beginStructure();
-
-    argument
-        >> subject.d->uri
-        >> subject.d->interpretation
-        >> subject.d->manifestation
-        >> subject.d->origin
-        >> subject.d->mimeType
-        >> subject.d->text
-        >> subject.d->storage;
-
-    argument.endStructure();
-
-    return argument;
 }
 
 };

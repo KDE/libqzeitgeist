@@ -23,8 +23,7 @@
 #define QTZEITGEIST_SUBJECT_H_
 
 #include <QList>
-#include <QMetaType>
-#include <QDBusArgument>
+#include <QObject>
 
 namespace QtZeitgeist
 {
@@ -179,12 +178,6 @@ private:
 
     // D Pointer.
     class SubjectPrivate * const d;
-
-    // Marshalers operators.
-    friend QDBusArgument & operator << (QDBusArgument &argument,
-                                        const Subject &subject);
-    friend const QDBusArgument & operator >> (const QDBusArgument &argument,
-                                              Subject &subject);
 };
 
 // Create additional types.
@@ -193,9 +186,5 @@ typedef QList<Subject> SubjectList;
 };
 
 };
-
-// Declare types as Qt Meta Type.
-Q_DECLARE_METATYPE(QtZeitgeist::DataModel::Subject)
-Q_DECLARE_METATYPE(QtZeitgeist::DataModel::SubjectList)
 
 #endif // QTZEITGEIST_SUBJECT_H_
