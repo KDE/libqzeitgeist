@@ -151,4 +151,12 @@ const QtZeitgeist::Monitor *Log::installMonitor(
     return monitor;
 }
 
+void Log::removeMonitor(QtZeitgeist::Monitor *monitor)
+{
+    Q_ASSERT(monitor != 0);
+
+    d->logInterface->RemoveMonitor(QDBusObjectPath(monitor->objectPath()));
+
+    monitor->deleteLater();
+}
 };
