@@ -47,6 +47,9 @@ DataSource::DataSource(QObject *parent)
     : d(new DataSourcePrivate())
 {
     Q_ASSERT(d);
+
+    // Initialize the last seen time.
+    d->lastSeen.setTime_t(0);
 }
 
 DataSource::DataSource(const DataSource & source, QObject *parent)
