@@ -48,13 +48,47 @@ class Q_DECL_EXPORT Monitor : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Monitor)
+    Q_PROPERTY(quint64 id READ id)
+    Q_PROPERTY(QtZeitgeist::DataModel::TimeRange timeRange READ timeRange)
+    Q_PROPERTY(QtZeitgeist::DataModel::EventList eventTemplates
+            READ eventTemplates)
+
+public:
+
+    /**
+     * Return the Monitor ID.
+     *
+     * Note: The Monitor ID is not related to any data stored or referenced by
+     * the Zeitgeist daemon. It's only an unique identification of the monitor
+     * instance.
+     *
+     * @returns An unique ID.
+     */
+    quint64 id() const;
+
+    /**
+     * Return the Monitor Time Range.
+     *
+     * @returns the time range used to create the monitor.
+     */
+    QtZeitgeist::DataModel::TimeRange timeRange() const;
+
+    /**
+     * Return the Monitor Event Templates.
+     *
+     * @returns the event templates used to create the monitor.
+     */
+    QtZeitgeist::DataModel::EventList eventTemplates() const;
 
 protected:
 
     /**
      * Default constructor.
      */
-    explicit Monitor(quint64 id, QObject *parent = 0);
+    explicit Monitor(quint64 id,
+            QtZeitgeist::DataModel::TimeRange monitorTimeRange,
+            QtZeitgeist::DataModel::EventList monitorTemplates,
+            QObject *parent = 0);
 
     /**
      * Destructor.

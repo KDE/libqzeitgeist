@@ -143,7 +143,8 @@ const QtZeitgeist::Monitor *Log::installMonitor(
     LogPrivate::monitorIdIndex++;
 
     QtZeitgeist::Monitor *monitor = new QtZeitgeist::Monitor(
-            LogPrivate::monitorIdIndex, this);
+            LogPrivate::monitorIdIndex,
+            timeRange, eventTemplateList, this);
 
     d->logInterface->InstallMonitor(QDBusObjectPath(monitor->objectPath()),
             timeRange, eventTemplateList);

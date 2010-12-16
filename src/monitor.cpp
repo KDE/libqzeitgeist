@@ -36,9 +36,14 @@ const QString serviceName = "org.gnome.zeitgeist.Monitor";
 
 
 // Implements the private section. D pointer.
-MonitorPrivate::MonitorPrivate(quint64 monitorId, Monitor *parent)
+MonitorPrivate::MonitorPrivate(quint64 monitorId,
+        QtZeitgeist::DataModel::TimeRange monitorTimeRange,
+        QtZeitgeist::DataModel::EventList monitorTemplates,
+        Monitor *parent)
     : QObject(parent),
     id(monitorId),
+    timeRange(monitorTimeRange),
+    eventTemplates(monitorTemplates),
     q(parent)
 {
     // Create the needed DBus Monitor Adaptor.
@@ -72,9 +77,12 @@ void MonitorPrivate::NotifyInsert(
 }
 
 // Implements the Monitor class.
-Monitor::Monitor(quint64 id, QObject *parent)
+Monitor::Monitor(quint64 id,
+        QtZeitgeist::DataModel::TimeRange timeRange,
+        QtZeitgeist::DataModel::EventList templates,
+        QObject *parent)
     : QObject(parent),
-    d(new MonitorPrivate(id, this))
+    d(new MonitorPrivate(id, timeRange, templates, this))
 {
     Q_ASSERT(d);
 }
@@ -88,4 +96,20 @@ QString Monitor::objectPath() const
 {
     return d->regObjPath;
 }
+
+quint64 Monitor::id() const
+{
+    return d->id;
+}
+
+QtZeitgeist::DataModel::TimeRange Monitor::timeRange() const
+{
+    return d->timeRange;
+}
+
+QtZeitgeist::DataModel::EventList Monitor::eventTemplates() const
+{
+    return d->eventTemplates;
+}
+
 };

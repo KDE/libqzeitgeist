@@ -49,7 +49,10 @@ public:
     /**
      * Default constructor.
      */
-    explicit MonitorPrivate(quint64 monitorId, Monitor* parent = 0);
+    explicit MonitorPrivate(quint64 monitorId,
+            QtZeitgeist::DataModel::TimeRange monitorTimeRange,
+            QtZeitgeist::DataModel::EventList monitorTemplates,
+            Monitor* parent = 0);
 
     /**
      * Destructor.
@@ -70,6 +73,12 @@ public:
 
     // Monitor id.
     quint64 id;
+
+    // Monitor time range.
+    QtZeitgeist::DataModel::TimeRange timeRange;
+
+    // Monitor templates.
+    QtZeitgeist::DataModel::EventList eventTemplates;
 
     // Registered object path.
     QString regObjPath;
