@@ -37,7 +37,7 @@ public :
     {
         id = 0;
         timestamp.setTimeSpec(Qt::UTC);
-        timestamp = QDateTime::currentDateTime();
+        timestamp.setTime_t(0);
     }
 
     quint32 id;
@@ -164,7 +164,6 @@ Event &Event::operator = (const Event & source)
 QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
 {
     QStringList eventData;
-    event.d->timestamp = QDateTime::currentDateTime();
 
     eventData
         << QString(event.d->id)
