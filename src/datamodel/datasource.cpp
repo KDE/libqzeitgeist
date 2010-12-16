@@ -126,6 +126,8 @@ DataSource &DataSource::operator = (const DataSource & source)
 QDBusArgument & operator << (QDBusArgument &argument, const DataSource &datasource)
 {
     argument.beginStructure();
+    // Convert the QDateTime into msecs since epoch.
+    qint64 lastSeenMSecs = datasource.d->lastSeen.toTime_t() * 1000;
 
     argument
         << datasource.d->uniqueId
@@ -133,8 +135,7 @@ QDBusArgument & operator << (QDBusArgument &argument, const DataSource &datasour
         << datasource.d->description
         << datasource.d->eventTemplates
         << datasource.d->running
-        // Convert the QDateTime into msecs since epoch.
-        << QString::number(datasource.d->lastSeen.toTime_t() * 1000)
+        << lastSeenMSecs
         << datasource.d->enabled;
 
     argument.endStructure();
@@ -142,10 +143,11 @@ QDBusArgument & operator << (QDBusArgument &argument, const DataSource &datasour
     return argument;
 }
 
-const QDBusArgument & operator >> (const QDBusArgument &argument, DataSource &datasource)
+const QDBusArgument & operator >> (const QDBusArgument &argument,
+    DataSource &datasource)
 {
     argument.beginStructure();
-    QString lastSeenString;
+    qint64 lastSeenMSecs;
 
     argument
         >> datasource.d->uniqueId
@@ -153,12 +155,12 @@ const QDBusArgument & operator >> (const QDBusArgument &argument, DataSource &da
         >> datasource.d->description
         >> datasource.d->eventTemplates
         >> datasource.d->running
-        >> lastSeenString
+        >> lastSeenMSecs
         >> datasource.d->enabled;
 
     // Translate the last seen string
     datasource.d->lastSeen.setTime_t(0);
-    datasource.d->lastSeen.addMSecs(lastSeenString.toLongLong());
+    datasource.d->lastSeen.addMSecs(lastSeenMSecs);
 
     argument.endStructure();
 
