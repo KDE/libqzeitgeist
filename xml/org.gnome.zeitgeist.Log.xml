@@ -83,7 +83,11 @@
       <arg direction="out" type="a(asaasay)" name="events" />
     </method>
 
-    <!-- TODO <method name="InstallMonitor">
+    <method name="InstallMonitor">
+      <annotation name="com.trolltech.QtDBus.QtTypeName.In1"
+        value="QtZeitgeist::DataModel::TimeRange"/>
+      <annotation name="com.trolltech.QtDBus.QtTypeName.In2"
+        value="QtZeitgeist::DataModel::EventList"/>
       <arg direction="in"  type="o" name="monitor_path" />
       <arg direction="in"  type="(xx)" name="time_range" />
       <arg direction="in"  type="a(asaasay)" name="event_templates" />
@@ -92,7 +96,7 @@
     <method name="RemoveMonitor">
       <arg direction="in"  type="o" name="monitor_path" />
     </method>
-    -->
+
   </interface>
 
 </node>
