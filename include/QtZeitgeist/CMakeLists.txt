@@ -3,6 +3,8 @@ set(library_HDRS
     qtzeitgeist.h
     Log
     log.h
+    DataSourceRegistry
+    datasourceregistry.h
 )
 
 install(FILES ${library_HDRS} DESTINATION include/QtZeitgeist)

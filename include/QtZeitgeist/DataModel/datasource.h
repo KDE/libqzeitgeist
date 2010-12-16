@@ -39,7 +39,7 @@ class DataSourcePrivate;
 
 /**
  * @class DataSource datasource.h datasource.h
- * @brief The DataSource objects abstract datasources returned from Zeitgeist queries.
+ * @brief DataSource object that represents a datasource.
  *
  * @see Event.
  *

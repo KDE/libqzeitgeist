@@ -19,6 +19,7 @@ set(generated_HDRS
 set(library_SRCS
     ${generated_SRCS}
     qtzeitgeist.cpp
+    datasourceregistry.cpp
     log.cpp
     datamodel/datasource.cpp
     datamodel/event.cpp
@@ -28,6 +29,7 @@ set(library_SRCS
 
 set(library_MOC_HDRS
     ${generated_HDRS}
+    ${INC_DIR}/QtZeitgeist/datasourceregistry.h
     ${INC_DIR}/QtZeitgeist/log.h
     ${INC_DIR}/QtZeitgeist/qtzeitgeist.h
     ${INC_DIR}/QtZeitgeist/DataModel/datasource.h
