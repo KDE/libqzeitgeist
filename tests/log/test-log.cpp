@@ -27,6 +27,9 @@ void LogTest::initTestCase()
 
     // Create the object to be tested.
     m_log = new QtZeitgeist::Log(this);
+
+    // Initialize the monitor.
+    m_monitor = 0;
 };
 
 void LogTest::cleanupTestCase()
@@ -232,5 +235,35 @@ void LogTest::deleteEventsTest()
         QVERIFY(reply.value()[i].id() == 0);
 };
 
+
+void LogTest::installMonitor()
+{
+    QtZeitgeist::DataModel::Event event;
+    QtZeitgeist::DataModel::EventList events;
+
+    // Set the template to search for.
+    event.setActor("app://firefox.desktop");
+
+    // Add to the event list.
+    events << event;
+
+    // Query for all events since Epoch.
+    QtZeitgeist::DataModel::TimeRange timeRange =
+        QtZeitgeist::DataModel::TimeRange::timeRangeToNow();
+
+    // Ask to register a monitor.
+    m_monitor = m_log->installMonitor(timeRange, events);
+
+    // Check if it was created.
+    QVERIFY(m_monitor != 0);
+}
+
+void LogTest::removeMonitor()
+{
+    QVERIFY(m_monitor != 0);
+
+    // Ask to remove the monitor.
+    m_log->removeMonitor(const_cast<QtZeitgeist::Monitor *>(m_monitor));
+}
 
 QTEST_MAIN(LogTest)

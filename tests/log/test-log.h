@@ -23,6 +23,7 @@
 
 #include "QtZeitgeist/QtZeitgeist"
 #include "QtZeitgeist/Log"
+#include "QtZeitgeist/Monitor"
 
 class LogTest : public QObject
 {
@@ -38,8 +39,11 @@ private slots:
     void findEventIdsTest();
     void findEventsTest();
     void deleteEventsTest();
+    void installMonitor();
+    void removeMonitor();
 
 private:
     QtZeitgeist::Log *m_log;
+    const QtZeitgeist::Monitor *m_monitor;
     QtZeitgeist::DataModel::EventIdList m_ids;
 };
