@@ -27,6 +27,8 @@
 #include <QMetaType>
 #include <QDBusArgument>
 
+#include "QtZeitgeist/DataModel/Subject"
+
 namespace QtZeitgeist
 {
 
@@ -56,7 +58,7 @@ class Q_DECL_EXPORT Event : public QObject
     Q_PROPERTY(QString interpretation READ interpretation WRITE setInterpretation)
     Q_PROPERTY(QString manifestation READ manifestation WRITE setManifestation)
     Q_PROPERTY(QString actor READ actor WRITE setActor)
-    Q_PROPERTY(QList<QStringList> subjects READ subjects WRITE setSubjects)
+    Q_PROPERTY(SubjectList subjects READ subjects WRITE setSubjects)
     Q_PROPERTY(QByteArray payload READ payload WRITE setPayload)
 
 public:
@@ -167,14 +169,14 @@ public:
      *
      * @return A list containing all event's subjects.
      */
-    QList<QStringList> subjects() const;
+    SubjectList subjects() const;
 
     /**
      * Set the event's subject list.
      *
      * @param subjects the list of subjects to set.
      */
-    void setSubjects(const QList<QStringList> &subjects);
+    void setSubjects(const SubjectList &subjects);
 
     /**
      * Get the event's payload.
@@ -201,7 +203,7 @@ public:
      *
      * @param subject the subject to be added to the event.
      */
-    void addSubject(const QStringList &subject);
+    void addSubject(const Subject &subject);
 
     Event & operator = (const Event &source);
 

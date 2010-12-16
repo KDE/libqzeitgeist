@@ -45,7 +45,7 @@ public :
     QString interpretation;
     QString manifestation;
     QString actor;
-    QList<QStringList> subjects;
+    SubjectList subjects;
     QByteArray payload;
 };
 
@@ -120,12 +120,12 @@ void Event::setActor(const QString &actor)
     d->actor = actor;
 }
 
-QList<QStringList> Event::subjects() const
+SubjectList Event::subjects() const
 {
     return d->subjects;
 }
 
-void Event::setSubjects(const QList<QStringList> &subjects)
+void Event::setSubjects(const SubjectList &subjects)
 {
     d->subjects = subjects;
 }
@@ -140,7 +140,7 @@ void Event::setPayload(const QByteArray &payload)
     d->payload = payload;
 }
 
-void Event::addSubject(const QStringList &subject)
+void Event::addSubject(const Subject &subject)
 {
     d->subjects.append(subject);
 }
@@ -173,11 +173,29 @@ QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
         << event.d->manifestation
         << event.d->actor;
 
+    QList<QStringList> subjectList;
+    uint subjectsSize = event.d->subjects.size();
+
+    for (uint i = 0; i < subjectsSize; ++i) {
+        QStringList subjectData;
+        Subject subject = event.d->subjects[i];;
+
+        subjectData << subject.uri();
+        subjectData << subject.interpretation();
+        subjectData << subject.manifestation();
+        subjectData << subject.origin();
+        subjectData << subject.mimeType();
+        subjectData << subject.text();
+        subjectData << subject.storage();
+
+        subjectList << subjectData;
+    }
+
     argument.beginStructure();
 
     argument
         << eventData
-        << event.d->subjects
+        << subjectList
         << event.d->payload;
 
     argument.endStructure();
@@ -188,12 +206,13 @@ QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
 const QDBusArgument & operator >> (const QDBusArgument &argument, Event &event)
 {
     QStringList eventData;
+    QList<QStringList> subjectList;
 
     argument.beginStructure();
 
     argument
         >> eventData
-        >> event.d->subjects
+        >> subjectList
         >> event.d->payload;
 
     argument.endStructure();
@@ -207,6 +226,25 @@ const QDBusArgument & operator >> (const QDBusArgument &argument, Event &event)
         event.d->interpretation = eventData[2];
         event.d->manifestation = eventData[3];
         event.d->actor = eventData[4];
+    }
+
+    if (!subjectList.isEmpty()) {
+        uint subjectsSize = subjectList.size();
+
+        for (uint i = 0; i < subjectsSize; ++i) {
+            QStringList subjectString = subjectList[i];
+
+            Subject subject;
+            subject.setUri(subjectString[0]);
+            subject.setInterpretation(subjectString[1]);
+            subject.setManifestation(subjectString[2]);
+            subject.setOrigin(subjectString[3]);
+            subject.setMimeType(subjectString[4]);
+            subject.setText(subjectString[5]);
+            subject.setStorage(subjectString[6]);
+
+            event.d->subjects << subject;
+        }
     }
 
     return argument;

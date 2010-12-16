@@ -50,17 +50,17 @@ void LogTest::insertEventsTest()
     event1.setManifestation("foo://Manif");
     event1.setActor("app://firefox.desktop");
 
-    QStringList subject1;
+    QtZeitgeist::DataModel::Subject subject1;
 
-    subject1 << "file:///tmp/bar.txt"
-            << "foo://TextDoc"
-            << "foo://File"
-            << "text/plain"
-            << "file:///tmp"
-            << "bar.txt"
-            << "bfb486f6-f5f8-4296-8871-0cc749cf8ef7";
+    subject1.setUri("file:///tmp/bar.txt");
+    subject1.setInterpretation("foo://TextDoc");
+    subject1.setManifestation("foo://File");
+    subject1.setOrigin("file:///tmp");
+    subject1.setMimeType("text/plain");
+    subject1.setText("bar.txt");
+    subject1.setStorage("bfb486f6-f5f8-4296-8871-0cc749cf8ef7");
 
-    QList<QStringList> subjects1;
+    QtZeitgeist::DataModel::SubjectList subjects1;
     subjects1 << subject1;
 
     event1.setSubjects(subjects1);
@@ -74,17 +74,17 @@ void LogTest::insertEventsTest()
     event2.setManifestation("foo://Manif2");
     event2.setActor("app://firefox.desktop");
 
-    QStringList subject2;
+    QtZeitgeist::DataModel::Subject subject2;
 
-    subject2 << "file:///tmp/bar.txt2"
-            << "foo://TextDoc"
-            << "foo://File"
-            << "text/plain"
-            << "file:///tmp"
-            << "bar.txt"
-            << "bfb486f6-f5f8-4296-8871-0cc749cf8ef7";
+    subject2.setUri("file:///tmp/bar.txt2");
+    subject2.setInterpretation("foo://TextDoc");
+    subject2.setManifestation("foo://File");
+    subject2.setOrigin("file:///tmp");
+    subject2.setMimeType("text/plain");
+    subject2.setText("bar.txt");
+    subject2.setStorage("bfb486f6-f5f8-4296-8871-0cc749cf8ef7");
 
-    QList<QStringList> subjects2;
+    QtZeitgeist::DataModel::SubjectList subjects2;
     subjects2 << subject2;
 
     event2.setSubjects(subjects2);
@@ -142,7 +142,7 @@ void LogTest::findEventIdsTest()
 
     // Set the template to search for.
     event.setActor("app://firefox.desktop");
-    event.setSubjects(QList<QStringList>());
+    event.setSubjects(QtZeitgeist::DataModel::SubjectList());
 
     // Add to the event list.
     events << event;
@@ -178,7 +178,7 @@ void LogTest::findEventsTest()
 
     // Set the template to search for.
     event.setActor("app://firefox.desktop");
-    event.setSubjects(QList<QStringList>());
+    event.setSubjects(QtZeitgeist::DataModel::SubjectList());
 
     // Add to the event list.
     events << event;
