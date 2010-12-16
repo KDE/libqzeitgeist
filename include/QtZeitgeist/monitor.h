@@ -23,8 +23,8 @@
 #define QTZEITGEIST_MONITOR_H_
 
 #include <QObject>
-#include <QDBusPendingReply>
 
+#include "QtZeitgeist/Log"
 #include "QtZeitgeist/DataModel/Event"
 #include "QtZeitgeist/DataModel/TimeRange"
 
@@ -49,12 +49,12 @@ class Q_DECL_EXPORT Monitor : public QObject
     Q_OBJECT
     Q_DISABLE_COPY(Monitor)
 
-public:
+protected:
 
     /**
      * Default constructor.
      */
-    explicit Monitor(QObject *parent = 0);
+    explicit Monitor(quint64 id, QObject *parent = 0);
 
     /**
      * Destructor.
@@ -93,6 +93,9 @@ Q_SIGNALS:
 
 private:
 
+    QString objectPath() const;
+
+    friend class Log;
     friend class MonitorPrivate;
 
     // D Pointer.

@@ -29,23 +29,26 @@ namespace QtZeitgeist
 {
 
 // Monitor's DBus Object Path.
-const QString objectPath = "/org/gnome/zeitgeist/monitor/1";
+const QString objPath = "/org/gnome/zeitgeist/monitor";
 
 // Monitor's DBus Service Name.
 const QString serviceName = "org.gnome.zeitgeist.Monitor";
 
 
 // Implements the private section. D pointer.
-MonitorPrivate::MonitorPrivate(Monitor *parent)
+MonitorPrivate::MonitorPrivate(quint64 monitorId, Monitor *parent)
     : QObject(parent),
+    id(monitorId),
     q(parent)
 {
     // Create the needed DBus Monitor Adaptor.
     monitorAdaptor = new MonitorAdaptor(this);
 
+    regObjPath = QString(objPath + "/%1").arg(id);
+
     QDBusConnection connection = QDBusConnection::sessionBus();
-    connection.registerService("org.gnome.zeitgeist.Monitor");
-    connection.registerObject("/org/gnome/zeitgeist/monitor/1", this);
+    connection.registerService(serviceName);
+    connection.registerObject(regObjPath, this);
 }
 
 MonitorPrivate::~MonitorPrivate()
@@ -69,8 +72,9 @@ void MonitorPrivate::NotifyInsert(
 }
 
 // Implements the Monitor class.
-Monitor::Monitor(QObject *parent)
-    : d(new MonitorPrivate(this))
+Monitor::Monitor(quint64 id, QObject *parent)
+    : QObject(parent),
+    d(new MonitorPrivate(id, this))
 {
     Q_ASSERT(d);
 }
@@ -80,4 +84,8 @@ Monitor::~Monitor()
     delete d;
 }
 
+QString Monitor::objectPath() const
+{
+    return d->regObjPath;
+}
 };

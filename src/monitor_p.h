@@ -49,7 +49,7 @@ public:
     /**
      * Default constructor.
      */
-    explicit MonitorPrivate(Monitor* parent = 0);
+    explicit MonitorPrivate(quint64 monitorId, Monitor* parent = 0);
 
     /**
      * Destructor.
@@ -66,7 +66,13 @@ public Q_SLOTS:
     void NotifyInsert(const QtZeitgeist::DataModel::TimeRange &timeRange,
             const QtZeitgeist::DataModel::EventList &events);
 
-private:
+public:
+
+    // Monitor id.
+    quint64 id;
+
+    // Registered object path.
+    QString regObjPath;
 
     // Pointer to the adaptor.
     MonitorAdaptor *monitorAdaptor;

@@ -23,6 +23,8 @@
 
 #include "_gen/LogInterface"
 
+#include "QtZeitgeist/Monitor"
+
 namespace QtZeitgeist
 {
 
@@ -48,8 +50,11 @@ public :
         delete logInterface;
     }
 
+    static quint64 monitorIdIndex;
     org::gnome::zeitgeist::Log *logInterface;
 };
+
+quint64 LogPrivate::monitorIdIndex = 0;
 
 Log::Log(QObject *parent)
     : d(new LogPrivate())
@@ -127,6 +132,23 @@ QDBusPendingReply<QtZeitgeist::DataModel::EventList> Log::getEvents(
     Q_ASSERT(ids.size() > 0);
 
     return d->logInterface->GetEvents(ids);
+}
+
+const QtZeitgeist::Monitor *Log::installMonitor(
+        QtZeitgeist::DataModel::TimeRange timeRange,
+        QtZeitgeist::DataModel::EventList eventTemplateList)
+{
+    Q_ASSERT(eventTemplateList.size() > 0);
+
+    LogPrivate::monitorIdIndex++;
+
+    QtZeitgeist::Monitor *monitor = new QtZeitgeist::Monitor(
+            LogPrivate::monitorIdIndex, this);
+
+    d->logInterface->InstallMonitor(QDBusObjectPath(monitor->objectPath()),
+            timeRange, eventTemplateList);
+
+    return monitor;
 }
 
 };
