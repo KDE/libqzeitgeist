@@ -51,7 +51,7 @@ class Q_DECL_EXPORT DataSource : public QObject
     Q_PROPERTY(QString uniqueId READ uniqueId)
     Q_PROPERTY(QString name READ name)
     Q_PROPERTY(QString description READ description)
-    Q_PROPERTY(QList<Event> eventTemplates READ eventTemplates)
+    Q_PROPERTY(EventList eventTemplates READ eventTemplates)
     Q_PROPERTY(bool running READ running)
     Q_PROPERTY(QDateTime lastSeen READ lastSeen)
     Q_PROPERTY(bool enabled READ enabled)
@@ -100,7 +100,7 @@ public:
      *
      * @returns the eventTemplates in use.
      */
-    QList<Event> eventTemplates() const;
+    EventList eventTemplates() const;
     /**
      * Get the running value.
      *

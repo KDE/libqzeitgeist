@@ -75,7 +75,7 @@ DataSourceRegistry::~DataSourceRegistry()
 
 QDBusPendingReply<bool> DataSourceRegistry::registerDataSource(const QString &id,
     const QString &name, const QString &description,
-    QList<DataModel::Event> &event_templates)
+    DataModel::EventList &event_templates)
 {
     Q_ASSERT(!id.isEmpty());
 

@@ -37,7 +37,7 @@ public :
     QString uniqueId;
     QString name;
     QString description;
-    QList<Event> eventTemplates;
+    EventList eventTemplates;
     bool running;
     QDateTime lastSeen;
     bool enabled;
@@ -87,7 +87,7 @@ QString DataSource::description() const
     return d->description;
 }
 
-QList<Event> DataSource::eventTemplates() const
+EventList DataSource::eventTemplates() const
 {
     return d->eventTemplates;
 }

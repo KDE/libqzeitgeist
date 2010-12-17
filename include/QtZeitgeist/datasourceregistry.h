@@ -80,11 +80,11 @@ public:
      * @param description data-source description (may be translated).
      * @param event_templates optional templates of events the datasource logs.
      *
-     * @returns boolean true if registration succeeded, false otherwise.
+     * @returns boolean true if the datasource is enabled, false if it's disabled.
      */
     QDBusPendingReply<bool> registerDataSource(const QString &unique_id,
         const QString &name, const QString &description,
-        QList<DataModel::Event> &event_templates);
+        DataModel::EventList &event_templates);
 
     /**
      * Asynchronously get the existing data sources.
