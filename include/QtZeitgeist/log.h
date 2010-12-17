@@ -31,6 +31,7 @@
 namespace QtZeitgeist
 {
 
+class Monitor;
 class LogPrivate;
 
 /**
@@ -209,6 +210,35 @@ public:
      */
     QDBusPendingReply<QtZeitgeist::DataModel::EventList> getEvents(
             QtZeitgeist::DataModel::EventIdList ids);
+
+    /**
+     * Request the installation of a new monitor.
+     *
+     * Register a client side monitor object to receive callbacks when
+     * events matching time range and event templates are inserted or deleted.
+     *
+     * @param timeRange a @TimeRange with the time range monitored events
+     * must fall within.
+     * @param eventTemplateList Event templates that events must match in
+     * order to trigger the monitor.
+     *
+     * @return A const @Monitor instance.
+     */
+    const QtZeitgeist::Monitor *installMonitor(
+            QtZeitgeist::DataModel::TimeRange timeRange,
+            QtZeitgeist::DataModel::EventList eventTemplateList);
+
+    /**
+     * Request the removing of the given monitor.
+     *
+     * Remove from Zeitgeist daemon an installed @Monitor.
+     * Note: Once the @Monitor is removed, the @Log class will automatically
+     * delete the @Monitor instance and should not be used after it.
+     *
+     * @param monitor an installed  @Monitor instance to be removed.
+     */
+    void removeMonitor(QtZeitgeist::Monitor *monitor);
+
 private:
 
     // D Pointer.
