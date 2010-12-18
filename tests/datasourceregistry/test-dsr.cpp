@@ -84,15 +84,19 @@ void DataSourceRegistryTest::enableSourceTest()
     while (spy.count() == 0)
         QTest::qWait(5);
 
-    QVERIFY(spy.count() == 1);
+    QList<QVariant> arguments = spy.takeFirst();
+    QVERIFY(arguments.at(1).type() == QVariant::Bool);
+    QVERIFY(arguments.at(1).toBool() == false);
 
     // Then test that we can enable our source.
     m_registry->setDataSourceEnabled(m_testId, true);
 
-    while (spy.count() == 1)
+    while (spy.count() == 0)
         QTest::qWait(5);
 
-    QVERIFY(spy.count() == 2);
+    arguments = spy.takeFirst();
+    QVERIFY(arguments.at(1).type() == QVariant::Bool);
+    QVERIFY(arguments.at(1).toBool() == true);
 }
 
 QTEST_MAIN(DataSourceRegistryTest)
