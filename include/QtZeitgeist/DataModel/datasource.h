@@ -74,51 +74,60 @@ public:
     virtual ~DataSource();
 
     /**
-     * Get the datasource id as assigned by the Zeitgeist engine.
+     * Get the datasource unique-id which was passed in from the application
+     * when it was registered.
      *
-     * @return the datasource id or 0 if it's unset. An datasource retrieved from the
-     * Zeitgeist engine will always have a datasource id.
+     * @return The unique-id.
      */
     QString uniqueId() const;
 
     /**
-     * The datasource's name is the name of the datasource.
+     * The datasource's name which was passed in from the application when it
+     * was registered.
      *
-     * @return the datasource name.
+     * @return The datasource name.
      */
     QString name() const;
 
     /**
-     * The datasource's description.
+     * The datasource's description which was passed in from the application
+     * when it was registered.
      *
-     * @return the datasource interpretation as a URI or empty if unset.
+     * @return The datasource description.
      */
     QString description() const;
 
     /**
      * Get the event templates.
      *
-     * @returns the eventTemplates in use.
+     * When an application registers itself as a data-source it can tell
+     * the registry which types of events it will be logging.  This method
+     * retreives those event templates given at registration time.
+     *
+     * @returns The eventTemplates.
      */
     EventList eventTemplates() const;
+
     /**
      * Get the running value.
      *
-     * @return true if this datasource is running.
+     * @return True if this datasource is running.
      */
     bool running() const;
 
     /**
      * Get the lastseen time.
      *
-     * @return the last seen time.
+     * The last time the data-source was seen by the zeitgeist daemon.
+     *
+     * @return The last seen time.
      */
     QDateTime lastSeen() const;
 
     /**
      * Get the enabled value.
      *
-     * @return true if this datasource is enabled, false otherwise.
+     * @return True if this datasource is enabled, false otherwise.
      */
     bool enabled() const;
 

@@ -80,7 +80,8 @@ public:
      * @param description data-source description (may be translated).
      * @param event_templates optional templates of events the datasource logs.
      *
-     * @returns boolean true if the datasource is enabled, false if it's disabled.
+     * @returns Enabled, true if the datasource is enabled, false if it's
+     * disabled.
      */
     QDBusPendingReply<bool> registerDataSource(const QString &unique_id,
         const QString &name, const QString &description,
@@ -104,8 +105,20 @@ public:
     void setDataSourceEnabled(const QString &unique_id, bool enabled);
 
 Q_SIGNALS:
+    /**
+     * This signal is emitted whenever the last running instance of a
+     * data-source disconnects.
+     */
     void dataSourceDisconnected(const QtZeitgeist::DataModel::DataSource&);
+
+    /**
+     * This signal is emitted whenever a data-source is enabled or disabled.
+     */
     void dataSourceEnabled(const QString &, bool);
+
+    /**
+     * This signal is emitted whenever a data-source registers itself.
+     */
     void dataSourceRegistered(const QtZeitgeist::DataModel::DataSource &);
 
 private:
