@@ -1,4 +1,6 @@
 set(library_HDRS
+    DataSource
+    datasource.h
     Event
     event.h
     Subject
