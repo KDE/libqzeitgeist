@@ -18,31 +18,27 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#include <QTest>
+#include <QDebug>
+
 #include "QtZeitgeist/QtZeitgeist"
+#include "QtZeitgeist/DataSourceRegistry"
 
-#include "QtZeitgeist/DataModel/DataSource"
-#include "QtZeitgeist/DataModel/Event"
-#include "QtZeitgeist/DataModel/TimeRange"
-
-#include <QDBusMetaType>
-
-namespace QtZeitgeist
+class DataSourceRegistryTest : public QObject
 {
+    Q_OBJECT
 
-void init()
-{
-    static bool registered = false;
+private slots:
 
-    if (!registered) {
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::DataSource>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::DataSourceList>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::Event>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::EventList>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::EventIdList>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::TimeRange>();
+    void initTestCase();
+    void cleanupTestCase();
 
-        registered = true;
-    }
-}
+    void registerSourceTest();
+    void getSourcesTest();
+    void enableSourceTest();
 
+private:
+    QtZeitgeist::DataSourceRegistry *m_registry;
+    QString m_testId;
 };
+
