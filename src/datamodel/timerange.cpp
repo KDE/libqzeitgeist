@@ -97,7 +97,12 @@ TimeRange TimeRange::timeRangeToNow()
 TimeRange TimeRange::timeRangeFromNow()
 {
     return TimeRange(QDateTime::currentDateTime().toTime_t() * 1000,
-            std::numeric_limits<quint64>::max());
+            std::numeric_limits<qint64>::max());
+}
+
+TimeRange TimeRange::always()
+{
+    return TimeRange(0, std::numeric_limits<qint64>::max());
 }
 
 TimeRange &TimeRange::operator = (const TimeRange &source)

@@ -117,8 +117,15 @@ public:
      *
      * @returns a TimeRange starting from now to the end of time.
      */
-
     static TimeRange timeRangeFromNow();
+
+    /**
+     * Returns a new time range starting from the Unix Epoch and ending at the
+     * end of time.
+     *
+     * @returns A TimeRange representing always.
+     */
+    static TimeRange always();
 
     TimeRange & operator = (const TimeRange &source);
 
