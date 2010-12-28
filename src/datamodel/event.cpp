@@ -167,7 +167,7 @@ QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
 
     eventData
         << QString(event.d->id)
-        << QString::number(event.d->timestamp.toTime_t() * 1000)
+        << QString::number(event.d->timestamp.toMSecsSinceEpoch())
         << event.d->interpretation
         << event.d->manifestation
         << event.d->actor;
@@ -219,8 +219,7 @@ const QDBusArgument & operator >> (const QDBusArgument &argument, Event &event)
     if (!eventData.isEmpty()) {
         event.d->id = eventData[0].toUInt();
 
-        event.d->timestamp.setTime_t(0);
-        event.d->timestamp.addMSecs(eventData[1].toLongLong());
+        event.d->timestamp.setMSecsSinceEpoch(eventData[1].toLongLong());
 
         event.d->interpretation = eventData[2];
         event.d->manifestation = eventData[3];
