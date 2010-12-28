@@ -91,12 +91,12 @@ void TimeRange::setEnd(qint64 end)
 
 TimeRange TimeRange::timeRangeToNow()
 {
-    return TimeRange(0, QDateTime::currentDateTime().toTime_t() * 1000);
+    return TimeRange(0, QDateTime::currentDateTime().toMSecsSinceEpoch());
 }
 
 TimeRange TimeRange::timeRangeFromNow()
 {
-    return TimeRange(QDateTime::currentDateTime().toTime_t() * 1000,
+    return TimeRange(QDateTime::currentDateTime().toMSecsSinceEpoch(),
             std::numeric_limits<qint64>::max());
 }
 
