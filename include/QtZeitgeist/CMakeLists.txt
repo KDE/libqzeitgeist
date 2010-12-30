@@ -7,6 +7,10 @@ set(library_HDRS
     monitor.h
     QtZeitgeist
     qtzeitgeist.h
+    Interpretation
+    interpretation.h
+    Manifestation
+    manifestation.h
 )
 
 install(FILES ${library_HDRS} DESTINATION include/QtZeitgeist)
