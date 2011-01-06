@@ -25,6 +25,8 @@
 #include <QList>
 #include <QObject>
 
+#include <QMetaType>
+
 namespace QtZeitgeist
 {
 
@@ -46,7 +48,7 @@ class SubjectPrivate;
  */
 class Q_DECL_EXPORT Subject : public QObject
 {
-Q_OBJECT
+    Q_OBJECT
     Q_PROPERTY(QString uri READ uri WRITE setUri)
     Q_PROPERTY(QString interpretation READ interpretation WRITE setInterpretation)
     Q_PROPERTY(QString manifestation READ manifestation WRITE setManifestation)
@@ -186,5 +188,8 @@ typedef QList<Subject> SubjectList;
 };
 
 };
+
+Q_DECLARE_METATYPE(QtZeitgeist::DataModel::Subject)
+
 
 #endif // QTZEITGEIST_SUBJECT_H_
