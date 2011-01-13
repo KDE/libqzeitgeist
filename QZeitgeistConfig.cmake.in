@@ -1,0 +1,3 @@
+include(@CMAKE_INSTALL_PREFIX@/share/qzeitgeist/cmake/QZeitgeistExport.cmake)
+set(QZEITGEIST_LIBRARY QZEITGEIST_qzeitgeist)
+set(QZEITGEIST_INCLUDE_DIR @CMAKE_INSTALL_PREFIX@/include/QtZeitgeist)
