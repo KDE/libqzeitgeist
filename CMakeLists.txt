@@ -38,3 +38,8 @@ install(FILES ${CMAKE_BINARY_DIR}/QtZeitgeist.pc DESTINATION lib/pkgconfig)
 add_subdirectory(include)
 add_subdirectory(src)
 add_subdirectory(tests)
+
+# Generate cmake file
+get_target_property(QZEITGEIST_LIBRARY qzeitgeist LOCATION)
+configure_file(QZeitgeistConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfig.cmake @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfig.cmake DESTINATION ${CMAKE_INSTALL_PREFIX}/share/qzeitgeist/cmake)
