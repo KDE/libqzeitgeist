@@ -46,5 +46,6 @@ set(library_MOC_HDRS
 qt4_wrap_cpp(library_MOC_SRCS ${library_MOC_HDRS})
 add_library(qzeitgeist SHARED ${library_SRCS} ${library_MOC_SRCS})
 target_link_libraries(qzeitgeist ${QT_LIBRARIES} ${QDBUS_LDFLAGS})
+set_target_properties(qzeitgeist PROPERTIES VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}" SOVERSION ${CPACK_PACKAGE_VERSION_MAJOR})
 install(TARGETS qzeitgeist EXPORT QZeitgeistExport DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 install(EXPORT QZeitgeistExport DESTINATION ${CMAKE_INSTALL_PREFIX}/share/qzeitgeist/cmake NAMESPACE QZEITGEIST_)
