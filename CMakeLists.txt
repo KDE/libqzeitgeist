@@ -21,10 +21,10 @@ include(CPack)
 
 
 if(QT4_FOUND)
-	include_directories(${QT_INCLUDE_DIR})
-	include_directories(${QT_QT_INCLUDE_DIR})
-	include_directories(${QT_QTCORE_INCLUDE_DIR})
-	include_directories(${QT_QTDBUS_INCLUDE_DIR})
+    include_directories(${QT_INCLUDE_DIR})
+    include_directories(${QT_QT_INCLUDE_DIR})
+    include_directories(${QT_QTCORE_INCLUDE_DIR})
+    include_directories(${QT_QTDBUS_INCLUDE_DIR})
 endif(QT4_FOUND)
 
 set(CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE ON)
@@ -39,7 +39,7 @@ add_custom_target(uninstall
 
 # Generate pkg-config file
 configure_file(${CMAKE_SOURCE_DIR}/QtZeitgeist.pc.in ${CMAKE_BINARY_DIR}/QtZeitgeist.pc)
-install(FILES ${CMAKE_BINARY_DIR}/QtZeitgeist.pc DESTINATION lib/pkgconfig)
+install(FILES ${CMAKE_BINARY_DIR}/QtZeitgeist.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig)
 
 add_subdirectory(include)
 add_subdirectory(src)
