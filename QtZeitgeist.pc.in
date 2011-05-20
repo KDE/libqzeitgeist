@@ -5,7 +5,7 @@ includedir=${CMAKE_INSTALL_PREFIX}/include
 
 Name: QtZeitgeist
 Description: Qt Zeitgeist library
-Version: 0.0.1
+Version: ${CPACK_PACKAGE_VERSION}
 Requires: QtCore QtDBus
 Libs: -L${CMAKE_INSTALL_PREFIX}/lib -lQtZeitgeist
 Cflags: -I${CMAKE_INSTALL_PREFIX}/include/QtZeitgeist -I${CMAKE_INSTALL_PREFIX}/include/
