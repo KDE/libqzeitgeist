@@ -141,6 +141,11 @@ private:
             TimeRange &event);
 };
 
+Q_DECL_EXPORT QDBusArgument & operator << (QDBusArgument &argument,
+               const TimeRange &event);
+Q_DECL_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
+               TimeRange &event);
+
 };
 
 };

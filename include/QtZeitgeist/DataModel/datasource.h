@@ -145,6 +145,11 @@ private:
             DataSource &datasource);
 };
 
+Q_DECL_EXPORT QDBusArgument & operator << (QDBusArgument &argument,
+               const DataSource &datasource);
+Q_DECL_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
+               DataSource &datasource);
+
 // Create additional types.
 typedef QList<DataSource> DataSourceList;
 

@@ -22,6 +22,8 @@
 #ifndef QTZEITGEIST_H_
 #define QTZEITGEIST_H_
 
+#include <QtGlobal>
+
 namespace QtZeitgeist
 {
 
@@ -33,7 +35,7 @@ namespace QtZeitgeist
  * registering custom types.
  * Note: It's really important to call this function before using the library.
  */
-void init();
+Q_DECL_EXPORT void init();
 
 };
 #endif // QTZEITGEIST_H_

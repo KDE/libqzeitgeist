@@ -7,6 +7,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
 
 find_package(Qt4 4.7.0 COMPONENTS QtCore QtDBus QtTest REQUIRED)
 
+include(CheckCXXCompilerFlag)
+
+check_cxx_compiler_flag(-fvisibility=hidden __HAVE_GCC_VISIBILITY)
+if (__HAVE_GCC_VISIBILITY AND NOT WIN32)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden")
+endif (__HAVE_GCC_VISIBILITY AND NOT WIN32)
+
 
 set(CPACK_PACKAGE_VERSION_MAJOR "0")
 set(CPACK_PACKAGE_VERSION_MINOR "7")

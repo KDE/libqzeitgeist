@@ -219,6 +219,11 @@ private:
             Event &event);
 };
 
+Q_DECL_EXPORT QDBusArgument & operator << (QDBusArgument &argument,
+               const Event &event);
+Q_DECL_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
+               Event &event);
+
 // Create additional types.
 typedef QList<Event> EventList;
 typedef QList<quint32> EventIdList;
