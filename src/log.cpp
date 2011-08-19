@@ -21,9 +21,8 @@
 
 #include "QtZeitgeist/Log"
 
-#include "_gen/LogInterface"
-
 #include "QtZeitgeist/Monitor"
+#include "loginterface.h"
 
 namespace QtZeitgeist
 {

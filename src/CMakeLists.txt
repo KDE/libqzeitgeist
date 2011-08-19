@@ -1,6 +1,7 @@
 find_package(Automoc4)
 set(QT_DONT_USE_QTGUI "YES")
 include(${QT_USE_FILE})
+include(QZeitgeistMacros)
 
 set(INC_DIR ${CMAKE_SOURCE_DIR}/include)
 include_directories(${INC_DIR})
@@ -18,6 +19,7 @@ set(qzeitgeist_HEADERS
     DataModel/timerange.h
 )
 
+
 set(generated_SRCS
     _gen/blacklistinterface.cpp
     _gen/datasourceinterface.cpp
@@ -26,7 +28,6 @@ set(generated_SRCS
 )
 
 set(library_SRCS
-    ${generated_SRCS}
     qtzeitgeist.cpp
     datasourceregistry.cpp
     log.cpp
@@ -39,6 +40,19 @@ set(library_SRCS
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/DataModel ${CMAKE_CURRENT_BINARY_DIR}/DataModel)
+
+set(zeitgeist_DBUS_XML
+    dbus-xml/org.gnome.zeitgeist.Log.xml
+    dbus-xml/org.gnome.zeitgeist.Blacklist.xml
+    dbus-xml/org.gnome.zeitgeist.DataSourceRegistry.xml
+)
+
+set_source_files_properties(${zeitgeist_DBUS_XML} PROPERTIES INCLUDE QtZeitgeist/QtZeitgeist)
+zg_add_dbus_interface(library_SRCS dbus-xml/org.gnome.zeitgeist.Log.xml loginterface)
+zg_add_dbus_interface(library_SRCS dbus-xml/org.gnome.zeitgeist.Blacklist.xml blacklistinterface)
+zg_add_dbus_interface(library_SRCS dbus-xml/org.gnome.zeitgeist.DataSourceRegistry.xml datasourceregistryinterface)
+
+qt4_add_dbus_adaptor(library_SRCS dbus-xml/org.gnome.zeitgeist.Monitor.xml monitor_p.h QtZeitgeist::MonitorPrivate)
 
 automoc4_add_library(qzeitgeist SHARED ${library_SRCS})
 

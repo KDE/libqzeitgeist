@@ -20,8 +20,7 @@
 
 
 #include "QtZeitgeist/DataSourceRegistry"
-
-#include "_gen/DataSourceInterface"
+#include "datasourceregistryinterface.h"
 
 namespace QtZeitgeist
 {

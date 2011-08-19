@@ -22,8 +22,7 @@
 #include "QtZeitgeist/Monitor"
 
 #include "monitor_p.h"
-
-#include "_gen/MonitorAdaptor"
+#include "monitoradaptor.h"
 
 namespace QtZeitgeist
 {
