@@ -8,4 +8,4 @@ Description: Qt Zeitgeist library
 Version: ${CPACK_PACKAGE_VERSION}
 Requires: QtCore QtDBus
 Libs: -L${libdir} -lQtZeitgeist
-Cflags: -I${CMAKE_INSTALL_PREFIX}/include/QtZeitgeist -I${CMAKE_INSTALL_PREFIX}/include/
+Cflags: -I${CMAKE_INSTALL_PREFIX}/include/
