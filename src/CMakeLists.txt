@@ -5,6 +5,15 @@ include(${QT_USE_FILE})
 set(INC_DIR ${CMAKE_SOURCE_DIR}/include)
 include_directories(${INC_DIR})
 
+set(qzeitgeist_HEADERS
+    datasourceregistry.h
+    interpretation.h
+    log.h
+    manifestation.h
+    monitor.h
+    qtzeitgeist.h
+)
+
 set(generated_SRCS
     _gen/blacklistinterface.cpp
     _gen/datasourceinterface.cpp
@@ -24,9 +33,12 @@ set(library_SRCS
     datamodel/timerange.cpp
 )
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+
 automoc4_add_library(qzeitgeist SHARED ${library_SRCS})
 
 target_link_libraries(qzeitgeist ${QT_LIBRARIES} ${QDBUS_LDFLAGS})
 set_target_properties(qzeitgeist PROPERTIES VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}" SOVERSION ${CPACK_PACKAGE_VERSION_MAJOR})
 install(TARGETS qzeitgeist EXPORT QZeitgeistExport DESTINATION ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX})
 install(EXPORT QZeitgeistExport DESTINATION ${CMAKE_INSTALL_PREFIX}/share/qzeitgeist/cmake NAMESPACE QZEITGEIST_)
+install(FILES ${qzeitgeist_HEADERS} DESTINATION include/QtZeitgeist)
