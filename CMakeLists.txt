@@ -53,8 +53,8 @@ endif()
 # Generate cmake file
 get_target_property(QZEITGEIST_LIBRARY qzeitgeist LOCATION)
 configure_file(QZeitgeistConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfig.cmake @ONLY)
-configure_file(QZeitgeistVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistVersion.cmake.in @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfig.cmake DESTINATION ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/QZeitgeist/)
+configure_file(QZeitgeistConfigVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfigVersion.cmake @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfigVersion.cmake ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfig.cmake DESTINATION ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/cmake/QZeitgeist/)
 install(EXPORT QZeitgeistExport DESTINATION ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/cmake/QZeitgeist)
 
 # Generate pkg-config file
