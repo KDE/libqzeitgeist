@@ -13,6 +13,9 @@ set(qzeitgeist_HEADERS
     manifestation.h
     monitor.h
     qzeitgeist.h
+)
+
+set(qzeitgeist_MODEL_HEADERS
     DataModel/datasource.h
     DataModel/event.h
     DataModel/subject.h
@@ -62,3 +65,4 @@ set_target_properties(qzeitgeist PROPERTIES VERSION "${QZEITGEIST_VERSION}" SOVE
 install(TARGETS qzeitgeist EXPORT QZeitgeistExport DESTINATION ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX})
 
 install(FILES ${qzeitgeist_HEADERS} DESTINATION include/QZeitgeist)
+install(FILES ${qzeitgeist_MODEL_HEADERS} DESTINATION include/QZeitgeist/DataModel)
