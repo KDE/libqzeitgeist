@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #
 # Utility to transcode the Zeitgeist ontology from Python code
 # to a CPP header file defining a collection of definitions for the
