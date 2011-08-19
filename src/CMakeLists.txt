@@ -3,9 +3,6 @@ set(QT_DONT_USE_QTGUI "YES")
 include(${QT_USE_FILE})
 include(QZeitgeistMacros)
 
-set(INC_DIR ${CMAKE_SOURCE_DIR}/include)
-include_directories(${INC_DIR})
-
 set(qzeitgeist_HEADERS
     datasourceregistry.h
     interpretation.h
@@ -22,15 +19,7 @@ set(qzeitgeist_MODEL_HEADERS
     DataModel/timerange.h
 )
 
-
-set(generated_SRCS
-    _gen/blacklistinterface.cpp
-    _gen/datasourceinterface.cpp
-    _gen/loginterface.cpp
-    _gen/monitoradaptor.cpp
-)
-
-set(library_SRCS
+set(qzeitgeist_SRCS
     qzeitgeist.cpp
     datasourceregistry.cpp
     log.cpp
@@ -51,13 +40,13 @@ set(zeitgeist_DBUS_XML
 )
 
 set_source_files_properties(${zeitgeist_DBUS_XML} PROPERTIES INCLUDE QZeitgeist/QZeitgeist)
-zg_add_dbus_interface(library_SRCS dbus-xml/org.gnome.zeitgeist.Log.xml loginterface)
-zg_add_dbus_interface(library_SRCS dbus-xml/org.gnome.zeitgeist.Blacklist.xml blacklistinterface)
-zg_add_dbus_interface(library_SRCS dbus-xml/org.gnome.zeitgeist.DataSourceRegistry.xml datasourceregistryinterface)
+zg_add_dbus_interface(qzeitgeist_SRCS dbus-xml/org.gnome.zeitgeist.Log.xml loginterface)
+zg_add_dbus_interface(qzeitgeist_SRCS dbus-xml/org.gnome.zeitgeist.Blacklist.xml blacklistinterface)
+zg_add_dbus_interface(qzeitgeist_SRCS dbus-xml/org.gnome.zeitgeist.DataSourceRegistry.xml datasourceregistryinterface)
 
-qt4_add_dbus_adaptor(library_SRCS dbus-xml/org.gnome.zeitgeist.Monitor.xml monitor_p.h QZeitgeist::MonitorPrivate)
+qt4_add_dbus_adaptor(qzeitgeist_SRCS dbus-xml/org.gnome.zeitgeist.Monitor.xml monitor_p.h QZeitgeist::MonitorPrivate)
 
-automoc4_add_library(qzeitgeist SHARED ${library_SRCS})
+automoc4_add_library(qzeitgeist SHARED ${qzeitgeist_SRCS})
 
 target_link_libraries(qzeitgeist ${QT_LIBRARIES} ${QDBUS_LDFLAGS})
 set_target_properties(qzeitgeist PROPERTIES VERSION "${QZEITGEIST_VERSION}" SOVERSION ${QZEITGEIST_VERSION_MAJOR})
