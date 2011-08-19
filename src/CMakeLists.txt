@@ -12,6 +12,10 @@ set(qzeitgeist_HEADERS
     manifestation.h
     monitor.h
     qtzeitgeist.h
+    DataModel/datasource.h
+    DataModel/event.h
+    DataModel/subject.h
+    DataModel/timerange.h
 )
 
 set(generated_SRCS
@@ -27,13 +31,14 @@ set(library_SRCS
     datasourceregistry.cpp
     log.cpp
     monitor.cpp
-    datamodel/datasource.cpp
-    datamodel/event.cpp
-    datamodel/subject.cpp
-    datamodel/timerange.cpp
+    DataModel/datasource.cpp
+    DataModel/event.cpp
+    DataModel/subject.cpp
+    DataModel/timerange.cpp
 )
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/DataModel ${CMAKE_CURRENT_BINARY_DIR}/DataModel)
 
 automoc4_add_library(qzeitgeist SHARED ${library_SRCS})
 
