@@ -50,7 +50,12 @@ install(FILES ${CMAKE_BINARY_DIR}/QtZeitgeist.pc DESTINATION lib${LIB_SUFFIX}/pk
 
 add_subdirectory(include)
 add_subdirectory(src)
-add_subdirectory(tests)
+
+option(BUILD_TESTS "Build Tests" FALSE)
+
+if (BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
 
 # Generate cmake file
 get_target_property(QZEITGEIST_LIBRARY qzeitgeist LOCATION)
