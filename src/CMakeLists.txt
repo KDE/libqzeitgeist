@@ -12,7 +12,7 @@ set(qzeitgeist_HEADERS
     log.h
     manifestation.h
     monitor.h
-    qtzeitgeist.h
+    qzeitgeist.h
     DataModel/datasource.h
     DataModel/event.h
     DataModel/subject.h
@@ -28,7 +28,7 @@ set(generated_SRCS
 )
 
 set(library_SRCS
-    qtzeitgeist.cpp
+    qzeitgeist.cpp
     datasourceregistry.cpp
     log.cpp
     monitor.cpp
@@ -47,17 +47,18 @@ set(zeitgeist_DBUS_XML
     dbus-xml/org.gnome.zeitgeist.DataSourceRegistry.xml
 )
 
-set_source_files_properties(${zeitgeist_DBUS_XML} PROPERTIES INCLUDE QtZeitgeist/QtZeitgeist)
+set_source_files_properties(${zeitgeist_DBUS_XML} PROPERTIES INCLUDE QZeitgeist/QZeitgeist)
 zg_add_dbus_interface(library_SRCS dbus-xml/org.gnome.zeitgeist.Log.xml loginterface)
 zg_add_dbus_interface(library_SRCS dbus-xml/org.gnome.zeitgeist.Blacklist.xml blacklistinterface)
 zg_add_dbus_interface(library_SRCS dbus-xml/org.gnome.zeitgeist.DataSourceRegistry.xml datasourceregistryinterface)
 
-qt4_add_dbus_adaptor(library_SRCS dbus-xml/org.gnome.zeitgeist.Monitor.xml monitor_p.h QtZeitgeist::MonitorPrivate)
+qt4_add_dbus_adaptor(library_SRCS dbus-xml/org.gnome.zeitgeist.Monitor.xml monitor_p.h QZeitgeist::MonitorPrivate)
 
 automoc4_add_library(qzeitgeist SHARED ${library_SRCS})
 
 target_link_libraries(qzeitgeist ${QT_LIBRARIES} ${QDBUS_LDFLAGS})
-set_target_properties(qzeitgeist PROPERTIES VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}" SOVERSION ${CPACK_PACKAGE_VERSION_MAJOR})
+set_target_properties(qzeitgeist PROPERTIES VERSION "${QZEITGEIST_VERSION}" SOVERSION ${QZEITGEIST_VERSION_MAJOR})
+
 install(TARGETS qzeitgeist EXPORT QZeitgeistExport DESTINATION ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX})
-install(EXPORT QZeitgeistExport DESTINATION ${CMAKE_INSTALL_PREFIX}/share/qzeitgeist/cmake NAMESPACE QZEITGEIST_)
-install(FILES ${qzeitgeist_HEADERS} DESTINATION include/QtZeitgeist)
+
+install(FILES ${qzeitgeist_HEADERS} DESTINATION include/QZeitgeist)

@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,8 +19,8 @@
  */
 
 
-#ifndef QTZEITGEIST_DATASOURCE_H_
-#define QTZEITGEIST_DATASOURCE_H_
+#ifndef QZEITGEIST_DATASOURCE_H_
+#define QZEITGEIST_DATASOURCE_H_
 
 #include <QList>
 #include <QDateTime>
@@ -29,7 +29,7 @@
 
 #include "event.h"
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 namespace DataModel
@@ -158,7 +158,7 @@ typedef QList<DataSource> DataSourceList;
 };
 
 // Declare types as Qt Meta Type.
-Q_DECLARE_METATYPE(QtZeitgeist::DataModel::DataSource)
-Q_DECLARE_METATYPE(QtZeitgeist::DataModel::DataSourceList)
+Q_DECLARE_METATYPE(QZeitgeist::DataModel::DataSource)
+Q_DECLARE_METATYPE(QZeitgeist::DataModel::DataSourceList)
 
-#endif // QTZEITGEIST_DATASOURCE_H_
+#endif // QZEITGEIST_DATASOURCE_H_

@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -18,15 +18,15 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include "QtZeitgeist/QtZeitgeist"
+#include "qzeitgeist.h"
 
-#include "QtZeitgeist/DataModel/DataSource"
-#include "QtZeitgeist/DataModel/Event"
-#include "QtZeitgeist/DataModel/TimeRange"
+#include "QZeitgeist/DataModel/DataSource"
+#include "QZeitgeist/DataModel/Event"
+#include "QZeitgeist/DataModel/TimeRange"
 
 #include <QDBusMetaType>
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 void init()
@@ -34,12 +34,12 @@ void init()
     static bool registered = false;
 
     if (!registered) {
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::DataSource>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::DataSourceList>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::Event>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::EventList>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::EventIdList>();
-        qDBusRegisterMetaType<QtZeitgeist::DataModel::TimeRange>();
+        qDBusRegisterMetaType<QZeitgeist::DataModel::DataSource>();
+        qDBusRegisterMetaType<QZeitgeist::DataModel::DataSourceList>();
+        qDBusRegisterMetaType<QZeitgeist::DataModel::Event>();
+        qDBusRegisterMetaType<QZeitgeist::DataModel::EventList>();
+        qDBusRegisterMetaType<QZeitgeist::DataModel::EventIdList>();
+        qDBusRegisterMetaType<QZeitgeist::DataModel::TimeRange>();
 
         registered = true;
     }

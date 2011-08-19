@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,18 +19,18 @@
  */
 
 
-#ifndef QTZEITGEIST_H_
-#define QTZEITGEIST_H_
+#ifndef QZEITGEIST_H_
+#define QZEITGEIST_H_
 
 #include <QtGlobal>
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 /**
  * Initialize the library.
  *
- * Before start using the QtZeitgeist library it's necessary to call the init
+ * Before start using the QZeitgeist library it's necessary to call the init
  * function. The function  will get the library ready to use, initalizing and
  * registering custom types.
  * Note: It's really important to call this function before using the library.
@@ -38,4 +38,4 @@ namespace QtZeitgeist
 Q_DECL_EXPORT void init();
 
 };
-#endif // QTZEITGEIST_H_
+#endif // QZEITGEIST_H_

@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -21,9 +21,9 @@
 #include <QTest>
 #include <QDebug>
 
-#include "QtZeitgeist/QtZeitgeist"
-#include "QtZeitgeist/Log"
-#include "QtZeitgeist/Monitor"
+#include "QZeitgeist/QZeitgeist"
+#include "QZeitgeist/Log"
+#include "QZeitgeist/Monitor"
 
 class LogTest : public QObject
 {
@@ -43,7 +43,7 @@ private slots:
     void removeMonitor();
 
 private:
-    QtZeitgeist::Log *m_log;
-    const QtZeitgeist::Monitor *m_monitor;
-    QtZeitgeist::DataModel::EventIdList m_ids;
+    QZeitgeist::Log *m_log;
+    const QZeitgeist::Monitor *m_monitor;
+    QZeitgeist::DataModel::EventIdList m_ids;
 };

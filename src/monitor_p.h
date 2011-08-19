@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,17 +19,17 @@
  */
 
 
-#ifndef QTZEITGEIST_MONITOR_P_H_
-#define QTZEITGEIST_MONITOR_P_H_
+#ifndef QZEITGEIST_MONITOR_P_H_
+#define QZEITGEIST_MONITOR_P_H_
 
 #include <QObject>
 
-#include "QtZeitgeist/DataModel/Event"
-#include "QtZeitgeist/DataModel/TimeRange"
+#include "QZeitgeist/DataModel/Event"
+#include "QZeitgeist/DataModel/TimeRange"
 
 class MonitorAdaptor;
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 class Monitor;
@@ -50,8 +50,8 @@ public:
      * Default constructor.
      */
     explicit MonitorPrivate(quint64 monitorId,
-            QtZeitgeist::DataModel::TimeRange monitorTimeRange,
-            QtZeitgeist::DataModel::EventList monitorTemplates,
+            QZeitgeist::DataModel::TimeRange monitorTimeRange,
+            QZeitgeist::DataModel::EventList monitorTemplates,
             Monitor* parent = 0);
 
     /**
@@ -63,11 +63,11 @@ public:
 public Q_SLOTS:
 
     // Adaptor slots.
-    void NotifyDelete(const QtZeitgeist::DataModel::TimeRange &timeRange,
-            const QtZeitgeist::DataModel::EventIdList &eventIds);
+    void NotifyDelete(const QZeitgeist::DataModel::TimeRange &timeRange,
+            const QZeitgeist::DataModel::EventIdList &eventIds);
 
-    void NotifyInsert(const QtZeitgeist::DataModel::TimeRange &timeRange,
-            const QtZeitgeist::DataModel::EventList &events);
+    void NotifyInsert(const QZeitgeist::DataModel::TimeRange &timeRange,
+            const QZeitgeist::DataModel::EventList &events);
 
 public:
 
@@ -75,10 +75,10 @@ public:
     quint64 id;
 
     // Monitor time range.
-    QtZeitgeist::DataModel::TimeRange timeRange;
+    QZeitgeist::DataModel::TimeRange timeRange;
 
     // Monitor templates.
-    QtZeitgeist::DataModel::EventList eventTemplates;
+    QZeitgeist::DataModel::EventList eventTemplates;
 
     // Registered object path.
     QString regObjPath;
@@ -92,4 +92,4 @@ public:
 
 };
 
-#endif // QTZEITGEIST_MONITOR_P_H_
+#endif // QZEITGEIST_MONITOR_P_H_

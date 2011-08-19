@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,17 +19,17 @@
  */
 
 
-#ifndef QTZEITGEIST_EVENT_H_
-#define QTZEITGEIST_EVENT_H_
+#ifndef QZEITGEIST_EVENT_H_
+#define QZEITGEIST_EVENT_H_
 
 #include <QList>
 #include <QDateTime>
 #include <QMetaType>
 #include <QDBusArgument>
 
-#include "QtZeitgeist/DataModel/Subject"
+#include "QZeitgeist/DataModel/Subject"
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 namespace DataModel
@@ -233,8 +233,8 @@ typedef QList<quint32> EventIdList;
 };
 
 // Declare types as Qt Meta Type.
-Q_DECLARE_METATYPE(QtZeitgeist::DataModel::Event)
-Q_DECLARE_METATYPE(QtZeitgeist::DataModel::EventList)
-Q_DECLARE_METATYPE(QtZeitgeist::DataModel::EventIdList)
+Q_DECLARE_METATYPE(QZeitgeist::DataModel::Event)
+Q_DECLARE_METATYPE(QZeitgeist::DataModel::EventList)
+Q_DECLARE_METATYPE(QZeitgeist::DataModel::EventIdList)
 
-#endif // QTZEITGEIST_EVENT_H_
+#endif // QZEITGEIST_EVENT_H_

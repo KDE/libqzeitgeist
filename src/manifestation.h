@@ -7,11 +7,11 @@
  */
 
 
-#ifndef QTZEITGEIST_MANIFESTATION_H
-#define QTZEITGEIST_MANIFESTATION_H
+#ifndef QZEITGEIST_MANIFESTATION_H
+#define QZEITGEIST_MANIFESTATION_H
 
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 
@@ -210,4 +210,4 @@ const char NMOMailboxDataObject[] = "http://www.semanticdesktop.org/ontologies/2
 
 };
 
-#endif // QTZEITGEIST_MANIFESTATION_H
+#endif // QZEITGEIST_MANIFESTATION_H

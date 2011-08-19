@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -22,11 +22,11 @@
 
 void LogTest::initTestCase()
 {
-    // Initialize QtZeitgeist types.
-    QtZeitgeist::init();
+    // Initialize QZeitgeist types.
+    QZeitgeist::init();
 
     // Create the object to be tested.
-    m_log = new QtZeitgeist::Log(this);
+    m_log = new QZeitgeist::Log(this);
 
     // Initialize the monitor.
     m_monitor = 0;
@@ -44,16 +44,16 @@ void LogTest::cleanupTestCase()
 void LogTest::insertEventsTest()
 {
     // Event list to be inserted.
-    QtZeitgeist::DataModel::EventList events;
+    QZeitgeist::DataModel::EventList events;
 
     // Event item 1.
-    QtZeitgeist::DataModel::Event event1;
+    QZeitgeist::DataModel::Event event1;
 
     event1.setInterpretation("foo://Interp");
     event1.setManifestation("foo://Manif");
     event1.setActor("app://firefox.desktop");
 
-    QtZeitgeist::DataModel::Subject subject1;
+    QZeitgeist::DataModel::Subject subject1;
 
     subject1.setUri("file:///tmp/bar.txt");
     subject1.setInterpretation("foo://TextDoc");
@@ -63,7 +63,7 @@ void LogTest::insertEventsTest()
     subject1.setText("bar.txt");
     subject1.setStorage("bfb486f6-f5f8-4296-8871-0cc749cf8ef7");
 
-    QtZeitgeist::DataModel::SubjectList subjects1;
+    QZeitgeist::DataModel::SubjectList subjects1;
     subjects1 << subject1;
 
     event1.setSubjects(subjects1);
@@ -71,13 +71,13 @@ void LogTest::insertEventsTest()
     events.append(event1);
 
     // Event item 2.
-    QtZeitgeist::DataModel::Event event2;
+    QZeitgeist::DataModel::Event event2;
 
     event2.setInterpretation("foo://Interp2");
     event2.setManifestation("foo://Manif2");
     event2.setActor("app://firefox.desktop");
 
-    QtZeitgeist::DataModel::Subject subject2;
+    QZeitgeist::DataModel::Subject subject2;
 
     subject2.setUri("file:///tmp/bar.txt2");
     subject2.setInterpretation("foo://TextDoc");
@@ -87,7 +87,7 @@ void LogTest::insertEventsTest()
     subject2.setText("bar.txt");
     subject2.setStorage("bfb486f6-f5f8-4296-8871-0cc749cf8ef7");
 
-    QtZeitgeist::DataModel::SubjectList subjects2;
+    QZeitgeist::DataModel::SubjectList subjects2;
     subjects2 << subject2;
 
     event2.setSubjects(subjects2);
@@ -96,7 +96,7 @@ void LogTest::insertEventsTest()
 
 
     // Insert events into Zeitgeist.
-    QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> reply =
+    QDBusPendingReply<QZeitgeist::DataModel::EventIdList> reply =
         m_log->insertEvents(events);
 
     // Block and wait for reply.
@@ -121,7 +121,7 @@ void LogTest::getEventsTest()
     QVERIFY(m_ids.size() > 0);
 
     // Get events from Zeitgeist.
-    QDBusPendingReply<QtZeitgeist::DataModel::EventList> reply =
+    QDBusPendingReply<QZeitgeist::DataModel::EventList> reply =
         m_log->getEvents(m_ids);
 
     // Block and wait for reply.
@@ -140,25 +140,25 @@ void LogTest::getEventsTest()
 
 void LogTest::findEventIdsTest()
 {
-    QtZeitgeist::DataModel::Event event;
-    QtZeitgeist::DataModel::EventList events;
+    QZeitgeist::DataModel::Event event;
+    QZeitgeist::DataModel::EventList events;
 
     // Set the template to search for.
     event.setActor("app://firefox.desktop");
-    event.setSubjects(QtZeitgeist::DataModel::SubjectList());
+    event.setSubjects(QZeitgeist::DataModel::SubjectList());
 
     // Add to the event list.
     events << event;
 
     // Query for all events since Epoch.
-    QtZeitgeist::DataModel::TimeRange timeRange =
-        QtZeitgeist::DataModel::TimeRange::timeRangeToNow();
+    QZeitgeist::DataModel::TimeRange timeRange =
+        QZeitgeist::DataModel::TimeRange::timeRangeToNow();
 
     // Search on Zeitgeist.
-    QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> reply =
+    QDBusPendingReply<QZeitgeist::DataModel::EventIdList> reply =
         m_log->findEventIds(timeRange, events,
-                QtZeitgeist::Log::Any, 10,
-                QtZeitgeist::Log::MostRecentEvents);
+                QZeitgeist::Log::Any, 10,
+                QZeitgeist::Log::MostRecentEvents);
 
     // Block and wait for reply.
     reply.waitForFinished();
@@ -176,25 +176,25 @@ void LogTest::findEventIdsTest()
 
 void LogTest::findEventsTest()
 {
-    QtZeitgeist::DataModel::Event event;
-    QtZeitgeist::DataModel::EventList events;
+    QZeitgeist::DataModel::Event event;
+    QZeitgeist::DataModel::EventList events;
 
     // Set the template to search for.
     event.setActor("app://firefox.desktop");
-    event.setSubjects(QtZeitgeist::DataModel::SubjectList());
+    event.setSubjects(QZeitgeist::DataModel::SubjectList());
 
     // Add to the event list.
     events << event;
 
     // Query for all events since Epoch.
-    QtZeitgeist::DataModel::TimeRange timeRange =
-        QtZeitgeist::DataModel::TimeRange::timeRangeToNow();
+    QZeitgeist::DataModel::TimeRange timeRange =
+        QZeitgeist::DataModel::TimeRange::timeRangeToNow();
 
     // Search on Zeitgeist.
-    QDBusPendingReply<QtZeitgeist::DataModel::EventList> reply =
+    QDBusPendingReply<QZeitgeist::DataModel::EventList> reply =
         m_log->findEvents(timeRange, events,
-                QtZeitgeist::Log::Any, 10,
-                QtZeitgeist::Log::MostRecentEvents);
+                QZeitgeist::Log::Any, 10,
+                QZeitgeist::Log::MostRecentEvents);
 
     // Block and wait for reply.
     reply.waitForFinished();
@@ -218,7 +218,7 @@ void LogTest::deleteEventsTest()
     m_log->deleteEvents(m_ids);
 
     // Get the supposed deleted events from Zeitgeist.
-    QDBusPendingReply<QtZeitgeist::DataModel::EventList> reply =
+    QDBusPendingReply<QZeitgeist::DataModel::EventList> reply =
         m_log->getEvents(m_ids);
 
     // Block and wait for reply.
@@ -238,8 +238,8 @@ void LogTest::deleteEventsTest()
 
 void LogTest::installMonitor()
 {
-    QtZeitgeist::DataModel::Event event;
-    QtZeitgeist::DataModel::EventList events;
+    QZeitgeist::DataModel::Event event;
+    QZeitgeist::DataModel::EventList events;
 
     // Set the template to search for.
     event.setActor("app://firefox.desktop");
@@ -248,8 +248,8 @@ void LogTest::installMonitor()
     events << event;
 
     // Query for all events since Epoch.
-    QtZeitgeist::DataModel::TimeRange timeRange =
-        QtZeitgeist::DataModel::TimeRange::timeRangeToNow();
+    QZeitgeist::DataModel::TimeRange timeRange =
+        QZeitgeist::DataModel::TimeRange::timeRangeToNow();
 
     // Ask to register a monitor.
     m_monitor = m_log->installMonitor(timeRange, events);
@@ -263,7 +263,7 @@ void LogTest::removeMonitor()
     QVERIFY(m_monitor != 0);
 
     // Ask to remove the monitor.
-    m_log->removeMonitor(const_cast<QtZeitgeist::Monitor *>(m_monitor));
+    m_log->removeMonitor(const_cast<QZeitgeist::Monitor *>(m_monitor));
 }
 
 QTEST_MAIN(LogTest)

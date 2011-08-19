@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -21,8 +21,8 @@
 #include <QTest>
 #include <QDebug>
 
-#include "QtZeitgeist/QtZeitgeist"
-#include "QtZeitgeist/DataSourceRegistry"
+#include "QZeitgeist/QZeitgeist"
+#include "QZeitgeist/DataSourceRegistry"
 
 class DataSourceRegistryTest : public QObject
 {
@@ -38,7 +38,7 @@ private slots:
     void enableSourceTest();
 
 private:
-    QtZeitgeist::DataSourceRegistry *m_registry;
+    QZeitgeist::DataSourceRegistry *m_registry;
     QString m_testId;
 };
 

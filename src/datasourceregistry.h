@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,16 +19,16 @@
  */
 
 
-#ifndef QTZEITGEIST_DATASOURCEREGISTRY_H_
-#define QTZEITGEIST_DATASOURCEREGISTRY_H_
+#ifndef QZEITGEIST_DATASOURCEREGISTRY_H_
+#define QZEITGEIST_DATASOURCEREGISTRY_H_
 
 #include <QObject>
 #include <QDBusPendingReply>
 
-#include "QtZeitgeist/DataModel/DataSource"
-#include "QtZeitgeist/DataModel/Event"
+#include "QZeitgeist/DataModel/DataSource"
+#include "QZeitgeist/DataModel/Event"
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 class DataSourceRegistryPrivate;
@@ -94,7 +94,7 @@ public:
      *
      * @returns a list of data sources.
      */
-    QDBusPendingReply<QtZeitgeist::DataModel::DataSourceList> getDataSources();
+    QDBusPendingReply<QZeitgeist::DataModel::DataSourceList> getDataSources();
 
     /**
      * Asynchronously enable or disable a data source.
@@ -109,7 +109,7 @@ Q_SIGNALS:
      * This signal is emitted whenever the last running instance of a
      * data-source disconnects.
      */
-    void dataSourceDisconnected(const QtZeitgeist::DataModel::DataSource&);
+    void dataSourceDisconnected(const QZeitgeist::DataModel::DataSource&);
 
     /**
      * This signal is emitted whenever a data-source is enabled or disabled.
@@ -119,7 +119,7 @@ Q_SIGNALS:
     /**
      * This signal is emitted whenever a data-source registers itself.
      */
-    void dataSourceRegistered(const QtZeitgeist::DataModel::DataSource &);
+    void dataSourceRegistered(const QZeitgeist::DataModel::DataSource &);
 
 private:
 
@@ -129,4 +129,4 @@ private:
 
 };
 
-#endif // QTZEITGEIST_DATASOURCEREGISTRY_H_
+#endif // QZEITGEIST_DATASOURCEREGISTRY_H_

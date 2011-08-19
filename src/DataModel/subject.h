@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,15 +19,15 @@
  */
 
 
-#ifndef QTZEITGEIST_SUBJECT_H_
-#define QTZEITGEIST_SUBJECT_H_
+#ifndef QZEITGEIST_SUBJECT_H_
+#define QZEITGEIST_SUBJECT_H_
 
 #include <QList>
 #include <QObject>
 
 #include <QMetaType>
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 namespace DataModel
@@ -189,7 +189,7 @@ typedef QList<Subject> SubjectList;
 
 };
 
-Q_DECLARE_METATYPE(QtZeitgeist::DataModel::Subject)
+Q_DECLARE_METATYPE(QZeitgeist::DataModel::Subject)
 
 
-#endif // QTZEITGEIST_SUBJECT_H_
+#endif // QZEITGEIST_SUBJECT_H_

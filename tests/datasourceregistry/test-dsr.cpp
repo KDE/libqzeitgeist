@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -24,11 +24,11 @@
 
 void DataSourceRegistryTest::initTestCase()
 {
-    // Initialize QtZeitgeist types.
-    QtZeitgeist::init();
+    // Initialize QZeitgeist types.
+    QZeitgeist::init();
 
     // Create the object to be tested.
-    m_registry = new QtZeitgeist::DataSourceRegistry(this);
+    m_registry = new QZeitgeist::DataSourceRegistry(this);
     m_testId = "registry-test";
 };
 
@@ -42,7 +42,7 @@ void DataSourceRegistryTest::registerSourceTest()
 {
     QString name = "datasource registry test";
     QString description = "DataSource to test the datasource registry.";
-    QtZeitgeist::DataModel::EventList events;
+    QZeitgeist::DataModel::EventList events;
 
     QDBusPendingReply<bool> reply =
         m_registry->registerDataSource(m_testId, name, description, events);
@@ -57,7 +57,7 @@ void DataSourceRegistryTest::registerSourceTest()
 void DataSourceRegistryTest::getSourcesTest()
 {
     // Get sources from Zeitgeist.
-    QDBusPendingReply<QtZeitgeist::DataModel::DataSourceList> reply =
+    QDBusPendingReply<QZeitgeist::DataModel::DataSourceList> reply =
         m_registry->getDataSources();
 
     // Block and wait for reply.

@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,12 +19,12 @@
  */
 
 
-#include "QtZeitgeist/Log"
+#include "QZeitgeist/Log"
 
-#include "QtZeitgeist/Monitor"
+#include "QZeitgeist/Monitor"
 #include "loginterface.h"
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 // Log's DBus Object Path.
@@ -66,12 +66,12 @@ Log::~Log()
     delete d;
 }
 
-QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> Log::insertEvents(
-        const QtZeitgeist::DataModel::EventList events)
+QDBusPendingReply<QZeitgeist::DataModel::EventIdList> Log::insertEvents(
+        const QZeitgeist::DataModel::EventList events)
 {
     Q_ASSERT(events.size() > 0);
 
-    QtZeitgeist::DataModel::EventIdList ids;
+    QZeitgeist::DataModel::EventIdList ids;
 
     return d->logInterface->InsertEvents(events);
 }
@@ -82,9 +82,9 @@ void Log::deleteLog()
 }
 
 QDBusPendingReply<QStringList> Log::findRelatedUris(
-        QtZeitgeist::DataModel::TimeRange timeRange,
-        QtZeitgeist::DataModel::EventList eventTemplateList,
-        QtZeitgeist::DataModel::EventList resultEventTemplateList,
+        QZeitgeist::DataModel::TimeRange timeRange,
+        QZeitgeist::DataModel::EventList eventTemplateList,
+        QZeitgeist::DataModel::EventList resultEventTemplateList,
         StorageState state, uint maxEvents, ResultType type)
 {
     Q_ASSERT(eventTemplateList.size() > 0);
@@ -94,9 +94,9 @@ QDBusPendingReply<QStringList> Log::findRelatedUris(
             resultEventTemplateList, state, maxEvents, type);
 }
 
-QDBusPendingReply<QtZeitgeist::DataModel::EventList> Log::findEvents(
-        QtZeitgeist::DataModel::TimeRange timeRange,
-        QtZeitgeist::DataModel::EventList eventTemplateList,
+QDBusPendingReply<QZeitgeist::DataModel::EventList> Log::findEvents(
+        QZeitgeist::DataModel::TimeRange timeRange,
+        QZeitgeist::DataModel::EventList eventTemplateList,
         StorageState state, uint maxEvents, ResultType type)
 
 {
@@ -106,9 +106,9 @@ QDBusPendingReply<QtZeitgeist::DataModel::EventList> Log::findEvents(
             maxEvents, type);
 }
 
-QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> Log::findEventIds(
-        QtZeitgeist::DataModel::TimeRange timeRange,
-        QtZeitgeist::DataModel::EventList eventTemplateList,
+QDBusPendingReply<QZeitgeist::DataModel::EventIdList> Log::findEventIds(
+        QZeitgeist::DataModel::TimeRange timeRange,
+        QZeitgeist::DataModel::EventList eventTemplateList,
         StorageState state, uint maxEvents, ResultType type)
 
 {
@@ -118,30 +118,30 @@ QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> Log::findEventIds(
             maxEvents, type);
 }
 
-void Log::deleteEvents(QtZeitgeist::DataModel::EventIdList ids)
+void Log::deleteEvents(QZeitgeist::DataModel::EventIdList ids)
 {
     Q_ASSERT(ids.size() > 0);
 
     d->logInterface->DeleteEvents(ids);
 }
 
-QDBusPendingReply<QtZeitgeist::DataModel::EventList> Log::getEvents(
-        QtZeitgeist::DataModel::EventIdList ids)
+QDBusPendingReply<QZeitgeist::DataModel::EventList> Log::getEvents(
+        QZeitgeist::DataModel::EventIdList ids)
 {
     Q_ASSERT(ids.size() > 0);
 
     return d->logInterface->GetEvents(ids);
 }
 
-const QtZeitgeist::Monitor *Log::installMonitor(
-        QtZeitgeist::DataModel::TimeRange timeRange,
-        QtZeitgeist::DataModel::EventList eventTemplateList)
+const QZeitgeist::Monitor *Log::installMonitor(
+        QZeitgeist::DataModel::TimeRange timeRange,
+        QZeitgeist::DataModel::EventList eventTemplateList)
 {
     Q_ASSERT(eventTemplateList.size() > 0);
 
     LogPrivate::monitorIdIndex++;
 
-    QtZeitgeist::Monitor *monitor = new QtZeitgeist::Monitor(
+    QZeitgeist::Monitor *monitor = new QZeitgeist::Monitor(
             LogPrivate::monitorIdIndex,
             timeRange, eventTemplateList, this);
 
@@ -151,7 +151,7 @@ const QtZeitgeist::Monitor *Log::installMonitor(
     return monitor;
 }
 
-void Log::removeMonitor(QtZeitgeist::Monitor *monitor)
+void Log::removeMonitor(QZeitgeist::Monitor *monitor)
 {
     Q_ASSERT(monitor != 0);
 

@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,11 +19,11 @@
  */
 
 
-#include "QtZeitgeist/DataModel/TimeRange"
+#include "QZeitgeist/DataModel/TimeRange"
 
 #include <limits>
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 namespace DataModel

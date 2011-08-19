@@ -1,1 +1,1 @@
-install(DIRECTORY QtZeitgeist DESTINATION include)
+install(DIRECTORY QZeitgeist DESTINATION include)

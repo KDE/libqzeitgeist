@@ -5,14 +5,14 @@
     <method name="SetBlacklist">
       <!-- List of event templates to blacklist -->
       <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
-        value="QtZeitgeist::DataModel::EventList"/>
+        value="QZeitgeist::DataModel::EventList"/>
       <arg direction="in"  type="a(asaasay)" name="events" />
     </method>
 
     <method name="GetBlacklist">
       <!-- List of event templates to blacklist -->
       <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
-        value="QtZeitgeist::DataModel::EventList"/>
+        value="QZeitgeist::DataModel::EventList"/>
       <arg direction="out"  type="a(asaasay)" name="events" />
     </method>
   </interface>

@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,12 +19,12 @@
  */
 
 
-#include "QtZeitgeist/Monitor"
+#include "QZeitgeist/Monitor"
 
 #include "monitor_p.h"
 #include "monitoradaptor.h"
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 // Monitor's DBus Object Path.
@@ -36,8 +36,8 @@ const QString serviceName = "org.gnome.zeitgeist.Monitor";
 
 // Implements the private section. D pointer.
 MonitorPrivate::MonitorPrivate(quint64 monitorId,
-        QtZeitgeist::DataModel::TimeRange monitorTimeRange,
-        QtZeitgeist::DataModel::EventList monitorTemplates,
+        QZeitgeist::DataModel::TimeRange monitorTimeRange,
+        QZeitgeist::DataModel::EventList monitorTemplates,
         Monitor *parent)
     : QObject(parent),
     id(monitorId),
@@ -62,23 +62,23 @@ MonitorPrivate::~MonitorPrivate()
 }
 
 void MonitorPrivate::NotifyDelete(
-        const QtZeitgeist::DataModel::TimeRange &timeRange,
-        const QtZeitgeist::DataModel::EventIdList &eventIds)
+        const QZeitgeist::DataModel::TimeRange &timeRange,
+        const QZeitgeist::DataModel::EventIdList &eventIds)
 {
     emit q->eventsDeleted(timeRange, eventIds);
 }
 
 void MonitorPrivate::NotifyInsert(
-        const QtZeitgeist::DataModel::TimeRange &timeRange,
-        const QtZeitgeist::DataModel::EventList &events)
+        const QZeitgeist::DataModel::TimeRange &timeRange,
+        const QZeitgeist::DataModel::EventList &events)
 {
     emit q->eventsInserted(timeRange, events);
 }
 
 // Implements the Monitor class.
 Monitor::Monitor(quint64 id,
-        QtZeitgeist::DataModel::TimeRange timeRange,
-        QtZeitgeist::DataModel::EventList templates,
+        QZeitgeist::DataModel::TimeRange timeRange,
+        QZeitgeist::DataModel::EventList templates,
         QObject *parent)
     : QObject(parent),
     d(new MonitorPrivate(id, timeRange, templates, this))
@@ -101,12 +101,12 @@ quint64 Monitor::id() const
     return d->id;
 }
 
-QtZeitgeist::DataModel::TimeRange Monitor::timeRange() const
+QZeitgeist::DataModel::TimeRange Monitor::timeRange() const
 {
     return d->timeRange;
 }
 
-QtZeitgeist::DataModel::EventList Monitor::eventTemplates() const
+QZeitgeist::DataModel::EventList Monitor::eventTemplates() const
 {
     return d->eventTemplates;
 }

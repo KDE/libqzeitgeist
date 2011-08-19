@@ -7,11 +7,11 @@
  */
 
 
-#ifndef QTZEITGEIST_INTERPRETATION_H
-#define QTZEITGEIST_INTERPRETATION_H
+#ifndef QZEITGEIST_INTERPRETATION_H
+#define QZEITGEIST_INTERPRETATION_H
 
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 
@@ -561,4 +561,4 @@ const char NMOMimeEntity[] = "http://www.semanticdesktop.org/ontologies/2007/03/
 
 };
 
-#endif // QTZEITGEIST_INTERPRETATION_H
+#endif // QZEITGEIST_INTERPRETATION_H

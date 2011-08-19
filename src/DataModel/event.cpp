@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,12 +19,12 @@
  */
 
 
-#include "QtZeitgeist/DataModel/Event"
+#include "QZeitgeist/DataModel/Event"
 
 #include <QMetaType>
 #include <QDBusMetaType>
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 namespace DataModel

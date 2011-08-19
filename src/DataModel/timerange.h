@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,14 +19,14 @@
  */
 
 
-#ifndef QTZEITGEIST_TIMERANGE_H_
-#define QTZEITGEIST_TIMERANGE_H_
+#ifndef QZEITGEIST_TIMERANGE_H_
+#define QZEITGEIST_TIMERANGE_H_
 
 #include <QDateTime>
 #include <QMetaType>
 #include <QDBusArgument>
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 namespace DataModel
@@ -151,6 +151,6 @@ Q_DECL_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
 };
 
 // Declare types as Qt Meta Type.
-Q_DECLARE_METATYPE(QtZeitgeist::DataModel::TimeRange)
+Q_DECLARE_METATYPE(QZeitgeist::DataModel::TimeRange)
 
-#endif // QTZEITGEIST_TIMERANGE_H_
+#endif // QZEITGEIST_TIMERANGE_H_

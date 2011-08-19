@@ -1,4 +1,4 @@
-project(QtZeitgeist)
+project(QZeitgeist)
 
 # Minimal CMAKE version
 cmake_minimum_required(VERSION 2.6)
@@ -14,25 +14,22 @@ if (__HAVE_GCC_VISIBILITY AND NOT WIN32)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden")
 endif (__HAVE_GCC_VISIBILITY AND NOT WIN32)
 
+set(QZEITGEIST_VERSION_MAJOR 0)
+set(QZEITGEIST_VERSION_MINOR 7)
+set(QZEITGEIST_VERSION_PATCH 0)
+set(QZEITGEIST_VERSION "${QZEITGEIST_VERSION_MAJOR}.${QZEITGEIST_VERSION_MINOR}.${QZEITGEIST_VERSION_PATCH}")
 
-set(CPACK_PACKAGE_VERSION_MAJOR "0")
-set(CPACK_PACKAGE_VERSION_MINOR "7")
-set(CPACK_PACKAGE_VERSION_PATCH "0")
+
+set(CPACK_PACKAGE_VERSION_MAJOR ${QZEITGEIST_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${QZEITGEIST_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${QZEITGEIST_VERSION_PATCH})
 set(CPACK_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "QtZeitgeist-${CPACK_PACKAGE_VERSION}")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "QZeitgeist-${CPACK_PACKAGE_VERSION}")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/COPYING")
 
 #use CPack for packaging code up
 include(CPack)
-
-
-if(QT4_FOUND)
-    include_directories(${QT_INCLUDE_DIR})
-    include_directories(${QT_QT_INCLUDE_DIR})
-    include_directories(${QT_QTCORE_INCLUDE_DIR})
-    include_directories(${QT_QTDBUS_INCLUDE_DIR})
-endif(QT4_FOUND)
 
 set(CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE ON)
 
@@ -43,10 +40,6 @@ configure_file(
 
 add_custom_target(uninstall
     "${CMAKE_COMMAND}" -P "${CMAKE_BINARY_DIR}/cmake_uninstall.cmake")
-
-# Generate pkg-config file
-configure_file(${CMAKE_SOURCE_DIR}/QtZeitgeist.pc.in ${CMAKE_BINARY_DIR}/QtZeitgeist.pc)
-install(FILES ${CMAKE_BINARY_DIR}/QtZeitgeist.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig)
 
 add_subdirectory(include)
 add_subdirectory(src)
@@ -60,4 +53,11 @@ endif()
 # Generate cmake file
 get_target_property(QZEITGEIST_LIBRARY qzeitgeist LOCATION)
 configure_file(QZeitgeistConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfig.cmake @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfig.cmake DESTINATION ${CMAKE_INSTALL_PREFIX}/share/qzeitgeist/cmake)
+configure_file(QZeitgeistVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistVersion.cmake.in @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistVersion.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/QZeitgeistConfig.cmake DESTINATION ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/QZeitgeist/)
+install(EXPORT QZeitgeistExport DESTINATION ${CMAKE_INSTALL_PREFIX}/lib${LIB_SUFFIX}/cmake/QZeitgeist)
+
+# Generate pkg-config file
+configure_file(${CMAKE_SOURCE_DIR}/QZeitgeist.pc.in ${CMAKE_BINARY_DIR}/QZeitgeist.pc)
+install(FILES ${CMAKE_BINARY_DIR}/QZeitgeist.pc DESTINATION lib${LIB_SUFFIX}/pkgconfig)
+

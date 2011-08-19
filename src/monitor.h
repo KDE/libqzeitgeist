@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,16 +19,16 @@
  */
 
 
-#ifndef QTZEITGEIST_MONITOR_H_
-#define QTZEITGEIST_MONITOR_H_
+#ifndef QZEITGEIST_MONITOR_H_
+#define QZEITGEIST_MONITOR_H_
 
 #include <QObject>
 
-#include "QtZeitgeist/Log"
-#include "QtZeitgeist/DataModel/Event"
-#include "QtZeitgeist/DataModel/TimeRange"
+#include "QZeitgeist/Log"
+#include "QZeitgeist/DataModel/Event"
+#include "QZeitgeist/DataModel/TimeRange"
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 class MonitorPrivate;
@@ -49,8 +49,8 @@ class Q_DECL_EXPORT Monitor : public QObject
     Q_OBJECT
     Q_DISABLE_COPY(Monitor)
     Q_PROPERTY(quint64 id READ id)
-    Q_PROPERTY(QtZeitgeist::DataModel::TimeRange timeRange READ timeRange)
-    Q_PROPERTY(QtZeitgeist::DataModel::EventList eventTemplates
+    Q_PROPERTY(QZeitgeist::DataModel::TimeRange timeRange READ timeRange)
+    Q_PROPERTY(QZeitgeist::DataModel::EventList eventTemplates
             READ eventTemplates)
 
 public:
@@ -71,14 +71,14 @@ public:
      *
      * @returns the time range used to create the monitor.
      */
-    QtZeitgeist::DataModel::TimeRange timeRange() const;
+    QZeitgeist::DataModel::TimeRange timeRange() const;
 
     /**
      * Return the Monitor Event Templates.
      *
      * @returns the event templates used to create the monitor.
      */
-    QtZeitgeist::DataModel::EventList eventTemplates() const;
+    QZeitgeist::DataModel::EventList eventTemplates() const;
 
 protected:
 
@@ -86,8 +86,8 @@ protected:
      * Default constructor.
      */
     explicit Monitor(quint64 id,
-            QtZeitgeist::DataModel::TimeRange monitorTimeRange,
-            QtZeitgeist::DataModel::EventList monitorTemplates,
+            QZeitgeist::DataModel::TimeRange monitorTimeRange,
+            QZeitgeist::DataModel::EventList monitorTemplates,
             QObject *parent = 0);
 
     /**
@@ -108,8 +108,8 @@ Q_SIGNALS:
      * @param events a @EventList holding the events that have been inserted
      * into the log.
      */
-    void eventsInserted(const QtZeitgeist::DataModel::TimeRange &timeRange,
-            const QtZeitgeist::DataModel::EventList &events);
+    void eventsInserted(const QZeitgeist::DataModel::TimeRange &timeRange,
+            const QZeitgeist::DataModel::EventList &events);
 
     /**
      * Signal to notify deleted events.
@@ -122,8 +122,8 @@ Q_SIGNALS:
      * timestamps of the deleted events.
      * @param eventIds A @EventIdList holding the ids of the deleted events.
      */
-    void eventsDeleted(const QtZeitgeist::DataModel::TimeRange &timeRange,
-            const QtZeitgeist::DataModel::EventIdList &eventIds);
+    void eventsDeleted(const QZeitgeist::DataModel::TimeRange &timeRange,
+            const QZeitgeist::DataModel::EventIdList &eventIds);
 
 private:
 
@@ -138,4 +138,4 @@ private:
 
 };
 
-#endif // QTZEITGEIST_MONITOR_H_
+#endif // QZEITGEIST_MONITOR_H_

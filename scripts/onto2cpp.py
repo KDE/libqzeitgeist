@@ -108,13 +108,13 @@ def main(argv):
 				fields = dm.Manifestation.get_all_children()
 
 	# Print header guard.
-	guard = "QTZEITGEIST_%s_H" % (arg.upper())
+	guard = "QZEITGEIST_%s_H" % (arg.upper())
 
 	print "#ifndef %s" % (guard)
 	print "#define %s\n\n" % (guard)
 
 	# Print Global namespace
-	print "namespace QtZeitgeist\n{\n\n"
+	print "namespace QZeitgeist\n{\n\n"
 
 	# Dump definitions to the stdout
 	dumpFile(arg, fields)

@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,10 +19,10 @@
  */
 
 
-#include "QtZeitgeist/DataSourceRegistry"
+#include "QZeitgeist/DataSourceRegistry"
 #include "datasourceregistryinterface.h"
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 // DataSourceRegistry's DBus Object Path.
@@ -57,14 +57,14 @@ DataSourceRegistry::DataSourceRegistry(QObject *parent)
     Q_ASSERT(d);
 
     connect(d->registryInterface,
-        SIGNAL(DataSourceDisconnected(const QtZeitgeist::DataModel::DataSource&)),
-        SIGNAL(dataSourceDisconnected(const QtZeitgeist::DataModel::DataSource&)));
+        SIGNAL(DataSourceDisconnected(const QZeitgeist::DataModel::DataSource&)),
+        SIGNAL(dataSourceDisconnected(const QZeitgeist::DataModel::DataSource&)));
     connect(d->registryInterface,
         SIGNAL(DataSourceEnabled(const QString &, bool)),
         SIGNAL(dataSourceEnabled(const QString &, bool)));
     connect(d->registryInterface,
-        SIGNAL(DataSourceRegistered(const QtZeitgeist::DataModel::DataSource &)),
-        SIGNAL(dataSourceRegistered(const QtZeitgeist::DataModel::DataSource &)));
+        SIGNAL(DataSourceRegistered(const QZeitgeist::DataModel::DataSource &)),
+        SIGNAL(dataSourceRegistered(const QZeitgeist::DataModel::DataSource &)));
 }
 
 DataSourceRegistry::~DataSourceRegistry()
@@ -82,7 +82,7 @@ QDBusPendingReply<bool> DataSourceRegistry::registerDataSource(const QString &id
         event_templates);
 }
 
-QDBusPendingReply<QtZeitgeist::DataModel::DataSourceList>
+QDBusPendingReply<QZeitgeist::DataModel::DataSourceList>
     DataSourceRegistry::getDataSources()
 {
     return d->registryInterface->GetDataSources();

@@ -1,5 +1,5 @@
 /*
- * This file is part of QtZeitgeist.
+ * This file is part of QZeitgeist.
  *
  * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
  *
@@ -19,16 +19,16 @@
  */
 
 
-#ifndef QTZEITGEIST_LOG_H_
-#define QTZEITGEIST_LOG_H_
+#ifndef QZEITGEIST_LOG_H_
+#define QZEITGEIST_LOG_H_
 
 #include <QObject>
 #include <QDBusPendingReply>
 
-#include "QtZeitgeist/DataModel/Event"
-#include "QtZeitgeist/DataModel/TimeRange"
+#include "QZeitgeist/DataModel/Event"
+#include "QZeitgeist/DataModel/TimeRange"
 
-namespace QtZeitgeist
+namespace QZeitgeist
 {
 
 class Monitor;
@@ -109,8 +109,8 @@ public:
      *
      * returns The Id list of the inserted events.
      */
-    QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> insertEvents(
-            const QtZeitgeist::DataModel::EventList events);
+    QDBusPendingReply<QZeitgeist::DataModel::EventIdList> insertEvents(
+            const QZeitgeist::DataModel::EventList events);
 
     /**
      * Delete the log file and all its content.
@@ -144,9 +144,9 @@ public:
      * @returns A list of URI strings.
      */
     QDBusPendingReply<QStringList> findRelatedUris(
-            QtZeitgeist::DataModel::TimeRange timeRange,
-            QtZeitgeist::DataModel::EventList eventTemplateList,
-            QtZeitgeist::DataModel::EventList resultEventTemplateList,
+            QZeitgeist::DataModel::TimeRange timeRange,
+            QZeitgeist::DataModel::EventList eventTemplateList,
+            QZeitgeist::DataModel::EventList resultEventTemplateList,
             StorageState state, uint maxEvents, ResultType type);
 
     /**
@@ -166,9 +166,9 @@ public:
      *
      * @returns A list of Events.
      */
-    QDBusPendingReply<QtZeitgeist::DataModel::EventList> findEvents(
-            QtZeitgeist::DataModel::TimeRange timeRange,
-            QtZeitgeist::DataModel::EventList eventTemplateList,
+    QDBusPendingReply<QZeitgeist::DataModel::EventList> findEvents(
+            QZeitgeist::DataModel::TimeRange timeRange,
+            QZeitgeist::DataModel::EventList eventTemplateList,
             StorageState state, uint maxEvents, ResultType type);
 
     /**
@@ -189,9 +189,9 @@ public:
      *
      * @returns A list of Event Ids.
      */
-    QDBusPendingReply<QtZeitgeist::DataModel::EventIdList> findEventIds(
-            QtZeitgeist::DataModel::TimeRange timeRange,
-            QtZeitgeist::DataModel::EventList eventTemplateList,
+    QDBusPendingReply<QZeitgeist::DataModel::EventIdList> findEventIds(
+            QZeitgeist::DataModel::TimeRange timeRange,
+            QZeitgeist::DataModel::EventList eventTemplateList,
             StorageState state, uint maxEvents, ResultType type);
 
     /**
@@ -199,7 +199,7 @@ public:
      *
      * @param ids list of event IDs.
      */
-    void deleteEvents(QtZeitgeist::DataModel::EventIdList ids);
+    void deleteEvents(QZeitgeist::DataModel::EventIdList ids);
 
     /**
      * Get full event data for a set of event IDs.
@@ -208,8 +208,8 @@ public:
      *
      * @returns A list of Events.
      */
-    QDBusPendingReply<QtZeitgeist::DataModel::EventList> getEvents(
-            QtZeitgeist::DataModel::EventIdList ids);
+    QDBusPendingReply<QZeitgeist::DataModel::EventList> getEvents(
+            QZeitgeist::DataModel::EventIdList ids);
 
     /**
      * Request the installation of a new monitor.
@@ -224,9 +224,9 @@ public:
      *
      * @return A const @Monitor instance.
      */
-    const QtZeitgeist::Monitor *installMonitor(
-            QtZeitgeist::DataModel::TimeRange timeRange,
-            QtZeitgeist::DataModel::EventList eventTemplateList);
+    const QZeitgeist::Monitor *installMonitor(
+            QZeitgeist::DataModel::TimeRange timeRange,
+            QZeitgeist::DataModel::EventList eventTemplateList);
 
     /**
      * Request the removing of the given monitor.
@@ -237,7 +237,7 @@ public:
      *
      * @param monitor an installed  @Monitor instance to be removed.
      */
-    void removeMonitor(QtZeitgeist::Monitor *monitor);
+    void removeMonitor(QZeitgeist::Monitor *monitor);
 
 private:
 
@@ -247,4 +247,4 @@ private:
 
 };
 
-#endif // QTZEITGEIST_LOG_H_
+#endif // QZEITGEIST_LOG_H_
