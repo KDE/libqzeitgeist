@@ -1,1 +1,1 @@
-add_subdirectory(QtZeitgeist)
+install(DIRECTORY QtZeitgeist DESTINATION include)
