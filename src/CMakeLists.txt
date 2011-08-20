@@ -3,6 +3,8 @@ set(QT_DONT_USE_QTGUI "YES")
 include(${QT_USE_FILE})
 include(QZeitgeistMacros)
 
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
 set(qzeitgeist_HEADERS
     datasourceregistry.h
     interpretation.h
