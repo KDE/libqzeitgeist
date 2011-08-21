@@ -7,9 +7,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 
 set(qzeitgeist_HEADERS
     datasourceregistry.h
-    interpretation.h
     log.h
-    manifestation.h
     monitor.h
     qzeitgeist.h
 )
@@ -48,7 +46,16 @@ zg_add_dbus_interface(qzeitgeist_SRCS dbus-xml/org.gnome.zeitgeist.DataSourceReg
 
 qt4_add_dbus_adaptor(qzeitgeist_SRCS dbus-xml/org.gnome.zeitgeist.Monitor.xml monitor_p.h QZeitgeist::MonitorPrivate)
 
-automoc4_add_library(qzeitgeist SHARED ${qzeitgeist_SRCS})
+automoc4_add_library(qzeitgeist SHARED ${qzeitgeist_SRCS} interpretation.h manifestation.h)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/interpretation.h
+   COMMAND ${CMAKE_SOURCE_DIR}/scripts/onto2cpp.py -o Interpretation > ${CMAKE_CURRENT_BINARY_DIR}/interpretation.h
+                   )
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/manifestation.h
+   COMMAND ${CMAKE_SOURCE_DIR}/scripts/onto2cpp.py -o Manifestation > ${CMAKE_CURRENT_BINARY_DIR}/manifestation.h
+                   )
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifestation.h ${CMAKE_CURRENT_BINARY_DIR}/interpretation.h DESTINATION include/QZeitgeist)
 
 target_link_libraries(qzeitgeist ${QT_LIBRARIES} ${QDBUS_LDFLAGS})
 set_target_properties(qzeitgeist PROPERTIES VERSION "${QZEITGEIST_VERSION}" SOVERSION ${QZEITGEIST_VERSION_MAJOR})
