@@ -19,6 +19,8 @@
  */
 
 #include "test-dsr.h"
+#include "qzeitgeist.h"
+#include "event.h"
 
 #include <QSignalSpy>
 

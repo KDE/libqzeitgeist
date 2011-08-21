@@ -21,8 +21,7 @@
 #include <QTest>
 #include <QDebug>
 
-#include "QZeitgeist/QZeitgeist"
-#include "QZeitgeist/DataSourceRegistry"
+#include "datasourceregistry.h"
 
 class DataSourceRegistryTest : public QObject
 {
