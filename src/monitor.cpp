@@ -19,7 +19,7 @@
  */
 
 
-#include "QZeitgeist/Monitor"
+#include "monitor.h"
 
 #include "monitor_p.h"
 #include "monitoradaptor.h"

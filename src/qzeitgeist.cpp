@@ -20,9 +20,9 @@
 
 #include "qzeitgeist.h"
 
-#include "QZeitgeist/DataModel/DataSource"
-#include "QZeitgeist/DataModel/Event"
-#include "QZeitgeist/DataModel/TimeRange"
+#include "DataModel/datasource.h"
+#include "DataModel/event.h"
+#include "DataModel/timerange.h"
 
 #include <QDBusMetaType>
 

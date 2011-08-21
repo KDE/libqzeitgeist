@@ -25,8 +25,8 @@
 #include <QObject>
 #include <QDBusPendingReply>
 
-#include "QZeitgeist/DataModel/DataSource"
-#include "QZeitgeist/DataModel/Event"
+#include "datasource.h"
+#include "event.h"
 
 namespace QZeitgeist
 {

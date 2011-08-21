@@ -19,9 +19,9 @@
  */
 
 
-#include "QZeitgeist/Log"
+#include "log.h"
 
-#include "QZeitgeist/Monitor"
+#include "monitor.h"
 #include "loginterface.h"
 
 namespace QZeitgeist

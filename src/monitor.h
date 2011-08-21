@@ -24,9 +24,9 @@
 
 #include <QObject>
 
-#include "QZeitgeist/Log"
-#include "QZeitgeist/DataModel/Event"
-#include "QZeitgeist/DataModel/TimeRange"
+#include "log.h"
+#include "DataModel/event.h"
+#include "DataModel/timerange.h"
 
 namespace QZeitgeist
 {

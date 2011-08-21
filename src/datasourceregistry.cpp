@@ -19,7 +19,7 @@
  */
 
 
-#include "QZeitgeist/DataSourceRegistry"
+#include "datasourceregistry.h"
 #include "datasourceregistryinterface.h"
 
 namespace QZeitgeist

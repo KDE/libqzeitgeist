@@ -24,8 +24,8 @@
 
 #include <QObject>
 
-#include "QZeitgeist/DataModel/Event"
-#include "QZeitgeist/DataModel/TimeRange"
+#include "DataModel/event.h"
+#include "DataModel/timerange.h"
 
 class MonitorAdaptor;
 
