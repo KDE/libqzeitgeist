@@ -4,8 +4,9 @@ project(QZeitgeist)
 cmake_minimum_required(VERSION 2.6)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
+set(LIB_SUFFIX "" CACHE STRING "Define suffix of directory name (32/64)" )
 
-find_package(Qt4 4.7.0 COMPONENTS QtCore QtDBus QtTest REQUIRED)
+find_package(Qt4 4.7.0 COMPONENTS QtCore QtDBus QtTest QtDeclarative REQUIRED)
 
 include(CheckCXXCompilerFlag)
 
@@ -43,6 +44,12 @@ add_custom_target(uninstall
 
 add_subdirectory(include)
 add_subdirectory(src)
+
+option(BUILD_DECLARATIVE "Build Declarative bindings" TRUE)
+
+if (BUILD_DECLARATIVE)
+   add_subdirectory(declarative)
+endif()
 
 option(BUILD_TESTS "Build Tests" FALSE)
 
