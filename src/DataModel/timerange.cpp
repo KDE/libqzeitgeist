@@ -19,7 +19,7 @@
  */
 
 
-#include "QZeitgeist/DataModel/TimeRange"
+#include "timerange.h"
 
 #include <limits>
 
@@ -42,13 +42,13 @@ public :
     qint64 end;
 };
 
-TimeRange::TimeRange(QObject *parent)
+TimeRange::TimeRange()
     : d(new TimeRangePrivate())
 {
     Q_ASSERT(d);
 }
 
-TimeRange::TimeRange(const TimeRange & source, QObject *parent)
+TimeRange::TimeRange(const TimeRange & source)
     : d(new TimeRangePrivate())
 {
     Q_ASSERT(d);

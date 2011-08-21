@@ -19,7 +19,7 @@
  */
 
 
-#include "QZeitgeist/DataModel/DataSource"
+#include "datasource.h"
 
 #include <QMetaType>
 #include <QDBusMetaType>
@@ -43,7 +43,7 @@ public :
     bool enabled;
 };
 
-DataSource::DataSource(QObject *parent)
+DataSource::DataSource()
     : d(new DataSourcePrivate())
 {
     Q_ASSERT(d);
@@ -52,7 +52,7 @@ DataSource::DataSource(QObject *parent)
     d->lastSeen.setTime_t(0);
 }
 
-DataSource::DataSource(const DataSource & source, QObject *parent)
+DataSource::DataSource(const DataSource & source)
     : d(new DataSourcePrivate())
 {
     Q_ASSERT(d);

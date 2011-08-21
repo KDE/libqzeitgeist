@@ -44,23 +44,19 @@ class TimeRangePrivate;
 
  * @author Abner Silva <abner@collabora.co.uk>
  */
-class Q_DECL_EXPORT TimeRange : public QObject
+class Q_DECL_EXPORT TimeRange
 {
-    Q_OBJECT
-    Q_PROPERTY(qint64 begin READ begin WRITE setBegin)
-    Q_PROPERTY(qint64 end READ end WRITE setEnd)
-
 public:
 
     /**
      * Default constructor.
      */
-    explicit TimeRange(QObject *parent = 0);
+    explicit TimeRange();
 
     /**
      * Copy constructor.
      */
-    TimeRange(const TimeRange &source, QObject *parent = 0);
+    TimeRange(const TimeRange &source);
 
     /**
      * Data initializing constructor.

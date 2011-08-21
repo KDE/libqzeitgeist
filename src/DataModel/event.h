@@ -27,7 +27,7 @@
 #include <QMetaType>
 #include <QDBusArgument>
 
-#include "QZeitgeist/DataModel/Subject"
+#include "subject.h"
 
 namespace QZeitgeist
 {
@@ -50,28 +50,20 @@ class EventPrivate;
  *
  * @author Abner Silva <abner@collabora.co.uk>
  */
-class Q_DECL_EXPORT Event : public QObject
+class Q_DECL_EXPORT Event
 {
-    Q_OBJECT
-    Q_PROPERTY(quint32 id READ id)
-    Q_PROPERTY(QDateTime timestamp READ timestamp WRITE setTimestamp)
-    Q_PROPERTY(QString interpretation READ interpretation WRITE setInterpretation)
-    Q_PROPERTY(QString manifestation READ manifestation WRITE setManifestation)
-    Q_PROPERTY(QString actor READ actor WRITE setActor)
-    Q_PROPERTY(SubjectList subjects READ subjects WRITE setSubjects)
-    Q_PROPERTY(QByteArray payload READ payload WRITE setPayload)
 
 public:
 
     /**
      * Default constructor.
      */
-    explicit Event(QObject *parent = 0);
+    explicit Event();
 
     /**
      * Copy constructor.
      */
-    Event(const Event &source, QObject *parent = 0);
+    Event(const Event &source);
 
     /**
      * Destructor.

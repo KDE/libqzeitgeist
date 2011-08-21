@@ -23,7 +23,6 @@
 #define QZEITGEIST_SUBJECT_H_
 
 #include <QList>
-#include <QObject>
 
 #include <QMetaType>
 
@@ -46,28 +45,19 @@ class SubjectPrivate;
  *
  * @author Jeremy Whiting <jeremy.whiting@collabora.co.uk>
  */
-class Q_DECL_EXPORT Subject : public QObject
+class Q_DECL_EXPORT Subject
 {
-    Q_OBJECT
-    Q_PROPERTY(QString uri READ uri WRITE setUri)
-    Q_PROPERTY(QString interpretation READ interpretation WRITE setInterpretation)
-    Q_PROPERTY(QString manifestation READ manifestation WRITE setManifestation)
-    Q_PROPERTY(QString origin READ origin WRITE setOrigin)
-    Q_PROPERTY(QString mimeType READ mimeType WRITE setMimeType)
-    Q_PROPERTY(QString text READ text WRITE setText)
-    Q_PROPERTY(QString storage READ storage WRITE setStorage)
-
 public:
 
     /**
      * Default constructor.
      */
-    explicit Subject(QObject *parent = 0);
+    explicit Subject();
 
     /**
      * Copy constructor.
      */
-    Subject(const Subject &source, QObject *parent = 0);
+    Subject(const Subject &source);
 
     /**
      * Destructor.

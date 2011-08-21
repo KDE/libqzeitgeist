@@ -45,28 +45,19 @@ class DataSourcePrivate;
  *
  * @author Jeremy Whiting <jeremy.whiting@collabora.co.uk>
  */
-class Q_DECL_EXPORT DataSource : public QObject
+class Q_DECL_EXPORT DataSource
 {
-    Q_OBJECT
-    Q_PROPERTY(QString uniqueId READ uniqueId)
-    Q_PROPERTY(QString name READ name)
-    Q_PROPERTY(QString description READ description)
-    Q_PROPERTY(EventList eventTemplates READ eventTemplates)
-    Q_PROPERTY(bool running READ running)
-    Q_PROPERTY(QDateTime lastSeen READ lastSeen)
-    Q_PROPERTY(bool enabled READ enabled)
-
 public:
 
     /**
      * Default constructor.
      */
-    explicit DataSource(QObject *parent = 0);
+    explicit DataSource();
 
     /**
      * Copy constructor.
      */
-    DataSource(const DataSource &source, QObject *parent = 0);
+    DataSource(const DataSource &source);
 
     /**
      * Destructor.

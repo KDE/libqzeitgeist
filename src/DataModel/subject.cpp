@@ -19,7 +19,7 @@
  */
 
 
-#include "QZeitgeist/DataModel/Subject"
+#include "subject.h"
 
 
 namespace QZeitgeist
@@ -40,13 +40,13 @@ public :
     QString manifestation;
 };
 
-Subject::Subject(QObject *parent)
+Subject::Subject()
     : d(new SubjectPrivate())
 {
     Q_ASSERT(d);
 }
 
-Subject::Subject(const Subject & source, QObject *parent)
+Subject::Subject(const Subject & source)
     : d(new SubjectPrivate())
 {
     Q_ASSERT(d);

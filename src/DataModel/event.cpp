@@ -19,7 +19,7 @@
  */
 
 
-#include "QZeitgeist/DataModel/Event"
+#include "event.h"
 
 #include <QMetaType>
 #include <QDBusMetaType>
@@ -49,13 +49,13 @@ public :
     QByteArray payload;
 };
 
-Event::Event(QObject *parent)
+Event::Event()
     : d(new EventPrivate())
 {
     Q_ASSERT(d);
 }
 
-Event::Event(const Event & source, QObject *parent)
+Event::Event(const Event & source)
     : d(new EventPrivate())
 {
     Q_ASSERT(d);
