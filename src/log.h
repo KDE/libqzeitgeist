@@ -61,7 +61,7 @@ class LogPrivate;
  *
  * @author Abner Silva <abner@collabora.co.uk>
  */
-class Q_DECL_EXPORT Log : public QObject
+class QZEITGEIST_EXPORT Log : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(Log)

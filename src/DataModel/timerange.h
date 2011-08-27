@@ -22,6 +22,7 @@
 #ifndef QZEITGEIST_TIMERANGE_H_
 #define QZEITGEIST_TIMERANGE_H_
 
+#include "qzeitgeist.h"
 #include <QDateTime>
 #include <QMetaType>
 #include <QDBusArgument>
@@ -44,7 +45,7 @@ class TimeRangePrivate;
 
  * @author Abner Silva <abner@collabora.co.uk>
  */
-class Q_DECL_EXPORT TimeRange
+class QZEITGEIST_EXPORT TimeRange
 {
 public:
 
@@ -137,9 +138,9 @@ private:
             TimeRange &event);
 };
 
-Q_DECL_EXPORT QDBusArgument & operator << (QDBusArgument &argument,
+QZEITGEIST_EXPORT QDBusArgument & operator << (QDBusArgument &argument,
                const TimeRange &event);
-Q_DECL_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
+QZEITGEIST_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
                TimeRange &event);
 
 };

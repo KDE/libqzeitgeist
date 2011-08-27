@@ -50,7 +50,7 @@ class EventPrivate;
  *
  * @author Abner Silva <abner@collabora.co.uk>
  */
-class Q_DECL_EXPORT Event
+class QZEITGEIST_EXPORT Event
 {
 
 public:
@@ -211,9 +211,9 @@ private:
             Event &event);
 };
 
-Q_DECL_EXPORT QDBusArgument & operator << (QDBusArgument &argument,
+QZEITGEIST_EXPORT QDBusArgument & operator << (QDBusArgument &argument,
                const Event &event);
-Q_DECL_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
+QZEITGEIST_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
                Event &event);
 
 // Create additional types.

@@ -45,7 +45,7 @@ class DataSourcePrivate;
  *
  * @author Jeremy Whiting <jeremy.whiting@collabora.co.uk>
  */
-class Q_DECL_EXPORT DataSource
+class QZEITGEIST_EXPORT DataSource
 {
 public:
 
@@ -136,9 +136,9 @@ private:
             DataSource &datasource);
 };
 
-Q_DECL_EXPORT QDBusArgument & operator << (QDBusArgument &argument,
+QZEITGEIST_EXPORT QDBusArgument & operator << (QDBusArgument &argument,
                const DataSource &datasource);
-Q_DECL_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
+QZEITGEIST_EXPORT const QDBusArgument & operator >> (const QDBusArgument &argument,
                DataSource &datasource);
 
 // Create additional types.

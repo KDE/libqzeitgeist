@@ -24,6 +24,14 @@
 
 #include <QtGlobal>
 
+#ifndef QZEITGEIST_EXPORT
+#   define QZEITGEIST_EXPORT __attribute__ ((visibility ("default")))
+#endif
+
+#ifndef QZEITGEIST_DEPRECATED
+#define QZEITGEIST_DEPRECATED Q_DECL_DEPRECATED
+#endif
+
 namespace QZeitgeist
 {
 
@@ -35,7 +43,7 @@ namespace QZeitgeist
  * registering custom types.
  * Note: It's really important to call this function before using the library.
  */
-Q_DECL_EXPORT void init();
+QZEITGEIST_EXPORT void init();
 
 };
 #endif // QZEITGEIST_H_

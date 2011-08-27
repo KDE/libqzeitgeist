@@ -51,7 +51,7 @@ class DataSourceRegistryPrivate;
  *
  * @author Jeremy Whiting <jeremy.whiting@collabora.co.uk>
  */
-class Q_DECL_EXPORT DataSourceRegistry : public QObject
+class QZEITGEIST_EXPORT DataSourceRegistry : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(DataSourceRegistry)

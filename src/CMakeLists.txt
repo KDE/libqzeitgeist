@@ -1,7 +1,15 @@
+include(CheckCXXCompilerFlag)
+check_cxx_compiler_flag(-fvisibility=hidden __HAVE_GCC_VISIBILITY)
+if (__HAVE_GCC_VISIBILITY AND NOT WIN32)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fvisibility=hidden")
+endif (__HAVE_GCC_VISIBILITY AND NOT WIN32)
+
 find_package(Automoc4)
 set(QT_DONT_USE_QTGUI "YES")
 include(${QT_USE_FILE})
 include(QZeitgeistMacros)
+
+add_definitions(-DBUILD_QZEITGEIST)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 

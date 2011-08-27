@@ -22,6 +22,7 @@
 #ifndef QZEITGEIST_SUBJECT_H_
 #define QZEITGEIST_SUBJECT_H_
 
+#include "qzeitgeist.h"
 #include <QList>
 
 #include <QMetaType>
@@ -45,7 +46,7 @@ class SubjectPrivate;
  *
  * @author Jeremy Whiting <jeremy.whiting@collabora.co.uk>
  */
-class Q_DECL_EXPORT Subject
+class QZEITGEIST_EXPORT Subject
 {
 public:
 
