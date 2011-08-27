@@ -5,7 +5,6 @@ if (__HAVE_GCC_VISIBILITY AND NOT WIN32)
 endif (__HAVE_GCC_VISIBILITY AND NOT WIN32)
 
 find_package(Automoc4)
-set(QT_DONT_USE_QTGUI "YES")
 include(${QT_USE_FILE})
 include(QZeitgeistMacros)
 
@@ -16,7 +15,9 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 set(qzeitgeist_HEADERS
     datasourceregistry.h
     log.h
+    logmodel.h
     monitor.h
+    refreshjob.h
     qzeitgeist.h
 )
 
@@ -31,7 +32,9 @@ set(qzeitgeist_SRCS
     qzeitgeist.cpp
     datasourceregistry.cpp
     log.cpp
+    logmodel.cpp
     monitor.cpp
+    refreshjob.cpp
     DataModel/datasource.cpp
     DataModel/event.cpp
     DataModel/subject.cpp
