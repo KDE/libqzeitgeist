@@ -45,12 +45,13 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
             URLRole,
             MimeRole,
             ActorRole,
+            LastRole = ActorRole
         } Roles;
         LogModel(QObject *parent = 0);
         virtual ~LogModel();
         int rowCount(const QModelIndex &idx = QModelIndex()) const;
         int columnCount(const QModelIndex &idx = QModelIndex()) const;
-        QVariant data(const QModelIndex &idx, int role) const;
+        QVariant data(const QModelIndex &idx, int role = Qt::DisplayRole) const;
         QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
         QModelIndex parent(const QModelIndex &idx) const;
         QIcon iconForEvent(const QZeitgeist::DataModel::Event &event) const;
@@ -62,6 +63,9 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
 
         void setResultType(QZeitgeist::Log::ResultType type);
         QZeitgeist::Log::ResultType resultType() const;
+
+        void setEventTemplates(const QZeitgeist::DataModel::EventList &templates);
+        QZeitgeist::DataModel::EventList eventTemplates() const;
 
     public slots:
         void refresh();

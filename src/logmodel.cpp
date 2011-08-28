@@ -37,17 +37,6 @@ LogModel::LogModel(QObject *parent)
     m_eventTemplates << QZeitgeist::DataModel::Event();
     m_type = QZeitgeist::Log::MostRecentSubjects;
     m_pool = new QThreadPool(this);
-    QHash<int, QByteArray> roles;
-    roles[Qt::DisplayRole] = "text";
-    roles[Qt::DecorationRole] = "icon";
-    roles[EventRole] = "event";
-    roles[TimeRole] = "timestamp";
-    roles[IDRole] = "id";
-    roles[URLRole] = "uri";
-    roles[MimeRole] = "mimeType";
-    roles[ActorRole] = "actor";
-    setRoleNames(roles);
-    refresh();
     //ThreadWeaver::Weaver::instance()->setMaximumNumberOfThreads(1);
 }
 
@@ -223,6 +212,17 @@ void LogModel::setResultType(QZeitgeist::Log::ResultType type)
 QZeitgeist::Log::ResultType LogModel::resultType() const
 {
     return m_type;
+}
+
+void LogModel::setEventTemplates(const QZeitgeist::DataModel::EventList &templates)
+{
+    m_eventTemplates = templates;
+    refresh();
+}
+
+DataModel::EventList LogModel::eventTemplates() const
+{
+    return m_eventTemplates;
 }
 
 } // namespace QZeitgeist
