@@ -24,9 +24,7 @@
 
 #include <QtGlobal>
 
-#ifndef QZEITGEIST_EXPORT
-#   define QZEITGEIST_EXPORT __attribute__ ((visibility ("default")))
-#endif
+#define QZEITGEIST_EXPORT __attribute__ ((visibility ("default")))
 
 #ifndef QZEITGEIST_DEPRECATED
 #define QZEITGEIST_DEPRECATED Q_DECL_DEPRECATED

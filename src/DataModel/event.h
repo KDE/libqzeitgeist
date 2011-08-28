@@ -26,6 +26,7 @@
 #include <QDateTime>
 #include <QMetaType>
 #include <QDBusArgument>
+#include "qzeitgeist.h"
 
 #include "subject.h"
 
