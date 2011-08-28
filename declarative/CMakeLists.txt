@@ -4,6 +4,9 @@ include(${QT_USE_FILE})
 add_definitions(${QT_DEFINITIONS})
 
 set(declarative_SRCS
+    declarativeevent.cpp
+    declarativelogmodel.cpp
+    declarativesubject.cpp
     plugin.cpp
 )
 
