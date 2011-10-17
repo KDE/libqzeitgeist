@@ -199,6 +199,7 @@ public:
     void addSubject(const Subject &subject);
 
     Event & operator = (const Event &source);
+    bool operator==(const Event &source);
 
 private:
 

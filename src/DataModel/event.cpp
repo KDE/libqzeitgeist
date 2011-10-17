@@ -145,6 +145,11 @@ void Event::addSubject(const Subject &subject)
     d->subjects.append(subject);
 }
 
+bool Event::operator==(const Event &source)
+{
+    return d->id != 0 && source.d->id != 0 && d->id == source.d->id;
+}
+
 Event &Event::operator = (const Event & source)
 {
     // Copy the source attribute's value.
