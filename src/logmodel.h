@@ -28,6 +28,7 @@
 #include "DataModel/timerange.h"
 #include "DataModel/event.h"
 #include "log.h"
+#include "monitor.h"
 #include "refreshjob.h"
 #include "qzeitgeist.h"
 
@@ -72,6 +73,8 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
 
     private slots:
         void refreshDone(const QZeitgeist::DataModel::EventList &events);
+        void eventsInserted(const QZeitgeist::DataModel::TimeRange &range, const QZeitgeist::DataModel::EventList &events);
+        void eventsDeleted(const QZeitgeist::DataModel::TimeRange &range, const QZeitgeist::DataModel::EventIdList &events);
 
     private:
         void diffEvents(const QZeitgeist::DataModel::EventList &events);
@@ -84,6 +87,7 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
         QZeitgeist::DataModel::EventList m_events;
         QZeitgeist::Log::ResultType m_type;
         QThreadPool *m_pool;
+        QZeitgeist::Monitor *m_monitor;
 };
 
 } // namespace QZeitgeist

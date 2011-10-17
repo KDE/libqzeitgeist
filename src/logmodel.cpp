@@ -30,6 +30,7 @@ namespace QZeitgeist
 
 LogModel::LogModel(QObject *parent)
     : QAbstractItemModel(parent)
+    , m_monitor(0)
 {
     m_log = new QZeitgeist::Log(this);
     m_storageState = QZeitgeist::Log::Any;
@@ -37,7 +38,6 @@ LogModel::LogModel(QObject *parent)
     m_eventTemplates << QZeitgeist::DataModel::Event();
     m_type = QZeitgeist::Log::MostRecentSubjects;
     m_pool = new QThreadPool(this);
-    //ThreadWeaver::Weaver::instance()->setMaximumNumberOfThreads(1);
 }
 
 LogModel::~LogModel()
@@ -100,6 +100,32 @@ void LogModel::refresh()
                                             this);
     connect(refreshJob, SIGNAL(done(const QZeitgeist::DataModel::EventList &)), this, SLOT(refreshDone(const QZeitgeist::DataModel::EventList &)));
     m_pool->start(refreshJob);
+    if (m_monitor)
+        m_log->removeMonitor(m_monitor);
+    m_monitor = m_log->installMonitor(m_range, m_eventTemplates);
+    connect(m_monitor, SIGNAL(eventsInserted(const QZeitgeist::DataModel::TimeRange&, const QZeitgeist::DataModel::EventList&)), this, SLOT(eventsInserted(const QZeitgeist::DataModel::TimeRange, const QZeitgeist::DataModel::EventList)));
+    connect(m_monitor, SIGNAL(eventsDeleted(const QZeitgeist::DataModel::TimeRange&, const QZeitgeist::DataModel::EventIdList&)), this, SLOT(eventsDeleted(const QZeitgeist::DataModel::TimeRange, const QZeitgeist::DataModel::EventIdList)));
+}
+
+void LogModel::eventsInserted(const QZeitgeist::DataModel::TimeRange &range, const QZeitgeist::DataModel::EventList &events)
+{
+    QZeitgeist::DataModel::EventList oldEvents = m_events;
+    foreach(QZeitgeist::DataModel::Event evt, events) {
+        oldEvents << evt;
+    }
+    diffEvents(oldEvents);
+}
+
+void LogModel::eventsDeleted(const QZeitgeist::DataModel::TimeRange &range, const QZeitgeist::DataModel::EventIdList &events)
+{
+    QZeitgeist::DataModel::EventList oldEvents = m_events;
+    foreach(int id, events) {
+        foreach(QZeitgeist::DataModel::Event evt, oldEvents) {
+            if (evt.id() == id)
+                oldEvents.removeOne(evt);
+        }
+    }
+    diffEvents(oldEvents);
 }
 
 void LogModel::refreshDone(const QZeitgeist::DataModel::EventList &results)
