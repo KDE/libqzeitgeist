@@ -224,7 +224,7 @@ public:
      *
      * @return A const @Monitor instance.
      */
-    const QZeitgeist::Monitor *installMonitor(
+    QZeitgeist::Monitor *installMonitor(
             QZeitgeist::DataModel::TimeRange timeRange,
             QZeitgeist::DataModel::EventList eventTemplateList);
 

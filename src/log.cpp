@@ -133,7 +133,7 @@ QDBusPendingReply<QZeitgeist::DataModel::EventList> Log::getEvents(
     return d->logInterface->GetEvents(ids);
 }
 
-const QZeitgeist::Monitor *Log::installMonitor(
+QZeitgeist::Monitor *Log::installMonitor(
         QZeitgeist::DataModel::TimeRange timeRange,
         QZeitgeist::DataModel::EventList eventTemplateList)
 {
