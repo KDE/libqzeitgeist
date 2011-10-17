@@ -22,7 +22,7 @@
 #ifndef QZEITGEIST_TIMERANGE_H_
 #define QZEITGEIST_TIMERANGE_H_
 
-#include "qzeitgeist.h"
+#include "../qzeitgeist.h"
 #include <QDateTime>
 #include <QMetaType>
 #include <QDBusArgument>

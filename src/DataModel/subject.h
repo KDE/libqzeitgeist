@@ -22,7 +22,7 @@
 #ifndef QZEITGEIST_SUBJECT_H_
 #define QZEITGEIST_SUBJECT_H_
 
-#include "qzeitgeist.h"
+#include "../qzeitgeist.h"
 #include <QList>
 
 #include <QMetaType>
