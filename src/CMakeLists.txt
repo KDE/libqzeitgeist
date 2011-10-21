@@ -10,7 +10,7 @@ include(QZeitgeistMacros)
 
 add_definitions(-DBUILD_QZEITGEIST)
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/include ${CMAKE_CURRENT_BINARY_DIR})
 
 set(qzeitgeist_HEADERS
     datasourceregistry.h
@@ -19,6 +19,7 @@ set(qzeitgeist_HEADERS
     monitor.h
     refreshjob.h
     qzeitgeist.h
+    ${CMAKE_CURRENT_BINARY_DIR}/qzeitgeist_version.h
 )
 
 set(qzeitgeist_MODEL_HEADERS
@@ -29,7 +30,6 @@ set(qzeitgeist_MODEL_HEADERS
 )
 
 set(qzeitgeist_SRCS
-    qzeitgeist.cpp
     datasourceregistry.cpp
     log.cpp
     logmodel.cpp
@@ -40,6 +40,8 @@ set(qzeitgeist_SRCS
     DataModel/subject.cpp
     DataModel/timerange.cpp
 )
+
+configure_file(qzeitgeist_version.h.in ${CMAKE_CURRENT_BINARY_DIR}/qzeitgeist_version.h @ONLY)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/DataModel ${CMAKE_CURRENT_BINARY_DIR}/DataModel)

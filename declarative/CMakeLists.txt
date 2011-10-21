@@ -10,7 +10,7 @@ set(declarative_SRCS
     plugin.cpp
 )
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR}/../src/)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/)
 automoc4_add_library(QZeitgeistDeclarativePlugin MODULE ${declarative_SRCS})
 

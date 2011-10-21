@@ -1,7 +1,7 @@
 /*
  * This file is part of QZeitgeist.
  *
- * Copyright (C) 2010 Collabora Ltd. <http://www.collabora.co.uk/>
+ * Copyright (C) 2011 Trever Fischer <tdfischer@fedoraproject.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,31 +18,24 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#ifndef QZEITGEIST_VERSION_H
+#define QZEITGEIST_VERSION_H
 
-#ifndef QZEITGEIST_H_
-#define QZEITGEIST_H_
+#define QZEITGEIST_VERSION_MAJOR @QZEITGEIST_VERSION_MAJOR@
+#define QZEITGEIST_VERSION_MINOR @QZEITGEIST_VERSION_MINOR@
+#define QZEITGEIST_VERSION_PATCH @QZEITGEIST_VERSION_PATCH@
 
-#include <QtGlobal>
-#include "qzeitgeist_version.h"
+#define QZEITGEIST_VERSION \
+    ((QZEITGEIST_VERSION_MAJOR << 8) | \
+     (QZEITGEIST_VERSION_MINOR << 4) | \
+     (QZEITGEIST_VERSION_PATCH))
 
-#define QZEITGEIST_EXPORT __attribute__ ((visibility ("default")))
+#define STRINGIZE2(s) #s
+#define STRINGIZE(s) STRINGIZE2(s)
 
-#ifndef QZEITGEIST_DEPRECATED
-#define QZEITGEIST_DEPRECATED Q_DECL_DEPRECATED
-#endif
+#define QZEITGEIST_VERSION_STRING \
+    STRINGIZE(QZEITGEIST_VERSION_MAJOR) "." \
+    STRINGIZE(QZEITGEIST_VERSION_MINOR) "." \
+    STRINGIZE(QZEITGEIST_VERSION_PATCH)
 
-namespace QZeitgeist
-{
-
-/**
- * Initialize the library.
- *
- * Before start using the QZeitgeist library it's necessary to call the init
- * function. The function  will get the library ready to use, initalizing and
- * registering custom types.
- * Note: It's really important to call this function before using the library.
- */
-QZEITGEIST_EXPORT void init();
-
-};
-#endif // QZEITGEIST_H_
+#endif // QZEITGEIST_VERSION_H
