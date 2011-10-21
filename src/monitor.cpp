@@ -30,10 +30,6 @@ namespace QZeitgeist
 // Monitor's DBus Object Path.
 const QString objPath = "/org/gnome/zeitgeist/monitor";
 
-// Monitor's DBus Service Name.
-const QString serviceName = "org.gnome.zeitgeist.Monitor";
-
-
 // Implements the private section. D pointer.
 MonitorPrivate::MonitorPrivate(quint64 monitorId,
         QZeitgeist::DataModel::TimeRange monitorTimeRange,
@@ -51,7 +47,6 @@ MonitorPrivate::MonitorPrivate(quint64 monitorId,
     regObjPath = QString(objPath + "/%1").arg(id);
 
     QDBusConnection connection = QDBusConnection::sessionBus();
-    connection.registerService(serviceName);
     connection.registerObject(regObjPath, this);
 }
 
