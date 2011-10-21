@@ -29,20 +29,4 @@
 namespace QZeitgeist
 {
 
-void init()
-{
-    static bool registered = false;
-
-    if (!registered) {
-        qDBusRegisterMetaType<QZeitgeist::DataModel::DataSource>();
-        qDBusRegisterMetaType<QZeitgeist::DataModel::DataSourceList>();
-        qDBusRegisterMetaType<QZeitgeist::DataModel::Event>();
-        qDBusRegisterMetaType<QZeitgeist::DataModel::EventList>();
-        qDBusRegisterMetaType<QZeitgeist::DataModel::EventIdList>();
-        qDBusRegisterMetaType<QZeitgeist::DataModel::TimeRange>();
-
-        registered = true;
-    }
-}
-
 };

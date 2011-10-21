@@ -34,15 +34,5 @@
 namespace QZeitgeist
 {
 
-/**
- * Initialize the library.
- *
- * Before start using the QZeitgeist library it's necessary to call the init
- * function. The function  will get the library ready to use, initalizing and
- * registering custom types.
- * Note: It's really important to call this function before using the library.
- */
-QZEITGEIST_EXPORT void init();
-
 };
 #endif // QZEITGEIST_H_

@@ -59,6 +59,9 @@ Event::Event(const Event & source)
     : d(new EventPrivate())
 {
     Q_ASSERT(d);
+    qDBusRegisterMetaType<QZeitgeist::DataModel::Event>();
+    qDBusRegisterMetaType<QZeitgeist::DataModel::EventList>();
+    qDBusRegisterMetaType<QZeitgeist::DataModel::EventIdList>();
 
     // Copy the source attribute's value.
     d->id = source.d->id;

@@ -47,6 +47,8 @@ DataSource::DataSource()
     : d(new DataSourcePrivate())
 {
     Q_ASSERT(d);
+    qDBusRegisterMetaType<QZeitgeist::DataModel::DataSource>();
+    qDBusRegisterMetaType<QZeitgeist::DataModel::DataSourceList>();
 
     // Initialize the last seen time.
     d->lastSeen.setTime_t(0);

@@ -35,7 +35,6 @@ Plugin::Plugin(QObject *parent)
 void Plugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("org.gnome.zeitgeist"));
-    QZeitgeist::init();
     qmlRegisterType<QZeitgeist::Declarative::LogModel>(uri, 0, 1, "LogModel");
     qmlRegisterType<QZeitgeist::Declarative::Event>(uri, 0, 1, "Event");
     qmlRegisterType<QZeitgeist::Declarative::Subject>(uri, 0, 1, "Subject");

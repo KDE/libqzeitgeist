@@ -20,6 +20,7 @@
 
 
 #include "timerange.h"
+#include <QtDBus/QDBusMetaType>
 
 #include <limits>
 
@@ -46,6 +47,7 @@ TimeRange::TimeRange()
     : d(new TimeRangePrivate())
 {
     Q_ASSERT(d);
+    qDBusRegisterMetaType<QZeitgeist::DataModel::TimeRange>();
 }
 
 TimeRange::TimeRange(const TimeRange & source)
