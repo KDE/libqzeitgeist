@@ -17,4 +17,4 @@ automoc4_add_library(QZeitgeistDeclarativePlugin MODULE ${declarative_SRCS})
 target_link_libraries(QZeitgeistDeclarativePlugin ${QT_LIBRARIES} qzeitgeist)
 
 install(TARGETS QZeitgeistDeclarativePlugin DESTINATION lib${LIB_SUFFIX}/qt4/imports/org/gnome/zeitgeist)
-install(FILES qmldir DESTINATION lib${LIB_SUFFIX}/qt4/imports/org/gnome/zeitgeist)
+install(FILES qmldir DESTINATION ${QT_IMPORTS_DIR}/org/gnome/zeitgeist)
