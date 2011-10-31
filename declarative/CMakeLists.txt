@@ -14,7 +14,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CM
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../src/)
 automoc4_add_library(QZeitgeistDeclarativePlugin MODULE ${declarative_SRCS})
 
-target_link_libraries(QZeitgeistDeclarativePlugin ${QT_DECLARATIVE_LIBRARIES} qzeitgeist)
+target_link_libraries(QZeitgeistDeclarativePlugin ${QT_QTDECLARATIVE_LIBRARIES} qzeitgeist)
 
 install(TARGETS QZeitgeistDeclarativePlugin DESTINATION ${QT_IMPORTS_DIR}/org/gnome/zeitgeist)
 install(FILES qmldir DESTINATION ${QT_IMPORTS_DIR}/org/gnome/zeitgeist)
