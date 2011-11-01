@@ -70,7 +70,7 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/manifestation.h
                    )
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifestation.h ${CMAKE_CURRENT_BINARY_DIR}/interpretation.h DESTINATION include/QZeitgeist)
 
-target_link_libraries(qzeitgeist ${QT_LIBRARIES} ${QDBUS_LDFLAGS})
+target_link_libraries(qzeitgeist ${QT_QTDBUS_LIBRARIES} ${QT_QTGUI_LIBRARIES} ${QDBUS_LDFLAGS})
 set_target_properties(qzeitgeist PROPERTIES VERSION "${QZEITGEIST_VERSION}"
                       VERSION ${QZEITGEIST_VERSION}
                       SOVERSION ${QZEITGEIST_LIB_SOVERSION}
