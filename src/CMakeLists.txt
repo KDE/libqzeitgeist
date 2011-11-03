@@ -8,6 +8,12 @@ find_package(Automoc4)
 include(${QT_USE_FILE})
 include(QZeitgeistMacros)
 
+execute_process(COMMAND python -c "import zeitgeist.datamodel" RESULT_VARIABLE ZEITGEIST_FIND_RESULT)
+
+if (NOT (ZEITGEIST_FIND_RESULT EQUAL 0))
+    message(FATAL_ERROR "Zeitgeist python API not found. Please install zeitgeist.")
+endif()
+
 add_definitions(-DBUILD_QZEITGEIST)
 
 include_directories(${CMAKE_SOURCE_DIR}/include ${CMAKE_CURRENT_BINARY_DIR})
