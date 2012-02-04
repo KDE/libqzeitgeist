@@ -59,17 +59,15 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
         QStringList eventIconOverlays(const QZeitgeist::DataModel::Event &event) const;
         Qt::ItemFlags flags(const QModelIndex &index) const;
 
-        void setRange(const QZeitgeist::DataModel::TimeRange &range);
         QZeitgeist::DataModel::TimeRange range() const;
-
-        void setResultType(QZeitgeist::Log::ResultType type);
         QZeitgeist::Log::ResultType resultType() const;
-
-        void setEventTemplates(const QZeitgeist::DataModel::EventList &templates);
         QZeitgeist::DataModel::EventList eventTemplates() const;
 
     public slots:
         void refresh();
+        void setRange(const QZeitgeist::DataModel::TimeRange &range);
+        void setResultType(QZeitgeist::Log::ResultType type);
+        void setEventTemplates(const QZeitgeist::DataModel::EventList &templates);
 
     private slots:
         void refreshDone(const QZeitgeist::DataModel::EventList &events);
