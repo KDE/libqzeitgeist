@@ -15,6 +15,18 @@ set(QZEITGEIST_VERSION_PATCH 0)
 set(QZEITGEIST_LIB_SOVERSION 1)
 set(QZEITGEIST_VERSION "${QZEITGEIST_VERSION_MAJOR}.${QZEITGEIST_VERSION_MINOR}.${QZEITGEIST_VERSION_PATCH}")
 
+# Provide a cmake option, which, if set, force the Qt stuff to be installed into the
+# system Qt directories, which may be outside CMAKE_INSTALL_PREFIX.
+# By default always install inside CMAKE_INSTALL_PREFIX.
+option(QZEITGEIST_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT "Install Qt designer plugins, QML plugins and mkspecs into the system Qt install directory or not" FALSE)
+if(QZEITGEIST_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT)
+    # in this case, the values have to be FORCED into the cache
+    set(QZEITGEIST_QT_IMPORTS_INSTALL_DIR ${QT_IMPORTS_DIR} CACHE PATH "The directory where QZeitgeist Qt imports (QML) will be installed to." FORCE)
+else(QZEITGEIST_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT)
+    # in this case, the values can be adjusted by the user e.g. via cmake-gui, so no FORCE
+    set(QZEITGEIST_QT_IMPORTS_INSTALL_DIR lib${LIB_SUFFIX}/qt4/imports CACHE PATH "The directory where QZeitgeist Qt imports (QML) will be installed to.")
+endif(QZEITGEIST_INSTALL_QT_EXTENSIONS_INTO_SYSTEM_QT)
+
 set(CPACK_PACKAGE_VERSION_MAJOR ${QZEITGEIST_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${QZEITGEIST_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${QZEITGEIST_VERSION_PATCH})

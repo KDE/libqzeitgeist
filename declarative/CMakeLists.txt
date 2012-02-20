@@ -16,7 +16,5 @@ automoc4_add_library(QZeitgeistDeclarativePlugin MODULE ${declarative_SRCS})
 
 target_link_libraries(QZeitgeistDeclarativePlugin ${QT_QTDECLARATIVE_LIBRARIES} qzeitgeist)
 
-set(DECLARATIVE_IMPORT_PREFIX ${QT_IMPORTS_DIR} CACHE PATH "Location to install declarative bindings")
-
-install(TARGETS QZeitgeistDeclarativePlugin DESTINATION ${DECLARATIVE_IMPORT_PREFIX}/org/gnome/zeitgeist)
-install(FILES qmldir DESTINATION ${QT_IMPORTS_DIR}/org/gnome/zeitgeist)
+install(TARGETS QZeitgeistDeclarativePlugin DESTINATION ${QZEITGEIST_QT_IMPORTS_INSTALL_DIR}/org/gnome/zeitgeist)
+install(FILES qmldir DESTINATION ${QZEITGEIST_QT_IMPORTS_INSTALL_DIR}/org/gnome/zeitgeist)
