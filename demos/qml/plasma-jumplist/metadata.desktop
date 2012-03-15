@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Jumplist
+X-KDE-PluginInfo-Category=System Information
+X-KDE-PluginInfo-Email=tdfischer@fedoraproject.org
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-Name=jumplists
+X-KDE-PluginInfo-Version=
+X-KDE-PluginInfo-Website=
+X-KDE-ServiceTypes=Plasma/Applet
+X-Plasma-API=declarativeappletscript
+X-Plasma-DefaultSize=200,300
+X-Plasma-MainScript=code/main.qml
+X-Plasma-RemoteLocation=
+Type=Service
