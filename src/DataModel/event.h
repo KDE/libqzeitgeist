@@ -201,6 +201,9 @@ public:
     Event & operator = (const Event &source);
     bool operator==(const Event &source);
 
+    void setOrigin(const QString &origin);
+    QString origin() const;
+
 private:
 
     // D Pointer.

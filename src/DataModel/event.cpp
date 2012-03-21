@@ -24,6 +24,8 @@
 #include <QMetaType>
 #include <QDBusMetaType>
 
+#include <QtCore/QDebug>
+
 namespace QZeitgeist
 {
 
@@ -45,6 +47,7 @@ public :
     QString interpretation;
     QString manifestation;
     QString actor;
+    QString origin;
     SubjectList subjects;
     QByteArray payload;
 };
@@ -164,9 +167,20 @@ Event &Event::operator = (const Event & source)
         d->actor = source.d->actor;
         d->subjects = source.d->subjects;
         d->payload = source.d->payload;
+        d->origin = source.d->origin;
     }
 
     return *this;
+}
+
+QString Event::origin() const
+{
+    return d->origin;
+}
+
+void Event::setOrigin(const QString &origin)
+{
+    d->origin = origin;
 }
 
 QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
@@ -178,7 +192,8 @@ QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
         << QString::number(event.d->timestamp.toMSecsSinceEpoch())
         << event.d->interpretation
         << event.d->manifestation
-        << event.d->actor;
+        << event.d->actor
+        << event.d->origin;
 
     QList<QStringList> subjectList;
     uint subjectsSize = event.d->subjects.size();
@@ -194,6 +209,7 @@ QDBusArgument & operator << (QDBusArgument &argument, const Event &event)
         subjectData << subject.mimeType();
         subjectData << subject.text();
         subjectData << subject.storage();
+        subjectData << subject.currentURI();
 
         subjectList << subjectData;
     }
@@ -232,6 +248,7 @@ const QDBusArgument & operator >> (const QDBusArgument &argument, Event &event)
         event.d->interpretation = eventData[2];
         event.d->manifestation = eventData[3];
         event.d->actor = eventData[4];
+        event.d->origin = eventData[5];
     }
 
     if (!subjectList.isEmpty()) {
@@ -248,6 +265,7 @@ const QDBusArgument & operator >> (const QDBusArgument &argument, Event &event)
             subject.setMimeType(subjectString[4]);
             subject.setText(subjectString[5]);
             subject.setStorage(subjectString[6]);
+            subject.setCurrentURI(subjectString[7]);
 
             event.d->subjects << subject;
         }

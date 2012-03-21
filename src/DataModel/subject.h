@@ -167,6 +167,10 @@ public:
 
     Subject & operator = (const Subject &source);
 
+    QString currentURI() const;
+
+    void setCurrentURI(const QString &uri);
+
 private:
 
     // D Pointer.

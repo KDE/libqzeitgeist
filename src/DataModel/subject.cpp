@@ -38,6 +38,7 @@ public :
     QString storage;
     QString interpretation;
     QString manifestation;
+    QString currentURI;
 };
 
 Subject::Subject()
@@ -150,6 +151,16 @@ Subject &Subject::operator = (const Subject & source)
     }
 
     return *this;
+}
+
+QString Subject::currentURI() const
+{
+    return d->currentURI;
+}
+
+void Subject::setCurrentURI(const QString &uri)
+{
+    d->currentURI = uri;
 }
 
 };
