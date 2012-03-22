@@ -14,6 +14,13 @@ set(QZEITGEIST_VERSION_MINOR 8)
 set(QZEITGEIST_VERSION_PATCH 0)
 set(QZEITGEIST_LIB_SOVERSION 1)
 set(QZEITGEIST_VERSION "${QZEITGEIST_VERSION_MAJOR}.${QZEITGEIST_VERSION_MINOR}.${QZEITGEIST_VERSION_PATCH}")
+set(SHARE_INSTALL_PREFIX "share")
+
+option(QZEITGEIST_BUILD_DOC "Build API documentation" OFF)
+
+if(QZEITGEIST_BUILD_DOC)
+    add_subdirectory(doc)
+endif()
 
 # Provide a cmake option, which, if set, force the Qt stuff to be installed into the
 # system Qt directories, which may be outside CMAKE_INSTALL_PREFIX.
