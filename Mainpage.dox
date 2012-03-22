@@ -1,0 +1,11 @@
+/** @mainpage libQZeitgeist API Reference
+
+Sparse documentation!
+
+*/
+
+// DOXYGEN_NAME=libqzeitgeist
+// DOXYGEN_ENABLE = YES
+// DOXYGEN_SET_INPUT = @topdir@/src @topdir@/declarative
+// DOXYGEN_SET_FILE_PATTERSN = *.h *.dox
+// DOXYGEN_SET_RECURSIVE = YES
