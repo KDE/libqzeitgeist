@@ -93,7 +93,7 @@ public:
      *
      * When an application registers itself as a data-source it can tell
      * the registry which types of events it will be logging.  This method
-     * retreives those event templates given at registration time.
+     * retrieves those event templates given at registration time.
      *
      * @returns The eventTemplates.
      */
