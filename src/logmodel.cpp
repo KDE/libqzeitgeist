@@ -110,7 +110,7 @@ void LogModel::refresh()
 void LogModel::eventsInserted(const QZeitgeist::DataModel::TimeRange &range, const QZeitgeist::DataModel::EventList &events)
 {
     QZeitgeist::DataModel::EventList oldEvents = m_events;
-    foreach(QZeitgeist::DataModel::Event evt, events) {
+    foreach(const QZeitgeist::DataModel::Event &evt, events) {
         oldEvents << evt;
     }
     diffEvents(oldEvents);
@@ -120,7 +120,7 @@ void LogModel::eventsDeleted(const QZeitgeist::DataModel::TimeRange &range, cons
 {
     QZeitgeist::DataModel::EventList oldEvents = m_events;
     foreach(int id, events) {
-        foreach(QZeitgeist::DataModel::Event evt, oldEvents) {
+        foreach(const QZeitgeist::DataModel::Event &evt, oldEvents) {
             if (evt.id() == id)
                 oldEvents.removeOne(evt);
         }
