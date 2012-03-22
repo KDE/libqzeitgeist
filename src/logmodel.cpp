@@ -98,13 +98,13 @@ void LogModel::refresh()
                                             m_type,
                                             m_log,
                                             this);
-    connect(refreshJob, SIGNAL(done(const QZeitgeist::DataModel::EventList &)), this, SLOT(refreshDone(const QZeitgeist::DataModel::EventList &)));
+    connect(refreshJob, SIGNAL(done(QZeitgeist::DataModel::EventList)), this, SLOT(refreshDone(QZeitgeist::DataModel::EventList)));
     m_pool->start(refreshJob);
     if (m_monitor)
         m_log->removeMonitor(m_monitor);
     m_monitor = m_log->installMonitor(m_range, m_eventTemplates);
-    connect(m_monitor, SIGNAL(eventsInserted(const QZeitgeist::DataModel::TimeRange&, const QZeitgeist::DataModel::EventList&)), this, SLOT(eventsInserted(const QZeitgeist::DataModel::TimeRange, const QZeitgeist::DataModel::EventList)));
-    connect(m_monitor, SIGNAL(eventsDeleted(const QZeitgeist::DataModel::TimeRange&, const QZeitgeist::DataModel::EventIdList&)), this, SLOT(eventsDeleted(const QZeitgeist::DataModel::TimeRange, const QZeitgeist::DataModel::EventIdList)));
+    connect(m_monitor, SIGNAL(eventsInserted(QZeitgeist::DataModel::TimeRange,QZeitgeist::DataModel::EventList)), this, SLOT(eventsInserted(QZeitgeist::DataModel::TimeRange,QZeitgeist::DataModel::EventList)));
+    connect(m_monitor, SIGNAL(eventsDeleted(QZeitgeist::DataModel::TimeRange,QZeitgeist::DataModel::EventIdList&)), this, SLOT(eventsDeleted(QZeitgeist::DataModel::TimeRange,QZeitgeist::DataModel::EventIdList)));
 }
 
 void LogModel::eventsInserted(const QZeitgeist::DataModel::TimeRange &range, const QZeitgeist::DataModel::EventList &events)
