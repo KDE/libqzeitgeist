@@ -151,7 +151,7 @@ void Event::addSubject(const Subject &subject)
     d->subjects.append(subject);
 }
 
-bool Event::operator==(const Event &source)
+bool Event::operator==(const Event &source) const
 {
     return d->id != 0 && source.d->id != 0 && d->id == source.d->id;
 }
