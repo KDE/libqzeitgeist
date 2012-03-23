@@ -24,6 +24,8 @@
 
 #include <QtCore/QDebug>
 #include <QtCore/QUrl>
+#include <QtCore/QDir>
+#include <QtCore/QCryptographicHash>
 
 namespace QZeitgeist
 {
@@ -174,11 +176,26 @@ QVariant LogModel::data(const QModelIndex &idx, int role) const
                 return event.subjects()[0].mimeType();
             case ActorRole:
                 return event.actor();
+            case ThumbnailRole:
+                return thumbnailForEvent(event);
             default:
                 return QVariant();
         }
     }
     return QVariant();
+}
+
+QPixmap LogModel::thumbnailForEvent(const QZeitgeist::DataModel::Event &event) const
+{
+    //FIXME: Implement caching
+    QString url(event.subjects()[0].uri());
+    QDir thumbDir(QString("%1/.thumbnails/large/").arg(QDir::homePath()));
+    QString snapshotName = QString("%1.png").arg(QString(QCryptographicHash::hash(url.toUtf8(), QCryptographicHash::Md5).toHex()));
+    qDebug() << snapshotName;
+    if (thumbDir.exists(snapshotName)) {
+        return QPixmap(thumbDir.absoluteFilePath(snapshotName), "JPEG");
+    }
+    return QPixmap();
 }
 
 QIcon LogModel::iconForEvent(const QZeitgeist::DataModel::Event &event) const

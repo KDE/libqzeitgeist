@@ -46,7 +46,8 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
             URLRole,
             MimeRole,
             ActorRole,
-            LastRole = ActorRole
+            ThumbnailRole,
+            LastRole = ThumbnailRole
         } Roles;
         LogModel(QObject *parent = 0);
         virtual ~LogModel();
@@ -56,6 +57,7 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
         QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
         QModelIndex parent(const QModelIndex &idx) const;
         QIcon iconForEvent(const QZeitgeist::DataModel::Event &event) const;
+        QPixmap thumbnailForEvent(const QZeitgeist::DataModel::Event &event) const;
         QStringList eventIconOverlays(const QZeitgeist::DataModel::Event &event) const;
         Qt::ItemFlags flags(const QModelIndex &index) const;
 
@@ -77,6 +79,7 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
     private:
         void diffEvents(const QZeitgeist::DataModel::EventList &events);
         QHash<QString, QString> m_iconCache;
+        QHash<QString, QPixmap> m_thumbnailCache;
         QZeitgeist::Log *m_log;
         QZeitgeist::DataModel::TimeRange m_range;
         QZeitgeist::DataModel::EventList m_eventTemplates;
