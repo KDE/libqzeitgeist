@@ -191,7 +191,6 @@ QPixmap LogModel::thumbnailForEvent(const QZeitgeist::DataModel::Event &event) c
     QString url(event.subjects()[0].uri());
     QDir thumbDir(QString("%1/.thumbnails/large/").arg(QDir::homePath()));
     QString snapshotName = QString("%1.png").arg(QString(QCryptographicHash::hash(url.toUtf8(), QCryptographicHash::Md5).toHex()));
-    qDebug() << snapshotName;
     if (thumbDir.exists(snapshotName)) {
         return QPixmap(thumbDir.absoluteFilePath(snapshotName), "JPEG");
     }
