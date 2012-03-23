@@ -202,10 +202,7 @@ QIcon LogModel::iconForEvent(const QZeitgeist::DataModel::Event &event) const
 {
     QUrl actor(event.actor());
     QString desktopFile = actor.authority().section('.', 0, 0);
-    if (!m_iconCache.contains(desktopFile))
-        return QIcon();
-    return QIcon(m_iconCache[desktopFile]);
-    //return KIcon(m_iconCache[desktopFile], NULL, eventIconOverlays(event));
+    return QIcon::fromTheme(desktopFile);
 }
 
 QModelIndex LogModel::index(int row, int column, const QModelIndex &parent) const
