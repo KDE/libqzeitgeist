@@ -1,11 +1,75 @@
-/** @mainpage libQZeitgeist API Reference
+/**
 
-Sparse documentation!
+@mainpage QZeitgeist API Reference
+
+@section intro Introduction
+
+QZeitgeist provides a Qt-based API for interacting with the Zeitgeist daemon.
+
+If you are unfamiliar with Zeitgeist, please check out the project's website:
+
+http://zeitgeist-project.com
+
+@section linking Using QZeitgeist in your project
+
+QZeitgeist installs three options for using it in your project:
+
+@subsection cmake_exports CMake Exports
+@verbatim
+find_package(QZeitgeist)
+
+add_executable(some-binary main.cpp)
+target_link_libraries(some-binary qzeitgeist)
+@endverbatim
+
+@subsection cmake Old-fashioned CMake
+
+@verbatim
+find_package(QZeitgeist)
+
+add_executable(some-binary main.cpp)
+target_link_libraries(some-binary ${QZEITGEIST_LIBS})
+@endverbatim
+
+@subsection pkgconfig pkgconfig
+
+@verbatim
+gcc main.cpp `pkg-config --cflags --ldflags QZeitgeist`
+@endverbatim
+
+@section demos Demos
+
+There are a number of demos available. Please check the <a href="demos.html">demos page</a>.
+
+@section dependencies Dependencies
+
+Since QZeitgeist communicates with Zeitgeist entirely over DBus, the only
+runtime dependency is Qt. Of course, QZeitgeist is entirely unhelpful without
+Zeitgeist installed.
+
+To build, you will need the Zeitgeist python bindings, which is used to
+generate the available manifestation and interpretation constants.
 
 */
 
-// DOXYGEN_NAME=libqzeitgeist
+/**
+
+@page demos Demos
+
+The following demos are available in the demos/ directory of the sources.
+
+@section simple_list_demo Simple event list
+
+This demo queries Zeitgeist for the last 10 events that were logged.
+
+@includelineno simple-list/main.cpp
+
+*/
+
+// DOXYGEN_NAME = libqzeitgeist
 // DOXYGEN_ENABLE = YES
-// DOXYGEN_SET_INPUT = @topdir@/src @topdir@/declarative
-// DOXYGEN_SET_FILE_PATTERSN = *.h *.dox
+// DOXYGEN_SET_INPUT = @topdir@/src @topdir@/declarative @topdir@/Mainpage.dox
+// DOXYGEN_SET_FILE_PATTERNS = *.h *.dox
 // DOXYGEN_SET_RECURSIVE = YES
+// DOXYGEN_SET_EXAMPLE_PATH = @topdir@/demos/
+// vim:ts=4:sw=4:expandtab:filetype=doxygen
