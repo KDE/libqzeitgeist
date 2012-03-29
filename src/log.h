@@ -18,7 +18,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-
 #ifndef QZEITGEIST_LOG_H_
 #define QZEITGEIST_LOG_H_
 
@@ -42,7 +41,7 @@ class LogPrivate;
  * You can use it to manage the log by inserting and deleting entries as well
  * as do queries on the logged data.
  *
- * It's important to realize that the @Log class does not expose
+ * It's important to realize that the Log class does not expose
  * any API that does synchronous communications with the message bus -
  * everything is asynchronous. Thus, instead of the real result, each
  * asynchronous operation will return a DBus pending reply object, that can
@@ -217,12 +216,12 @@ public:
      * Register a client side monitor object to receive callbacks when
      * events matching time range and event templates are inserted or deleted.
      *
-     * @param timeRange a @TimeRange with the time range monitored events
+     * @param timeRange a TimeRange with the time range monitored events
      * must fall within.
      * @param eventTemplateList Event templates that events must match in
      * order to trigger the monitor.
      *
-     * @return A const @Monitor instance.
+     * @return A const Monitor instance.
      */
     QZeitgeist::Monitor *installMonitor(
             QZeitgeist::DataModel::TimeRange timeRange,
@@ -231,11 +230,11 @@ public:
     /**
      * Request the removing of the given monitor.
      *
-     * Remove from Zeitgeist daemon an installed @Monitor.
-     * Note: Once the @Monitor is removed, the @Log class will automatically
-     * delete the @Monitor instance and should not be used after it.
+     * Remove from Zeitgeist daemon an installed Monitor.
+     * Note: Once the Monitor is removed, the Log class will automatically
+     * delete the Monitor instance and should not be used after it.
      *
-     * @param monitor an installed  @Monitor instance to be removed.
+     * @param monitor an installed  Monitor instance to be removed.
      */
     void removeMonitor(QZeitgeist::Monitor *monitor);
 
