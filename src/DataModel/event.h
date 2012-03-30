@@ -58,6 +58,8 @@ public:
 
     /**
      * Default constructor.
+     *
+     * Initializes the timestamp to QDateTime::currentDateTime()
      */
     explicit Event();
 

@@ -56,6 +56,7 @@ Event::Event()
     : d(new EventPrivate())
 {
     Q_ASSERT(d);
+    d->timestamp = QDateTime::currentDateTime();
 }
 
 Event::Event(const Event & source)
