@@ -137,6 +137,17 @@ void Subject::setStorage(const QString &storage)
     d->storage = storage;
 }
 
+bool Subject::operator==(const Subject &source)
+{
+    return d->uri == source.d->uri &&
+          d->interpretation == source.d->interpretation &&
+          d->manifestation == source.d->manifestation &&
+          d->origin == source.d->origin &&
+          d->mimeType == source.d->mimeType &&
+          d->text == source.d->text &&
+          d->storage == source.d->storage;
+}
+
 Subject &Subject::operator = (const Subject & source)
 {
     // Copy the source attribute's value.

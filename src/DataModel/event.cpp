@@ -154,7 +154,15 @@ void Event::addSubject(const Subject &subject)
 
 bool Event::operator==(const Event &source) const
 {
-    return d->id != 0 && source.d->id != 0 && d->id == source.d->id;
+    if (d->id != source.d->id)
+        return false;
+    if (d->subjects.size() != source.d->subjects.size())
+        return false;
+    bool ret = true;
+    foreach(Subject otherSubject, source.d->subjects) {
+        ret = ret && d->subjects.contains(otherSubject);
+    }
+    return true;
 }
 
 Event &Event::operator = (const Event & source)
