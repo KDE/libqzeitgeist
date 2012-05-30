@@ -49,6 +49,11 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
             ThumbnailRole,
             LastRole = ThumbnailRole
         } Roles;
+
+        enum IconMode {
+            ActorIcons,
+            URIIcons
+        };
         LogModel(QObject *parent = 0);
         virtual ~LogModel();
         int rowCount(const QModelIndex &idx = QModelIndex()) const;
@@ -57,9 +62,11 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
         QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
         QModelIndex parent(const QModelIndex &idx) const;
         QIcon iconForEvent(const QZeitgeist::DataModel::Event &event) const;
+        QIcon iconForActor(const QString &actor) const;
         QPixmap thumbnailForEvent(const QZeitgeist::DataModel::Event &event) const;
         QStringList eventIconOverlays(const QZeitgeist::DataModel::Event &event) const;
         Qt::ItemFlags flags(const QModelIndex &index) const;
+        void setIconMode(IconMode mode);
 
         QZeitgeist::DataModel::TimeRange range() const;
         QZeitgeist::Log::ResultType resultType() const;
@@ -89,6 +96,7 @@ class QZEITGEIST_EXPORT LogModel : public QAbstractItemModel {
         QZeitgeist::Log::ResultType m_type;
         QThreadPool *m_pool;
         QZeitgeist::Monitor *m_monitor;
+        IconMode m_iconMode;
 };
 
 } // namespace QZeitgeist

@@ -22,6 +22,7 @@
 
 #include "DataModel/subject.h"
 
+#include <QtGui/QFileIconProvider>
 #include <QtCore/QDebug>
 #include <QtCore/QUrl>
 #include <QtCore/QDir>
@@ -33,6 +34,7 @@ namespace QZeitgeist
 LogModel::LogModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_monitor(0)
+    , m_iconMode(URIIcons)
 {
     m_log = new QZeitgeist::Log(this);
     m_storageState = QZeitgeist::Log::Any;
@@ -44,6 +46,12 @@ LogModel::LogModel(QObject *parent)
 
 LogModel::~LogModel()
 {
+}
+
+void LogModel::setIconMode(IconMode mode)
+{
+    m_iconMode = mode;
+    emit dataChanged(index(0), index(rowCount()));
 }
 
 void LogModel::diffEvents(const QZeitgeist::DataModel::EventList &events)
@@ -197,11 +205,29 @@ QPixmap LogModel::thumbnailForEvent(const QZeitgeist::DataModel::Event &event) c
     return QPixmap();
 }
 
+QIcon LogModel::iconForActor(const QString &actor) const
+{
+    QString desktopFile = QUrl(actor).authority().section('.', 0, 0);
+    return QIcon::fromTheme(desktopFile);
+}
+
 QIcon LogModel::iconForEvent(const QZeitgeist::DataModel::Event &event) const
 {
-    QUrl actor(event.actor());
-    QString desktopFile = actor.authority().section('.', 0, 0);
-    return QIcon::fromTheme(desktopFile);
+    QFileIconProvider icons;
+    QIcon ret = iconForActor(event.actor());
+    if (m_iconMode == ActorIcons)
+        return ret;
+    foreach(QZeitgeist::DataModel::Subject subject, event.subjects()) {
+        QUrl url = subject.uri();
+        if (url.scheme() == "file") {
+            QFileInfo info(url.path());
+            ret = icons.icon(info);
+            if (!ret.isNull())
+              break;
+        }
+    }
+    if (ret.isNull())
+        ret = iconForActor(event.actor());
 }
 
 QModelIndex LogModel::index(int row, int column, const QModelIndex &parent) const
