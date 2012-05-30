@@ -51,7 +51,7 @@ LogModel::~LogModel()
 void LogModel::setIconMode(IconMode mode)
 {
     m_iconMode = mode;
-    emit dataChanged(index(0), index(rowCount()));
+    emit dataChanged(index(0, 0), index(rowCount(), 0));
 }
 
 void LogModel::diffEvents(const QZeitgeist::DataModel::EventList &events)
