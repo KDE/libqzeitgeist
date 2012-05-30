@@ -20,6 +20,7 @@
 #include "logbrowser.h"
 #include "DataModel/event.h"
 #include "logmodel.h"
+#include "interpretation.h"
 
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QHBoxLayout>
@@ -58,9 +59,11 @@ LogBrowser::LogBrowser(QWidget *parent)
 
     QListView *view = new QListView(this);
     view->setResizeMode(QListView::Adjust);
+    connect(view, SIGNAL(activated(QModelIndex)), this, SLOT(handleActivation(QModelIndex)));
 
     m_logView = view;
     m_logView->setModel(filter);
+
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     m_filterLayout = new QHBoxLayout(this);
@@ -150,6 +153,12 @@ void LogBrowser::applyActorFilter(bool yes)
 {
     m_actorFilterActive = yes;
     updateFilter();
+}
+
+void LogBrowser::handleActivation(const QModelIndex &idx)
+{
+    DataModel::Event event = idx.data(LogModel::EventRole).value<DataModel::Event>();
+    emit activated(event);
 }
 
 } // namespace QZeitgeist

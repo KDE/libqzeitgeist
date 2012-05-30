@@ -29,6 +29,7 @@ class QAbstractItemView;
 class QHBoxLayout;
 class QSignalMapper;
 class QCheckBox;
+class QModelIndex;
 
 namespace QZeitgeist
 {
@@ -52,10 +53,14 @@ class QZEITGEIST_EXPORT LogBrowser : public QWidget {
       QAction *addEventFilter(const QZeitgeist::DataModel::EventList &templates, const QString &name);
       void setApplicationActor(const QString &actor, const QString &name);
 
+    signals:
+      void activated(const QZeitgeist::DataModel::Event &event);
+
     private slots:
       void updateFilter();
       void applyFilter(int id);
       void applyActorFilter(bool yes);
+      void handleActivation(const QModelIndex &idx);
 
     private:
       int m_nextID;
