@@ -38,6 +38,7 @@ set(qzeitgeist_MODEL_HEADERS
 set(qzeitgeist_SRCS
     datasourceregistry.cpp
     log.cpp
+    logbrowser.cpp
     logmodel.cpp
     monitor.cpp
     refreshjob.cpp
