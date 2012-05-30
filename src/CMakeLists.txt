@@ -22,6 +22,7 @@ set(qzeitgeist_HEADERS
     datasourceregistry.h
     log.h
     logmodel.h
+    logbrowser.h
     monitor.h
     refreshjob.h
     qzeitgeist.h
