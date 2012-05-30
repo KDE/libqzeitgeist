@@ -8,7 +8,7 @@
 #include <QZeitgeist/Log>
 #include <QZeitgeist/Manifestation>
 #include <QZeitgeist/Interpretation>
-#include <QZeitgeist/LogModel>
+#include <QZeitgeist/LogBrowser>
 
 MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)
@@ -24,21 +24,18 @@ MainWindow::MainWindow(QWidget *parent, Qt::WindowFlags flags)
 
     m_log = new QZeitgeist::Log(this);
 
-    QZeitgeist::LogModel *history = new QZeitgeist::LogModel(this);
+    QDockWidget *historyDock = new QDockWidget(tr("History"), this);
+    addDockWidget(Qt::LeftDockWidgetArea, historyDock);
+    QZeitgeist::LogBrowser *historyView = new QZeitgeist::LogBrowser(historyDock);
+    connect(historyView, SIGNAL(activated(QZeitgeist::DataModel::Event)), this, SLOT(loadHistory(QZeitgeist::DataModel::Event)));
+    historyDock->setWidget(historyView);
+
     QZeitgeist::DataModel::Event eventTemplate;
     QZeitgeist::DataModel::Subject subjectTemplate;
     subjectTemplate.setInterpretation(QZeitgeist::Interpretation::Subject::NFOWebsite);
     eventTemplate.setSubjects(QZeitgeist::DataModel::SubjectList() << subjectTemplate);
-
-    history->setResultType(QZeitgeist::Log::MostRecentSubjects);
-    history->setEventTemplates(QZeitgeist::DataModel::EventList() << eventTemplate);
-
-    QDockWidget *historyDock = new QDockWidget(tr("History"), this);
-    addDockWidget(Qt::LeftDockWidgetArea, historyDock);
-    QAbstractItemView *historyView = new QListView(historyDock);
-    historyView->setModel(history);
-    connect(historyView, SIGNAL(activated(QModelIndex)), this, SLOT(loadHistory(QModelIndex)));
-    historyDock->setWidget(historyView);
+    historyView->addEventFilter(QZeitgeist::DataModel::EventList() << eventTemplate, tr("Websites"));
+    historyView->setApplicationActor("application://zeitgeist-browser-demo.desktop", tr("Zeitgeist Browser Demo"));
 }
 
 void MainWindow::logPage()
@@ -60,9 +57,9 @@ void MainWindow::logPage()
     qDebug() << "Logged" << subject.uri();
 }
 
-void MainWindow::loadHistory(const QModelIndex &idx)
+void MainWindow::loadHistory(const QZeitgeist::DataModel::Event &event)
 {
-    m_webView->load(idx.data(QZeitgeist::LogModel::URLRole).toUrl());
+    m_webView->load(event.subjects()[0].uri());
 }
 
 #include "mainwindow.moc"

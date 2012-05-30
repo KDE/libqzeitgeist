@@ -10,6 +10,9 @@ class QModelIndex;
 namespace QZeitgeist {
     class Log;
     class LogModel;
+    namespace DataModel {
+      class Event;
+    }
 }
 
 class MainWindow : public QMainWindow {
@@ -18,7 +21,7 @@ public:
     MainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 private slots:
     void logPage();
-    void loadHistory(const QModelIndex &);
+    void loadHistory(const QZeitgeist::DataModel::Event &);
 private:
     QWebView *m_webView;
     QZeitgeist::Log *m_log;
