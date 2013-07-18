@@ -7,9 +7,9 @@
          the Zeitgeist activity log-->
 
     <method name="InsertEvents">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::EventList"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0"
         value="QZeitgeist::DataModel::EventIdList"/>
       <arg direction="in"  type="a(asaasay)" name="events" />
       <arg direction="out" type="au" name="event_ids"/>
@@ -19,11 +19,11 @@
     </method>
 
     <method name="FindRelatedUris">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::TimeRange"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In1"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1"
         value="QZeitgeist::DataModel::EventList"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In2"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In2"
         value="QZeitgeist::DataModel::EventList"/>
       <arg direction="in"  type="(xx)" name="time_range" />
       <arg direction="in"  type="a(asaasay)" name="event_templates" />
@@ -35,11 +35,11 @@
     </method>
 
     <method name="FindEvents">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::TimeRange"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In1"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1"
         value="QZeitgeist::DataModel::EventList"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0"
         value="QZeitgeist::DataModel::EventList"/>
       <arg direction="in"  type="(xx)" name="time_range" />
       <arg direction="in"  type="a(asaasay)" name="event_templates" />
@@ -50,11 +50,11 @@
     </method>
 
     <method name="FindEventIds">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::TimeRange"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In1"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1"
         value="QZeitgeist::DataModel::EventList"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0"
         value="QZeitgeist::DataModel::EventIdList"/>
       <arg direction="in"  type="(xx)" name="time_range" />
       <arg direction="in"  type="a(asaasay)" name="event_templates" />
@@ -65,7 +65,7 @@
     </method>
 
     <method name="DeleteEvents">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::EventIdList"/>
       <arg direction="in"  type="au" name="event_ids" />
     </method>
@@ -74,9 +74,9 @@
     </method>
 
     <method name="GetEvents">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::EventIdList"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0"
         value="QZeitgeist::DataModel::EventList"/>
       <!-- Get a set of events given their event ids -->
       <arg direction="in"  type="au" name="event_ids" />
@@ -84,9 +84,9 @@
     </method>
 
     <method name="InstallMonitor">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In1"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1"
         value="QZeitgeist::DataModel::TimeRange"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In2"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In2"
         value="QZeitgeist::DataModel::EventList"/>
       <arg direction="in"  type="o" name="monitor_path" />
       <arg direction="in"  type="(xx)" name="time_range" />

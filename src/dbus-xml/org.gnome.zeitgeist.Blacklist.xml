@@ -4,14 +4,14 @@
     <!-- Events matching the blacklisted templates will not be inserted into the log -->
     <method name="SetBlacklist">
       <!-- List of event templates to blacklist -->
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::EventList"/>
       <arg direction="in"  type="a(asaasay)" name="events" />
     </method>
 
     <method name="GetBlacklist">
       <!-- List of event templates to blacklist -->
-      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0"
         value="QZeitgeist::DataModel::EventList"/>
       <arg direction="out"  type="a(asaasay)" name="events" />
     </method>

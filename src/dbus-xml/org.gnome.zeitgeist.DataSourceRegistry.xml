@@ -9,7 +9,7 @@
       <arg direction="in"  type="s" name="unique_id"/>
       <arg direction="in"  type="s" name="name"/>
       <arg direction="in"  type="s" name="description"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In3"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In3"
         value="QZeitgeist::DataModel::EventList"/>
       <arg direction="in"  type="a(asaasay)" name="event_templates" />
       <arg direction="out" type="b" name="result"/>
@@ -21,19 +21,19 @@
     </method>
 
     <method name="GetDataSources">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0"
         value="QZeitgeist::DataModel::DataSourceList"/>
       <arg direction="out" type="a(sssa(asaasay)bxb)" />
     </method>
 
     <signal name="DataSourceRegistered">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::DataSource"/>
       <arg type="(sssa(asaasay)bxb)" />
     </signal>
 
     <signal name="DataSourceDisconnected">
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::DataSource"/>
       <arg type="(sssa(asaasay)bxb)" />
     </signal>

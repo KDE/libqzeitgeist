@@ -8,9 +8,9 @@
 
     <method name="NotifyInsert">
       <!-- Events matching the templates has been inserted into the log -->
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::TimeRange"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In1"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1"
         value="QZeitgeist::DataModel::EventList"/>
       <arg direction="in"  type="(xx)" name="time_range" />
       <arg direction="in"  type="a(asaasay)" name="events" />
@@ -18,9 +18,9 @@
 
     <method name="NotifyDelete">
       <!-- Events matching the templates has been deleted from the log -->
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In0"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0"
         value="QZeitgeist::DataModel::TimeRange"/>
-      <annotation name="com.trolltech.QtDBus.QtTypeName.In1"
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1"
         value="QZeitgeist::DataModel::EventIdList"/>
       <arg direction="in"  type="(xx)" name="time_range" />
       <arg direction="in"  type="au" name="event_ids" />
