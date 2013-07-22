@@ -228,6 +228,7 @@ QIcon LogModel::iconForEvent(const QZeitgeist::DataModel::Event &event) const
     }
     if (ret.isNull())
         ret = iconForActor(event.actor());
+    return ret;
 }
 
 QModelIndex LogModel::index(int row, int column, const QModelIndex &parent) const
